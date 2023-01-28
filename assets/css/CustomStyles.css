@@ -1,0 +1,22 @@
+﻿.Sender-Deisgn {
+    width: 65%;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background: rgba(52,58,64,0.05);
+}
+
+.Receiver {
+    display: flex;
+    justify-content: end;
+}
+
+.Receiver-Deisgn {
+    width: 65%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background: rgba(52,58,64,0.05);
+}
