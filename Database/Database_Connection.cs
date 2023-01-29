@@ -108,9 +108,9 @@ namespace LifePoints.Database
                 DB_Connect();
                 con.Open();
                 cmd = con.CreateCommand();
-                cmd.CommandText = string.Format(@"insert into user_info(UI_ID, UI_LNAME, UI_FNAME, UI_MNAME, UI_GENDER, UI_DOB, UI_ADDRESS, UI_BTYPE) 
-values({0}, '{1}', '{2}', '{3}', {4}, '{5}', '{6}', '{7}');", ui.UI_ID, ui.UI_LNAME, ui.UI_FNAME, ui.UI_MNAME, ui.UI_GENDER, ui.UI_DOB, ui.UI_ADDRESS, ui.UI_BTYPE);
-                if(cmd.ExecuteNonQuery() > 0)
+                cmd.CommandText = string.Format(@"insert into user_info(UI_ID, UI_LNAME, UI_FNAME, UI_MNAME, UI_GENDER, UI_DOB, UI_ADDRESS, UI_BTYPE, UI_HOME, UI_MOBILE) 
+values({0}, '{1}', '{2}', '{3}', {4}, '{5}', '{6}', '{7}', '{8}', '{9}');", ui.UI_ID, ui.UI_LNAME, ui.UI_FNAME, ui.UI_MNAME, ui.UI_GENDER, ui.UI_DOB, ui.UI_ADDRESS, ui.UI_BTYPE, ui.UI_HOME, ui.UI_MOBILE);
+                if (cmd.ExecuteNonQuery() > 0)
                 {
                     //Success Insert
                     res = true;
