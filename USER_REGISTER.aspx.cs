@@ -73,7 +73,10 @@ namespace LifePoints
                         ui.UI_FNAME = FName.Text;
                         ui.UI_MNAME = MName.Text;
                         ui.UI_GENDER = Gender.SelectedValue == "1";
+                        ui.UI_BTYPE = Bloodtype.SelectedValue;
                         ui.UI_DOB = DOB.Text;
+                        ui.UI_HOME = Home.Text;
+                        ui.UI_MOBILE = Mobile.Text;
 
                         //Convert Address to Json
                         user_info_address ad = new user_info_address();

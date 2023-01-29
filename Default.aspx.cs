@@ -1,6 +1,7 @@
 ﻿using LifePoints.Database;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -37,18 +38,37 @@ namespace LifePoints
                 {
                     if (acc.ACC_ID != null)
                     {
-                        switch (acc.ACC_TYPE)
+                        Session["LOGIN"] = true;
+                        Session["ACCOUNT"] = acc;
+
+                        if (acc.ACC_TYPE != "3")
                         {
-                            case "1": //Admin
-                                Response.Write("<script>alert('Admin')</script>");
-                                break;
-                            case "2": //BloodBank
-                                Response.Write("<script>alert('BloodBank')</script>");
-                                break;
-                            case "3": //User
-                                Response.Write("<script>alert('User')</script>");
-                                break;
+                            switch (acc.ACC_TYPE)
+                            {
+                                case "1": //Admin
+                                    Response.Write("<script>alert('Admin')</script>");
+                                    break;
+                                case "2": //BloodBank
+                                    Response.Redirect("~/BloodBank/BB_Dashboard.aspx");
+                                    break;
+                            }
                         }
+                        else
+                        {
+                            user_info ui = db.GetUserInfo(acc.ACC_ID);
+
+                            if (ui != null)
+                            {
+                                if (ui.UI_ID != null)
+                                {
+                                    Session["USER_INFO"] = ui; 
+                                    
+                                    //User
+                                    Response.Redirect("~/USER_BLOGPOST.aspx");
+                                }
+                            }
+                        }
+                            
                     }
                     else
                     {

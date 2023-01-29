@@ -466,7 +466,7 @@
                         <tr>
                             <td>Gender:</td>
                             <td class="d-flex flex-column">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Required" Style="color: red; display: flex; justify-content: end;" ControlToValidate="Password" Font-Italic="True"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Required" Style="color: red; display: flex; justify-content: end;" ControlToValidate="Gender" Font-Italic="True"></asp:RequiredFieldValidator>
                                 <asp:RadioButtonList runat="server" ID="Gender" RepeatDirection="Horizontal" RepeatColumns="2">
                                 </asp:RadioButtonList>
                             </td>
@@ -575,7 +575,7 @@
                         <asp:Button runat="server" ID="RegisterBtn" OnClick="RegisterBtn_Click" CssClass="btn btn-primary btn-user" ClientIDMode="Static" Text="Register Account" AutoPostBack="false" Style="background: rgb(119,40,32); width: 40%;" />
                     </div>
                     <hr />
-                    <div class="text-center"><a class="small" href="Login.aspx">Already have an account? Login!</a></div>
+                    <div class="text-center"><a class="small" href="Default.aspx">Already have an account? Login!</a></div>
                 </div>
             </div>
         </div>

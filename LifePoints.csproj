@@ -190,6 +190,47 @@
     <Content Include="assets\img\winking-emoticon.svg" />
     <Content Include="assets\js\bs-init.js" />
     <Content Include="assets\js\theme.js" />
+    <Content Include="BloodBank\assets\bootstrap\css\bootstrap.min.css" />
+    <Content Include="BloodBank\assets\bootstrap\js\bootstrap.min.js" />
+    <Content Include="BloodBank\assets\css\Google-Style-Login.css" />
+    <Content Include="BloodBank\assets\css\login-full-page-bs4.css" />
+    <Content Include="BloodBank\assets\css\Modal-Login-form.css" />
+    <Content Include="BloodBank\assets\css\Table-With-Search-1.css" />
+    <Content Include="BloodBank\assets\css\Table-With-Search.css" />
+    <Content Include="BloodBank\assets\fonts\fa-brands-400.svg" />
+    <Content Include="BloodBank\assets\fonts\fa-regular-400.svg" />
+    <Content Include="BloodBank\assets\fonts\fa-solid-900.svg" />
+    <Content Include="BloodBank\assets\fonts\font-awesome.min.css" />
+    <Content Include="BloodBank\assets\fonts\fontawesome-all.min.css" />
+    <Content Include="BloodBank\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="BloodBank\assets\fonts\fontawesome5-overrides.min.css" />
+    <Content Include="BloodBank\assets\img\321479999_548324667206662_5830804446592810955_n.png" />
+    <Content Include="BloodBank\assets\img\avatars\avatar1.jpeg" />
+    <Content Include="BloodBank\assets\img\avatars\avatar2.jpeg" />
+    <Content Include="BloodBank\assets\img\avatars\avatar3.jpeg" />
+    <Content Include="BloodBank\assets\img\avatars\avatar4.jpeg" />
+    <Content Include="BloodBank\assets\img\avatars\avatar5.jpeg" />
+    <Content Include="BloodBank\assets\img\avatar_2x.png" />
+    <Content Include="BloodBank\assets\img\bill.png" />
+    <Content Include="BloodBank\assets\img\blood-donation.png" />
+    <Content Include="BloodBank\assets\img\blood-drop.png" />
+    <Content Include="BloodBank\assets\img\dogs\image1.jpeg" />
+    <Content Include="BloodBank\assets\img\dogs\image2.jpeg" />
+    <Content Include="BloodBank\assets\img\dogs\image3.jpeg" />
+    <Content Include="BloodBank\assets\img\dogs\vsmmclogo1.png" />
+    <Content Include="BloodBank\assets\img\user-icon.jpg" />
+    <Content Include="BloodBank\assets\img\user.png" />
+    <Content Include="BloodBank\assets\img\vsmmclogo1.png" />
+    <Content Include="BloodBank\assets\js\bs-init.js" />
+    <Content Include="BloodBank\assets\js\chart.min.js" />
+    <Content Include="BloodBank\assets\js\jquery.min.js" />
+    <Content Include="BloodBank\assets\js\login-full-page-bs4-1.js" />
+    <Content Include="BloodBank\assets\js\login-full-page-bs4.js" />
+    <Content Include="BloodBank\assets\js\Table-With-Search.js" />
+    <Content Include="BloodBank\assets\js\theme.js" />
+    <Content Include="BloodBank\BB_BloodTransaction.aspx" />
+    <Content Include="BloodBank\BB_Dashboard.aspx" />
+    <Content Include="BloodBank\BB_Request_Survey.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -224,8 +265,26 @@
     <Content Include="assets\fonts\fontawesome-webfont.woff" />
     <Content Include="assets\fonts\fontawesome-webfont.woff2" />
     <Content Include="assets\fonts\FontAwesome.otf" />
+    <Content Include="BloodBank\assets\fonts\fa-brands-400.eot" />
+    <Content Include="BloodBank\assets\fonts\fa-brands-400.ttf" />
+    <Content Include="BloodBank\assets\fonts\fa-brands-400.woff" />
+    <Content Include="BloodBank\assets\fonts\fa-brands-400.woff2" />
+    <Content Include="BloodBank\assets\fonts\fa-regular-400.eot" />
+    <Content Include="BloodBank\assets\fonts\fa-regular-400.ttf" />
+    <Content Include="BloodBank\assets\fonts\fa-regular-400.woff" />
+    <Content Include="BloodBank\assets\fonts\fa-regular-400.woff2" />
+    <Content Include="BloodBank\assets\fonts\fa-solid-900.eot" />
+    <Content Include="BloodBank\assets\fonts\fa-solid-900.ttf" />
+    <Content Include="BloodBank\assets\fonts\fa-solid-900.woff" />
+    <Content Include="BloodBank\assets\fonts\fa-solid-900.woff2" />
+    <Content Include="BloodBank\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="BloodBank\assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="BloodBank\assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="BloodBank\assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="BloodBank\assets\fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\userlifepoints-001-site1 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\userlifepoints-001-site1 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Login.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -255,7 +314,16 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="Uploads\2023003_Request_29-01-23.jpg" />
+    <Content Include="USER_BECOMEADONOR.aspx" />
+    <Content Include="USER_BLOGPOST.aspx" />
+    <Content Include="USER_DONOR_SURVEY_FORM.aspx" />
+    <Content Include="USER_DONOR_SURVEY_FORM_VIEW.aspx" />
+    <Content Include="USER_NOTIFICATION.aspx" />
+    <Content Include="USER_PROFILE.aspx" />
     <Content Include="USER_REGISTER.aspx" />
+    <Content Include="USER_REQUEST_A_BLOOD.aspx" />
+    <Content Include="USER_REQUEST_SURVEY_FORM.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -264,6 +332,29 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BloodBank\BB_BloodTransaction.aspx.cs">
+      <DependentUpon>BB_BloodTransaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BloodBank\BB_BloodTransaction.aspx.designer.cs">
+      <DependentUpon>BB_BloodTransaction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BloodBank\BB_Dashboard.aspx.cs">
+      <DependentUpon>BB_Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BloodBank\BB_Dashboard.aspx.designer.cs">
+      <DependentUpon>BB_Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BloodBank\BB_Request_Survey.aspx.cs">
+      <DependentUpon>BB_Request_Survey.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BloodBank\BB_Request_Survey.aspx.designer.cs">
+      <DependentUpon>BB_Request_Survey.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BloodBank\Database\Database_Connections.cs" />
+    <Compile Include="BloodBank\Database\Data_Model.cs" />
     <Compile Include="Database\Database_Connection.cs" />
     <Compile Include="Database\Model.cs" />
     <Compile Include="Default.aspx.cs">
@@ -275,13 +366,6 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -298,12 +382,68 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="USER_BECOMEADONOR.aspx.cs">
+      <DependentUpon>USER_BECOMEADONOR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="USER_BECOMEADONOR.aspx.designer.cs">
+      <DependentUpon>USER_BECOMEADONOR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="USER_BLOGPOST.aspx.cs">
+      <DependentUpon>USER_BLOGPOST.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="USER_BLOGPOST.aspx.designer.cs">
+      <DependentUpon>USER_BLOGPOST.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="USER_DONOR_SURVEY_FORM.aspx.cs">
+      <DependentUpon>USER_DONOR_SURVEY_FORM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="USER_DONOR_SURVEY_FORM.aspx.designer.cs">
+      <DependentUpon>USER_DONOR_SURVEY_FORM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="USER_DONOR_SURVEY_FORM_VIEW.aspx.cs">
+      <DependentUpon>USER_DONOR_SURVEY_FORM_VIEW.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="USER_DONOR_SURVEY_FORM_VIEW.aspx.designer.cs">
+      <DependentUpon>USER_DONOR_SURVEY_FORM_VIEW.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="USER_NOTIFICATION.aspx.cs">
+      <DependentUpon>USER_NOTIFICATION.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="USER_NOTIFICATION.aspx.designer.cs">
+      <DependentUpon>USER_NOTIFICATION.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="USER_PROFILE.aspx.cs">
+      <DependentUpon>USER_PROFILE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="USER_PROFILE.aspx.designer.cs">
+      <DependentUpon>USER_PROFILE.aspx</DependentUpon>
+    </Compile>
     <Compile Include="USER_REGISTER.aspx.cs">
       <DependentUpon>USER_REGISTER.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="USER_REGISTER.aspx.designer.cs">
       <DependentUpon>USER_REGISTER.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="USER_REQUEST_A_BLOOD.aspx.cs">
+      <DependentUpon>USER_REQUEST_A_BLOOD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="USER_REQUEST_A_BLOOD.aspx.designer.cs">
+      <DependentUpon>USER_REQUEST_A_BLOOD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="USER_REQUEST_SURVEY_FORM.aspx.cs">
+      <DependentUpon>USER_REQUEST_SURVEY_FORM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="USER_REQUEST_SURVEY_FORM.aspx.designer.cs">
+      <DependentUpon>USER_REQUEST_SURVEY_FORM.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

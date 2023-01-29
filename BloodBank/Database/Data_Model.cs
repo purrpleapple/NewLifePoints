@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace LifePoints.Database
+namespace BloodBank.Database
 {
     [Serializable]
     public class account
@@ -17,76 +17,24 @@ namespace LifePoints.Database
         public bool ACC_STATUS { get; set; }
     }
     [Serializable]
-    public class user_info
+    public class bloodbank
     {
-        public string UI_ID { get; set; }
-        public string UI_LNAME { get; set; }
-        public string UI_FNAME { get; set; }
-        public string UI_MNAME { get; set; }
-        public bool UI_GENDER { get; set; }
-        public string UI_BTYPE { get; set; }
-        public string UI_DOB { get; set; }
-        public string UI_HOME { get; set; }
-        public string UI_MOBILE { get; set; }
-        public string UI_ADDRESS { get; set; }
-
-    }
-    [Serializable]
-    public class user_info_address
-    {
-        public string street { get; set; }
-        public string baranggay { get; set; }
-        public string city { get; set; }
-        public string province { get; set; }
-        public string zip { get; set; }
+        public string BB_ID { get; set; }
+        public string BB_USERNAME { get; set; }
+        public string BB_PASSWORD { get; set; }
+        public bool BB_RANK { get; set; }
+        public bool BB_STATUS { get; set; }
     }
 
     [Serializable]
-    public class activity_logs
+    public class bloodbanklogs
     {
-        public string ACT_ID { get; set; }
-        public string ACT_DESCRIPTION { get; set; }
-        public string ACT_UACC_ID { get; set; }
-        public string ACT_UNAME { get; set; }
-        public string ACT_DATE { get; set; }
+        public string BL_ID { get; set; }
+        public string BL_DESCRIPTION { get; set; }
+        public string BL_BB_ID { get; set; }
+        public string BL_DATE { get; set; }
     }
 
-
-    public class user_logs
-    {
-        public string ULOG_ID { get; set; }
-        public string ULOG_EVENT { get; set; }
-        public string ULOG_UACC_ID { get; set; }
-        public string ULOG_DATE { get; set; }
-    }
-
-    public class blog_post
-    {
-        public string BLOG_ID { get; set; }
-        public string BLOG_CONTENT { get; set; }
-        public string BLOG_UACC_ID { get; set; }
-        public string BLOG_REPORT { get; set; }
-        public string BLOG_DATE { get; set; }
-        public bool BLOG_STATUS { get; set; }
-        public string BLOG_REPORTER { get; set; }
-
-        //Mag agmit ug join query para ani niya nga fields
-        public string BLOG_UACC_EMAIL { get; set; }
-        public string BLOG_UACC_NAME { get; set; }
-
-    }
-
-    [Serializable]
-    public class notifications
-    {
-        public string NTF_ID { get; set; }
-        public string NTF_SUBJECT { get; set; }
-        public string NTF_MESSAGE { get; set; }
-        public string NTF_RECEIVER_ID { get; set; }
-        public string NTF_SENDER_ID { get; set; }
-        public bool NTF_STATUS { get; set; }
-        public string NTF_DATE { get; set; }
-    }
 
     [Serializable]
     public class blood_request
@@ -97,9 +45,8 @@ namespace LifePoints.Database
         public bool BREQ_SURVEY_STATUS { get; set; }
         public bool BREQ_BLOOD_STATUS { get; set; }
         public bool BREQ_REQ_STATUS { get; set; }
-        public string BREQ_CONSENT { get; set; }
-        public string BREQ_VISIT_DATE { get; set; }
         public string BREQ_DATE { get; set; }
+        public string BREQ_VISIT_DATE { get; set; }
     }
 
     [Serializable]
@@ -114,24 +61,31 @@ namespace LifePoints.Database
         public string BD_DATE { get; set; }
     }
 
+    public class activity_log
+    {
+
+        public string ACT_ID { get; set; }
+        public string ACT_DESCRIPTION { get; set; }
+        public string ACT_UACC_ID { get; set; }
+        public string ACT_UNAME { get; set; }
+        public string ACT_DATE { get; set; }
+    }
+
     [Serializable]
     public class request_survey_form
     {
         public string lname { get; set; }
         public string fname { get; set; }
         public string mname { get; set; }
-        public string dob { get; set; }
         public string gender { get; set; }
-        public string bloodtype { get; set; }
-        public string barangay { get; set; }
-        public string city { get; set; }
-        public string province { get; set; }
-        public string zip { get; set; }
-        public string homenum { get; set; }
-        public string mobilenum { get; set; }
+        public string dob { get; set; }
+        public string age { get; set; }
+        public string brequest { get; set; }
+        public string raddress { get; set; }
+        public string paddress { get; set; }
+        public string home { get; set; }
+        public string mobile { get; set; }
         public string email { get; set; }
-        public string street { get; set; }
-
     }
 
     [Serializable]
@@ -148,23 +102,36 @@ namespace LifePoints.Database
             riskAssessment = new RiskAssessment();
         }
     }
+    [Serializable]
+    public class notifications
+    {
+        public string NTF_ID { get; set; }
+        public string NTF_SUBJECT { get; set; }
+        public string NTF_MESSAGE { get; set; }
+        public string NTF_RECEIVER_ID { get; set; }
+        public string NTF_SENDER_ID { get; set; }
+        public bool NTF_STATUS { get; set; }
+        public string NTF_DATE { get; set; }
+    }
 
     [Serializable]
     public class PersonalInfo
     {
-        public string Lname { get; set; }
-        public string Fname { get; set; }
-        public string Mname { get; set; }
-        public string Dob { get; set; }
+        public string PanelName { get; set; }
+        public string DonorName { get; set; }
+        public string FamilyName { get; set; }
+        public string FirstName { get; set; }
+        public string Title { get; set; }
+        public string IDNo { get; set; }
+        public string DateOfBirth { get; set; }
         public string Gender { get; set; }
-        public string Barangay { get; set; }
-        public string City { get; set; }
-        public string Province { get; set; }
-        public string Zip { get; set; }
+        public string Occupation { get; set; }
+        public string ResidentialAddress { get; set; }
+        public string PostalAddress { get; set; }
         public string Home { get; set; }
+        public string Work { get; set; }
         public string Mobile { get; set; }
-        public string Email { get; set; }
-        public string Street { get; set; }
+        public string EmailAddress { get; set; }
     }
 
     [Serializable]
