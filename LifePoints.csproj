@@ -228,9 +228,13 @@
     <Content Include="BloodBank\assets\js\login-full-page-bs4.js" />
     <Content Include="BloodBank\assets\js\Table-With-Search.js" />
     <Content Include="BloodBank\assets\js\theme.js" />
+    <Content Include="BloodBank\BB_ActionLogs.aspx" />
     <Content Include="BloodBank\BB_BloodTransaction.aspx" />
     <Content Include="BloodBank\BB_Dashboard.aspx" />
+    <Content Include="BloodBank\BB_Notification.aspx" />
+    <Content Include="BloodBank\BB_Profile.aspx" />
     <Content Include="BloodBank\BB_Request_Survey.aspx" />
+    <Content Include="BloodBank\Donor_Survey_ViewOnly.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -332,6 +336,13 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BloodBank\BB_ActionLogs.aspx.cs">
+      <DependentUpon>BB_ActionLogs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BloodBank\BB_ActionLogs.aspx.designer.cs">
+      <DependentUpon>BB_ActionLogs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BloodBank\BB_BloodTransaction.aspx.cs">
       <DependentUpon>BB_BloodTransaction.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -346,6 +357,20 @@
     <Compile Include="BloodBank\BB_Dashboard.aspx.designer.cs">
       <DependentUpon>BB_Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BloodBank\BB_Notification.aspx.cs">
+      <DependentUpon>BB_Notification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BloodBank\BB_Notification.aspx.designer.cs">
+      <DependentUpon>BB_Notification.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BloodBank\BB_Profile.aspx.cs">
+      <DependentUpon>BB_Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BloodBank\BB_Profile.aspx.designer.cs">
+      <DependentUpon>BB_Profile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BloodBank\BB_Request_Survey.aspx.cs">
       <DependentUpon>BB_Request_Survey.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -355,6 +380,13 @@
     </Compile>
     <Compile Include="BloodBank\Database\Database_Connections.cs" />
     <Compile Include="BloodBank\Database\Data_Model.cs" />
+    <Compile Include="BloodBank\Donor_Survey_ViewOnly.aspx.cs">
+      <DependentUpon>Donor_Survey_ViewOnly.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BloodBank\Donor_Survey_ViewOnly.aspx.designer.cs">
+      <DependentUpon>Donor_Survey_ViewOnly.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Database\Database_Connection.cs" />
     <Compile Include="Database\Model.cs" />
     <Compile Include="Default.aspx.cs">

@@ -39,7 +39,7 @@ namespace LifePoints
                 string id = e.CommandArgument.ToString();
                 Session["IsViewing"] = true;
                 Session["NTF_ID"] = id;
-                Response.Redirect("~/BB_Notification.aspx");
+                Response.Redirect("~/BloodBank/BB_Notification.aspx");
             }
         }
 

@@ -41,7 +41,7 @@ namespace LifePoints
         {
             blood_donation bd = Session["BloodDonation"] as blood_donation;
             DonorSurvey ds = JsonConvert.DeserializeObject<DonorSurvey>(bd.BD_JSON_SURVEY_FORM);
-
+            Debug.Print(bd.BD_JSON_SURVEY_FORM);
             //Basic/Personal Information
             ViewState["familyname"] = ds.personalInfo.Lname;
             ViewState["firstname"] = ds.personalInfo.Fname;

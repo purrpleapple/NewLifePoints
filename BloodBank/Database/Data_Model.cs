@@ -117,21 +117,19 @@ namespace BloodBank.Database
     [Serializable]
     public class PersonalInfo
     {
-        public string PanelName { get; set; }
-        public string DonorName { get; set; }
-        public string FamilyName { get; set; }
-        public string FirstName { get; set; }
-        public string Title { get; set; }
-        public string IDNo { get; set; }
-        public string DateOfBirth { get; set; }
+        public string Lname { get; set; }
+        public string Fname { get; set; }
+        public string Mname { get; set; }
+        public string Dob { get; set; }
         public string Gender { get; set; }
-        public string Occupation { get; set; }
-        public string ResidentialAddress { get; set; }
-        public string PostalAddress { get; set; }
+        public string Barangay { get; set; }
+        public string City { get; set; }
+        public string Province { get; set; }
+        public string Zip { get; set; }
         public string Home { get; set; }
-        public string Work { get; set; }
         public string Mobile { get; set; }
-        public string EmailAddress { get; set; }
+        public string Email { get; set; }
+        public string Street { get; set; }
     }
 
     [Serializable]

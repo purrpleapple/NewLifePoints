@@ -378,7 +378,7 @@ namespace BloodBank.Database
             return res;
         }
 
-        public DataTable GetNotificationTableData(bloodbank ua)
+        public DataTable GetNotificationTableData(account ua)
         {
 
             DataTable dt = new DataTable();
@@ -387,7 +387,7 @@ namespace BloodBank.Database
                 DB_Connect();
                 con.Open();
                 cmd = con.CreateCommand();
-                cmd.CommandText = string.Format("select NTF_ID, NTF_SUBJECT, NTF_DATE, if(NTF_STATUS=true, 'READ', 'UNREAD') as NTF_STATUS from notifications where NTF_RECEIVER_ID={0} order by NTF_STATUS desc, NTF_DATE desc;", ua.BB_ID);
+                cmd.CommandText = string.Format("select NTF_ID, NTF_SUBJECT, NTF_DATE, if(NTF_STATUS=true, 'READ', 'UNREAD') as NTF_STATUS from notifications where NTF_RECEIVER_ID={0} order by NTF_STATUS desc, NTF_DATE desc;", ua.ACC_ID);
                 da = new MySqlDataAdapter(cmd);
                 da.Fill(dt);
                 con.Close();
