@@ -27,11 +27,23 @@ namespace LifePoints
                 LifePoints.Database.account bb = Session["ACCOUNT"] as LifePoints.Database.account;
                 //Set Username
                 username.InnerText = bb.ACC_EMAIL;
+                PopulateDropDown();
                 PopulateSurveyForm();
                 GetUnreadNotif();
             }
         }
 
+        public void PopulateDropDown()
+        {
+            string[] bloodType = new string[] { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" };
+
+            blood_type.Items.Insert(0, new ListItem("Select Blood Type", ""));
+            int i = 1;
+            foreach (string type in bloodType)
+            {
+                blood_type.Items.Insert(i++, new ListItem(type, type));
+            }
+        }
         protected void NotificationNavList_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             if (e.CommandName == "ViewNotif")
@@ -258,6 +270,7 @@ Any valid ID
 
                     SurveyGroup.Style.Add("display", "none");
                     BloodGroup.Style.Add("display", "");
+                    Response.Redirect("~/BloodBank/BB_BloodTransaction.aspx");
                 }
             }
             else
@@ -294,6 +307,7 @@ Your request has been rejected", bd.BD_ID));
 
                     SurveyGroup.Style.Add("display", "none");
                     BloodGroup.Style.Add("display", "none");
+                    Response.Redirect("~/BloodBank/BB_BloodTransaction.aspx");
                 }
             }
         }
@@ -327,6 +341,8 @@ Your request has been rejected", bd.BD_ID));
 
                     SurveyGroup.Style.Add("display", "none");
                     BloodGroup.Style.Add("display", "none");
+                    Panel2.Visible = true;
+                    Panel1.Visible = false;
                 }
             }
             else
@@ -428,6 +444,37 @@ Your request has been rejected", bd.BD_ID));
                     NotificationNavList.DataSource = newUnread;
                     NotificationNavList.DataBind();
                 }
+            }
+        }
+
+        protected void SubmitBtn_Click(object sender, EventArgs e)
+        {
+            blood_donation bd = Session["BloodDonation"] as blood_donation;
+            LifePoints.Database.account bb = Session["ACCOUNT"] as LifePoints.Database.account;
+            string query = "";
+            int number = int.Parse(numberBL.Text);
+            string type = blood_type.SelectedValue;
+
+            query = string.Format(@"update blood_donation set BD_BLOOD_TYPE='{0}', BD_NO_BLOOD={1} where BD_ID={2}", type, number, bd.BD_ID);
+            if (db.UpdateBloodRequestStatus(query))
+            {
+                Response.Write(string.Format("<script>alert('Updated Blood donation status succesfully " + number + "')</script>"));
+
+                if (db.BD_UpdateInventory(number, type))
+                {
+                    Response.Write(string.Format("<script>alert('Updated inventory succesfully " + number + "')</script>"));
+                    Response.Redirect("~/BloodBank/BB_BloodTransaction.aspx");
+
+                }
+                else
+                {
+                    Response.Write(string.Format("<script>alert('Error in updating inventory succesfully " + number + " ')</script>"));
+                }
+
+            }
+            else
+            {
+                Response.Write(string.Format("<script>alert('Error in updating blood donation status succesfully " + number + " ')</script>"));
             }
         }
 

@@ -97,13 +97,15 @@
                                     BorderColor="Transparent" OnSelectedIndexChanged="GridUserBloodRequest_SelectedIndexChanged"
                                     AutoPostBack="false" 
                                     AllowSorting="true">
-                                    <Columns>
+                                     <Columns>
                                         <asp:BoundField HeaderText="REQUEST ID" DataField="BREQ_ID" />
                                         <asp:BoundField HeaderText="REQUESTER" DataField="BREQ_UACC_ID" />
+                                        <asp:BoundField HeaderText="BLOOD TYPE" DataField="BREQ_BLOOD_TYPE" />
+                                        <asp:BoundField HeaderText="BLOOD BAGS" DataField="BREQ_NO_BLOOD" />
+                                         <asp:BoundField HeaderText="REQUEST DATE" DataField="BREQ_DEMAND_DATE" />
                                         <asp:BoundField HeaderText="REQUEST STATUS" DataField="BREQ_SURVEY_STATUS" />
-                                        <asp:BoundField HeaderText="DATE" DataField="BREQ_DATE" />
-                                        <asp:BoundField HeaderText="EXPECTED DATE CLAIM" DataField="BREQ_VISIT_DATE" />
                                         <asp:BoundField HeaderText="CLAIMED" DataField="BREQ_BLOOD_STATUS" />
+                                        <asp:BoundField HeaderText="EXPECTED DATE CLAIM" DataField="BREQ_VISIT_DATE" />
                                         <asp:CommandField ButtonType="Button" ShowSelectButton="true" SelectText="View" ControlStyle-CssClass="btn btn-danger" />
                                     </Columns>
                                 </asp:GridView>

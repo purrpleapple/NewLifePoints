@@ -186,6 +186,24 @@ namespace LifePoints
         protected global::System.Web.UI.WebControls.DropDownList Bloodtype;
 
         /// <summary>
+        /// No_blood control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox No_blood;
+
+        /// <summary>
+        /// Demand_date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Demand_date;
+
+        /// <summary>
         /// RegularExpressionValidator4 control.
         /// </summary>
         /// <remarks>

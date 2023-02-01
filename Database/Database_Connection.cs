@@ -108,7 +108,7 @@ namespace LifePoints.Database
                 DB_Connect();
                 con.Open();
                 cmd = con.CreateCommand();
-                cmd.CommandText = string.Format(@"insert into user_info(UI_ID, UI_LNAME, UI_FNAME, UI_MNAME, UI_GENDER, UI_DOB, UI_ADDRESS, UI_BTYPE, UI_HOME, UI_MOBILE) 
+                cmd.CommandText = string.Format(@"insert into user_info(UI_ID, UI_LNAME, UI_FNAME, UI_MNAME, UI_GENDER, UI_DOB, UI_ADDRESS,UI_BTYPE, UI_HOME, UI_MOBILE) 
 values({0}, '{1}', '{2}', '{3}', {4}, '{5}', '{6}', '{7}', '{8}', '{9}');", ui.UI_ID, ui.UI_LNAME, ui.UI_FNAME, ui.UI_MNAME, ui.UI_GENDER, ui.UI_DOB, ui.UI_ADDRESS, ui.UI_BTYPE, ui.UI_HOME, ui.UI_MOBILE);
                 if (cmd.ExecuteNonQuery() > 0)
                 {
@@ -291,7 +291,7 @@ values({0}, '{1}', '{2}', '{3}', {4}, '{5}', '{6}', '{7}', '{8}', '{9}');", ui.U
                 if (chck <= 0)
                 {
                     //walay existing
-                    cmd.CommandText = string.Format("insert into blood_request(BREQ_JSON_SURVEY_FORM, BREQ_UACC_ID, BREQ_CONSENT) values('{0}', {1}, '{2}');", br.BREQ_JSON_SURVEY_FORM, br.BREQ_UACC_ID, br.BREQ_CONSENT);
+                    cmd.CommandText = string.Format("insert into blood_request(BREQ_JSON_SURVEY_FORM, BREQ_UACC_ID, BREQ_CONSENT, BREQ_DEMAND_DATE, BREQ_BLOOD_TYPE, BREQ_NO_BLOOD) values('{0}', {1}, '{2}', '{3}','{4}', {5} );", br.BREQ_JSON_SURVEY_FORM, br.BREQ_UACC_ID, br.BREQ_CONSENT, br.BREQ_DEMAND_DATE, br.BREQ_BLOOD_TYPE, br.BREQ_NO_BLOOD);
                     int x = cmd.ExecuteNonQuery();
 
 
@@ -366,7 +366,7 @@ values({0}, '{1}', '{2}', '{3}', {4}, '{5}', '{6}', '{7}', '{8}', '{9}');", ui.U
                 DB_Connect();
                 con.Open();
                 cmd = con.CreateCommand();
-                cmd.CommandText = string.Format(@"select BREQ_ID, BREQ_UACC_ID, BREQ_JSON_SURVEY_FORM, BREQ_REQ_STATUS, BREQ_DATE,BREQ_VISIT_DATE,
+                cmd.CommandText = string.Format(@"select BREQ_ID, BREQ_UACC_ID, BREQ_JSON_SURVEY_FORM, BREQ_REQ_STATUS, BREQ_DATE,BREQ_VISIT_DATE,BREQ_DEMAND_DATE, BREQ_BLOOD_TYPE, BREQ_NO_BLOOD,
                                                     if(BREQ_SURVEY_STATUS = false && BREQ_REQ_STATUS = true, 'PENDING', 
                                                     if(BREQ_SURVEY_STATUS = true && BREQ_REQ_STATUS = true, 'APPROVED', 
                                                     if(BREQ_REQ_STATUS = false, 'REJECTED', 'REJECTED'))) as BREQ_SURVEY_STATUS,

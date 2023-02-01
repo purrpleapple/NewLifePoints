@@ -216,19 +216,7 @@
             }
         }
 
-        function CheckBType() {
-            var reg = '^[a-zA-Z0-9, .-]*$';
-            let item = document.getElementById("<%= Bloodtype.ClientID %>");
-
-            if (item.value != "Select Blood Type") {
-                item.classList.remove('is-invalid');
-                item.classList.add('is-valid');
-            }
-            else {
-                item.classList.add('is-invalid');
-                item.classList.remove('is-valid');
-            }
-        }
+       
 
         function CheckStreet() {
             var reg = '^[a-zA-Z0-9, .-]*$';
@@ -496,13 +484,13 @@
                     </div>
                 </nav>
                 <div class="container-fluid d-flex" style="justify-content: center; align-items: center;">
-                    <div class="card text-center" style="max-height: 800px; height: 800px; width: 80%;">
+                    <div class="card text-center" style="max-height: 100%; height: 100%; width: 70%;">
                         <div class="card-header">
                             <h2>BLOOD DONOR FORM</h2>
                             <h3>QUESTIONNAIRE</h3>
                         </div>
                         <div class="card-body">
-                            <div style="max-height: 600px; overflow: auto;">
+                            <div style="max-height: 900px; overflow: auto;">
                                 <p style="font-size: 25px; font-style: bold; margin-left: -30%">
                                     Please complete this form
                                 </p>
@@ -514,7 +502,7 @@
                                         <td>Family name: </td>
                                         <td class="d-flex flex-column">
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Style="color: red; display: flex; justify-content: end;" ValidationExpression="^[a-zA-Z ]*$" ControlToValidate="LName" ErrorMessage="Contains Invalid Characters" Font-Italic="True" ValidationGroup="Register"></asp:RegularExpressionValidator>
-                                            <asp:TextBox runat="server" oninput="CheckLName()" ClientIDMode="Static" Class="form-control" type="text" ID="LName" name="familyname" required="" />
+                                            <asp:TextBox runat="server" oninput="CheckLName()" ClientIDMode="Static" CssClass="form-control" type="text" ID="LName" name="familyname" required="" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -524,12 +512,12 @@
                                         <td>First name: </td>
                                         <td class="d-flex flex-column">
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" Style="color: red; display: flex; justify-content: end;" ValidationExpression="^[a-zA-Z ]*$" ControlToValidate="FName" ErrorMessage="Contains Invalid Characters" Font-Italic="True" ValidationGroup="Register"></asp:RegularExpressionValidator>
-                                            <asp:TextBox runat="server" oninput="CheckFName()" ClientIDMode="Static" Class="form-control" type="text" ID="FName" name="firstname" required="" /></td>
+                                            <asp:TextBox runat="server" oninput="CheckFName()" ClientIDMode="Static" CssClass="form-control" type="text" ID="FName" name="firstname" required="" /></td>
                                     </tr>
                                     <tr>
                                         <td>Middle name: </td>
                                         <td>
-                                            <asp:TextBox runat="server" oninput="CheckMName()" ClientIDMode="Static" Class="form-control" type="text" ID="MName" name="midname" /></td>
+                                            <asp:TextBox runat="server" oninput="CheckMName()" ClientIDMode="Static" CssClass="form-control" type="text" ID="MName" name="midname" /></td>
                                     </tr>
                                     <tr>
                                         <td>Gender:</td>
@@ -548,15 +536,7 @@
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Required" Style="color: red; display: flex; justify-content: end;" ControlToValidate="DOB" Font-Italic="True" ValidationGroup="Register"></asp:RequiredFieldValidator>
                                             <asp:TextBox runat="server" ID="DOB" CssClass="form-control" required="" type="date" ClientIDMode="Static" onchange="CheckDOB()" /></td>
                                     </tr>
-                                    <tr>
-                                        <td>Blood Type Request:</td>
-                                        <td class="d-flex flex-column">
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Required" Style="color: red; display: flex; justify-content: end;" ControlToValidate="Bloodtype" Font-Italic="True" ValidationGroup="Register"></asp:RequiredFieldValidator>
-                                            <asp:DropDownList ID="Bloodtype" runat="server" Class="form-control" onchange="CheckBType()" required="">
-                                            </asp:DropDownList>
-                                        </td>
-
-                                    </tr>
+                                    
                                     <tr>
                                         <td colspan="2">
                                             <br />
@@ -566,34 +546,34 @@
                                         <td>Street/Sector: </td>
                                         <td class="d-flex flex-column">
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" Style="color: red; display: flex; justify-content: end;" ValidationExpression="^[a-zA-Z0-9, .-]*$" ControlToValidate="Street" ErrorMessage="Contains Invalid Characters" Font-Italic="True" ValidationGroup="Register"></asp:RegularExpressionValidator>
-                                            <asp:TextBox runat="server" Class="form-control" oninput="CheckStreet()" type="text" ID="Street" name="resaddress" required=""></asp:TextBox>
+                                            <asp:TextBox runat="server" CssClass="form-control" oninput="CheckStreet()" type="text" ID="Street" name="resaddress" required=""></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Barangay:</td>
                                         <td class="d-flex flex-column">
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" Style="color: red; display: flex; justify-content: end;" ValidationExpression="^[a-zA-Z0-9, .-]*$" ControlToValidate="Baranggay" ErrorMessage="Contains Invalid Characters" Font-Italic="True" ValidationGroup="Register"></asp:RegularExpressionValidator>
-                                            <asp:TextBox runat="server" Class="form-control" oninput="CheckBaranggay()" type="text" ID="Baranggay" name="posaddress" required=""></asp:TextBox>
+                                            <asp:TextBox runat="server" CssClass="form-control" oninput="CheckBaranggay()" type="text" ID="Baranggay" name="posaddress" required=""></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>City:</td>
                                         <td class="d-flex flex-column">
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" Style="color: red; display: flex; justify-content: end;" ValidationExpression="^[a-zA-Z0-9, .-]*$" ControlToValidate="City" ErrorMessage="Contains Invalid Characters" Font-Italic="True" ValidationGroup="Register"></asp:RegularExpressionValidator>
-                                            <asp:TextBox runat="server" Class="form-control" oninput="CheckCity()" type="text" ID="City" name="city" required=""></asp:TextBox>
+                                            <asp:TextBox runat="server" CssClass="form-control" oninput="CheckCity()" type="text" ID="City" name="city" required=""></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Province:</td>
                                         <td class="d-flex flex-column">
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" Style="color: red; display: flex; justify-content: end;" ValidationExpression="^[a-zA-Z0-9, .-]*$" ControlToValidate="Province" ErrorMessage="Contains Invalid Characters" Font-Italic="True" ValidationGroup="Register"></asp:RegularExpressionValidator>
-                                            <asp:TextBox runat="server" Class="form-control" oninput="CheckProvince()" type="text" ID="Province" name="posaddress" required="" /></td>
+                                            <asp:TextBox runat="server" CssClass="form-control" oninput="CheckProvince()" type="text" ID="Province" name="posaddress" required="" /></td>
                                     </tr>
                                     <tr>
                                         <td>ZIP Code:</td>
                                         <td class="d-flex flex-column">
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Required" Style="color: red; display: flex; justify-content: end;" ControlToValidate="Zip" ValidationGroup="Register"></asp:RequiredFieldValidator>
-                                            <asp:TextBox runat="server" Class="form-control" oninput="CheckZip()" TextMode="Number" type="number" ID="Zip" ClientIDMode="Static" name="posaddress" required=""></asp:TextBox></td>
+                                            <asp:TextBox runat="server" CssClass="form-control" oninput="CheckZip()" TextMode="Number" type="number" ID="Zip" ClientIDMode="Static" name="posaddress" required=""></asp:TextBox></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
@@ -605,19 +585,19 @@
                                         <td>Home:</td>
                                         <td class="d-flex flex-column">
                                             <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Invalid Contact No. (e.g. 09xxx...)" Style="color: red; display: flex; justify-content: end;" ValidationGroup="Register" ControlToValidate="Home" Type="String" MaximumValue="099999999999" MinimumValue="090000000000"></asp:RangeValidator>
-                                            <asp:TextBox runat="server" Class="form-control" type="number" ID="Home" ClientIDMode="Static" oninput="CheckHome()" name="home" required=""></asp:TextBox></td>
+                                            <asp:TextBox runat="server" CssClass="form-control" type="number" ID="Home" ClientIDMode="Static" oninput="CheckHome()" name="home" required=""></asp:TextBox></td>
                                     </tr>
                                     <tr>
                                         <td>Mobile:</td>
                                         <td class="d-flex flex-column">
                                             <asp:RangeValidator ID="RangeValidator2" runat="server" ErrorMessage="Invalid Contact No. (e.g. 09xxx...)" Style="color: red; display: flex; justify-content: end;" ValidationGroup="Register" ControlToValidate="Mobile" Type="String" MaximumValue="099999999999" MinimumValue="090000000000"></asp:RangeValidator>
-                                            <asp:TextBox runat="server" Class="form-control" type="number" ID="Mobile" ClientIDMode="Static" oninput="CheckMobile()" name="mobile" required=""></asp:TextBox></td>
+                                            <asp:TextBox runat="server" CssClass="form-control" type="number" ID="Mobile" ClientIDMode="Static" oninput="CheckMobile()" name="mobile" required=""></asp:TextBox></td>
                                     </tr>
                                     <tr>
                                         <td>Email Address:</td>
                                         <td class="d-flex flex-column">
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator8" runat="server" Style="color: red; display: flex; justify-content: end;" ValidationExpression='^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$' ControlToValidate="Email" ErrorMessage="Email Address is Invalid" Font-Italic="True" ValidationGroup="Register"></asp:RegularExpressionValidator>
-                                            <asp:TextBox runat="server" Class="form-control" type="email" ID="Email" ClientIDMode="Static" oninput="CheckEmail()" name="email" required=""></asp:TextBox></td>
+                                            <asp:TextBox runat="server" CssClass="form-control" type="email" ID="Email" ClientIDMode="Static" oninput="CheckEmail()" name="email" required=""></asp:TextBox></td>
                                     </tr>
                                 </table>
                                 <p style="font-size: 25px; font-style: bold; margin-left: -30%">
@@ -1042,7 +1022,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-muted">
-                            <asp:Button runat="server" CssClass="btn btn-primary  btn-signin" Style="background: rgb(119,40,32);" ID="SubmitSurvey" Text="Submit Survey" OnClick="SubmitSurvey_Click" />
+                            <asp:Button runat="server" CssClass="btn btn-primary  btn-signin" Style="background: rgb(119,40,32);" ID="SubmitSurvey" Text="Submit Form" OnClick="SubmitSurvey_Click" />
                             <br />
                             <p style="font-style: italic">Disclaimer: Before clicking Submit make sure the form is completely filled up.</p>
                             <asp:Button runat="server" CssClass="btn btn-primary  btn-signin" Style="background: rgb(119,40,32);" ID="BackButton" OnClick="BackButton_Click" Text="Back" type="reset" UseSubmitBehavior="false" AutoPostBack="true" />

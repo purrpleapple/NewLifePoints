@@ -129,14 +129,16 @@
                         </ul>
                     </div>
                 </nav>
+
+                    <asp:Panel ID="Panel1" runat="server" Visible="true">
                 <div class="container-fluid d-flex" style="align-items: center; justify-content: center;">
-                    <div class="card text-center" style="max-height: 700px; height: 700px; width: 80%;">
+                    <div class="card text-center" style="max-height: 100%; height: 100%; width: 70%;">
                         <div class="card-header">
                            
                             <h3>BLOOD DONOR QUESTIONNAIRE</h3>
                         </div>
                         <div class="card-body">
-                            <div style="max-height: 500px; overflow: auto;">
+                            <div style="max-height: 900px; overflow: auto;">
                                 <p style="font-size: 25px; font-style: bold; margin-left: -30%">
                                     Please complete this form
                                 </p>
@@ -642,13 +644,48 @@
                                 <asp:Button runat="server" ID="RejectSurveyBtn" OnClick="RejectSurveyBtn_Click" CssClass="btn btn-primary  btn-signin" style="background: rgb(119,40,32);" type="reset" Text="Reject Request Form" UseSubmitBehavior="false" />
                             </div>
                             <div runat="server" id="BloodGroup" style="display: none;">
-                                <asp:Button runat="server" ID="ApproveBloodBtn" OnClick="ApproveBloodBtn_Click" CssClass="btn btn-primary  btn-signin" style="background: rgb(119,40,32);" type="reset" Text="Approve Blood Transaction" UseSubmitBehavior="false"  />
-                                <asp:Button runat="server" ID="RejectBloodBtn" OnClick="RejectBloodBtn_Click" CssClass="btn btn-primary  btn-signin" style="background: rgb(119,40,32);" type="reset" Text="Reject Blood Transaction" UseSubmitBehavior="false"  />
+                                <asp:Button runat="server" ID="ApproveBloodBtn" OnClick="ApproveBloodBtn_Click" CssClass="btn btn-primary  btn-signin" style="background: rgb(119,40,32);" type="reset" Text="Donated" UseSubmitBehavior="false"  />
+                                <asp:Button runat="server" ID="RejectBloodBtn" OnClick="RejectBloodBtn_Click" CssClass="btn btn-primary  btn-signin" style="background: rgb(119,40,32);" type="reset" Text="Rejected" UseSubmitBehavior="false"  />
                             </div>
                             <a class="btn btn-primary  btn-signin" style="background: rgb(119,40,32);margin-top: 5px;" href="BB_BloodTransaction.aspx" >Back</a>
                         </div>
                     </div>
                 </div>
+
+                        </asp:Panel>
+
+            <asp:Panel ID="Panel2" runat="server" Visible="false">
+                <div class="container-fluid d-flex" style="align-items: center; justify-content: center;">
+                    <div class="card text-center" style="max-height: 700px; height: 300px; width: 45%;">
+                        <div class="card-header">
+                           
+                            <h3>BLOOD DONOR </h3>
+                        </div>
+                        <div class="card-body">
+                             <table style="text-align: left; width: 77%; margin: auto" runat="server" id="Survey">
+                                 <tr>
+                                        <td>Blood Type Donated:</td>
+                                        <td>
+                                             <asp:DropDownList ID="blood_type" runat="server" CssClass="form-control"  required="">
+                                            </asp:DropDownList>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>No of blood bags donated:</td>
+                                        <td> <asp:TextBox runat="server" ID="numberBL" CssClass="form-control" required="" type="number" ClientIDMode="Static"></asp:TextBox>
+                                            </td>
+                                    </tr>
+                             </table>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <asp:Button ID="Button1" runat="server" Text="Submit" CssClass="btn btn-success" OnClick="SubmitBtn_Click" />
+
+                        </div>
+                    </div>
+                </div>
+            </asp:Panel>
+
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">

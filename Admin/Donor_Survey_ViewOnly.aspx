@@ -130,13 +130,13 @@
                     </div>
                 </nav>
                 <div class="container-fluid d-flex" style="align-items: center; justify-content: center;">
-                    <div class="card text-center" style="max-height: 700px; height: 700px; width: 80%;">
+                    <div class="card text-center" style="max-height: 100%; height: 100%; width: 70%;">
                         <div class="card-header">
                            
                             <h3>BLOOD DONOR QUESTIONNAIRE</h3>
                         </div>
                         <div class="card-body">
-                            <div style="max-height: 500px; overflow: auto;">
+                            <div style="max-height: 900px; overflow: auto;">
                                 <p style="font-size: 25px; font-style: bold; margin-left: -30%">
                                     Please complete this form
                                 </p>

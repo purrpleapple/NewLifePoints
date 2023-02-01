@@ -438,7 +438,7 @@
         <div class="row d-flex d-xl-flex justify-content-center justify-content-xl-center">
             <div class="col-sm-12 col-lg-10 col-xl-9 col-xxl-7 bg-white shadow-lg" style="border-radius: 5px;">
                 <div class="p-5" style="height: 80vh; max-height: 80vh; overflow: auto;">
-                    <table style="text-align: left; width: 77%; margin: auto">
+                    <table style="text-align: left; width: 80%; margin: auto">
                         <tr>
                             <td colspan="2"><strong>Personal Information</strong></td>
                         </tr>
@@ -537,7 +537,7 @@
                             <td>Home:</td>
                             <td class="d-flex flex-column">
                                 <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Invalid Contact No. (e.g. 09xxx...)" Style="color: red; display: flex; justify-content: end;" ValidationGroup="Register" ControlToValidate="Home" Type="String" MaximumValue="099999999999" MinimumValue="090000000000"></asp:RangeValidator>
-                                <asp:TextBox runat="server" Class="form-control" type="number" ID="Home" ClientIDMode="Static" oninput="CheckHome()" name="home" required=""></asp:TextBox></td>
+                                <asp:TextBox runat="server" Class="form-control" type="number" ID="Home" ClientIDMode="Static" oninput="CheckHome()" name="home" ></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td>Mobile:</td>

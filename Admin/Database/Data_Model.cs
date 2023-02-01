@@ -36,6 +36,9 @@ namespace LifePoints.Admin.Database
         public string BREQ_CONSENT { get; set; }
         public string BREQ_VISIT_DATE { get; set; }
         public string BREQ_DATE { get; set; }
+        public string BREQ_DEMAND_DATE { get; set; }
+        public string BREQ_BLOOD_TYPE { get; set; }
+        public string BREQ_NO_BLOOD { get; set; }
     }
 
     [Serializable]
@@ -53,22 +56,18 @@ namespace LifePoints.Admin.Database
     [Serializable]
     public class request_survey_form
     {
-        public string lname { get; set; }
-        public string fname { get; set; }
-        public string mname { get; set; }
-        public string month { get; set; }
-        public string day { get; set; }
-        public string year { get; set; }
-        public string gender { get; set; }
-        public string bloodtype { get; set; }
-        public string barangay { get; set; }
-        public string city { get; set; }
-        public string province { get; set; }
-        public string zip { get; set; }
-        public string homenum { get; set; }
-        public string mobilenum { get; set; }
-        public string email { get; set; }
-        public string street { get; set; }
+        public string BREQ_ID { get; set; }
+        public string BREQ_UACC_ID { get; set; }
+        public string BREQ_JSON_SURVEY_FORM { get; set; }
+        public bool BREQ_SURVEY_STATUS { get; set; }
+        public bool BREQ_BLOOD_STATUS { get; set; }
+        public bool BREQ_REQ_STATUS { get; set; }
+        public string BREQ_CONSENT { get; set; }
+        public string BREQ_VISIT_DATE { get; set; }
+        public string BREQ_DATE { get; set; }
+        public string BREQ_DEMAND_DATE { get; set; }
+        public string BREQ_BLOOD_TYPE { get; set; }
+        public string BREQ_NO_BLOOD { get; set; }
     }
 
     [Serializable]
