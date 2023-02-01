@@ -1,4 +1,4 @@
-﻿using BloodBank.Database;
+﻿using LifePoints.BloodBank.Database;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using System;
@@ -26,9 +26,25 @@ namespace LifePoints
                 LifePoints.Database.account bb = Session["ACCOUNT"] as LifePoints.Database.account;
                 //Set Username
                 username.InnerText = bb.ACC_EMAIL;
+                PopulateDropDown();
                 PopulateFormInputs();
                 GetUnreadNotif();
             }
+        }
+
+        public void PopulateDropDown()
+        {
+            string[] bloodType = new string[] { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" };
+
+            Bloodtype.Items.Insert(0, new ListItem("Select Blood Type", ""));
+            int i = 1;
+            foreach (string type in bloodType)
+            {
+                Bloodtype.Items.Insert(i++, new ListItem(type, type));
+            }
+
+            Gender.Items.Insert(0, new ListItem("Male", "1"));
+            Gender.Items.Insert(1, new ListItem("Female", "0"));
         }
 
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BloodBank.Database
+namespace LifePoints.BloodBank.Database
 {
     [Serializable]
     public class account
@@ -45,8 +45,9 @@ namespace BloodBank.Database
         public bool BREQ_SURVEY_STATUS { get; set; }
         public bool BREQ_BLOOD_STATUS { get; set; }
         public bool BREQ_REQ_STATUS { get; set; }
-        public string BREQ_DATE { get; set; }
+        public string BREQ_CONSENT { get; set; }
         public string BREQ_VISIT_DATE { get; set; }
+        public string BREQ_DATE { get; set; }
     }
 
     [Serializable]

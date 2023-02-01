@@ -46,7 +46,7 @@ namespace LifePoints
                             switch (acc.ACC_TYPE)
                             {
                                 case "1": //Admin
-                                    Response.Write("<script>alert('Admin')</script>");
+                                    Response.Redirect("~/Admin/BB_Dashboard.aspx");
                                     break;
                                 case "2": //BloodBank
                                     Response.Redirect("~/BloodBank/BB_Dashboard.aspx");

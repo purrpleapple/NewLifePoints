@@ -747,7 +747,6 @@ values({0}, '{1}', '{2}', '{3}', {4}, '{5}', '{6}', '{7}', '{8}', '{9}');", ui.U
 
         public bool InsertUserMessage(user_info ub, int RecID, string message)
         {
-            int n = 1;
             bool res = false;
             try
             {

@@ -1,4 +1,4 @@
-﻿using BloodBank.Database;
+﻿using LifePoints.BloodBank.Database;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using System;

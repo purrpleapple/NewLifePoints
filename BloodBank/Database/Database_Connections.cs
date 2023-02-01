@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
-namespace BloodBank.Database
+namespace LifePoints.BloodBank.Database
 {
     public class Database_Connections
     {

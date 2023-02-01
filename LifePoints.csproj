@@ -143,6 +143,54 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Admin_BlogPost.aspx" />
+    <Content Include="Admin\Admin_Reports.aspx" />
+    <Content Include="Admin\assets\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Admin\assets\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Admin\assets\css\Google-Style-Login.css" />
+    <Content Include="Admin\assets\css\login-full-page-bs4.css" />
+    <Content Include="Admin\assets\css\Modal-Login-form.css" />
+    <Content Include="Admin\assets\css\Table-With-Search-1.css" />
+    <Content Include="Admin\assets\css\Table-With-Search.css" />
+    <Content Include="Admin\assets\fonts\fa-brands-400.svg" />
+    <Content Include="Admin\assets\fonts\fa-regular-400.svg" />
+    <Content Include="Admin\assets\fonts\fa-solid-900.svg" />
+    <Content Include="Admin\assets\fonts\font-awesome.min.css" />
+    <Content Include="Admin\assets\fonts\fontawesome-all.min.css" />
+    <Content Include="Admin\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="Admin\assets\fonts\fontawesome5-overrides.min.css" />
+    <Content Include="Admin\assets\img\avatars\avatar1.jpeg" />
+    <Content Include="Admin\assets\img\avatars\avatar2.jpeg" />
+    <Content Include="Admin\assets\img\avatars\avatar3.jpeg" />
+    <Content Include="Admin\assets\img\avatars\avatar4.jpeg" />
+    <Content Include="Admin\assets\img\avatars\avatar5.jpeg" />
+    <Content Include="Admin\assets\img\avatar_2x.png" />
+    <Content Include="Admin\assets\img\bill.png" />
+    <Content Include="Admin\assets\img\blood-donation.png" />
+    <Content Include="Admin\assets\img\blood-drop.png" />
+    <Content Include="Admin\assets\img\dislike.png" />
+    <Content Include="Admin\assets\img\dogs\image1.jpeg" />
+    <Content Include="Admin\assets\img\dogs\image2.jpeg" />
+    <Content Include="Admin\assets\img\dogs\image3.jpeg" />
+    <Content Include="Admin\assets\img\dogs\vsmmclogo1.png" />
+    <Content Include="Admin\assets\img\reply.png" />
+    <Content Include="Admin\assets\img\solologo.png" />
+    <Content Include="Admin\assets\img\user-icon.jpg" />
+    <Content Include="Admin\assets\img\user.png" />
+    <Content Include="Admin\assets\img\vsmmclogo1.png" />
+    <Content Include="Admin\assets\js\bs-init.js" />
+    <Content Include="Admin\assets\js\chart.min.js" />
+    <Content Include="Admin\assets\js\jquery.min.js" />
+    <Content Include="Admin\assets\js\login-full-page-bs4-1.js" />
+    <Content Include="Admin\assets\js\login-full-page-bs4.js" />
+    <Content Include="Admin\assets\js\Table-With-Search.js" />
+    <Content Include="Admin\assets\js\theme.js" />
+    <Content Include="Admin\BB_ActionLogs.aspx" />
+    <Content Include="Admin\BB_BloodTransaction.aspx" />
+    <Content Include="Admin\BB_Dashboard.aspx" />
+    <Content Include="Admin\BB_Profile.aspx" />
+    <Content Include="Admin\BB_Request_Survey.aspx" />
+    <Content Include="Admin\Donor_Survey_ViewOnly.aspx" />
     <Content Include="assets\bootstrap\css\bootstrap.min.css" />
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="assets\css\Blog---Recent-Posts-styles.css" />
@@ -286,6 +334,23 @@
     <Content Include="BloodBank\assets\fonts\fontawesome-webfont.woff" />
     <Content Include="BloodBank\assets\fonts\fontawesome-webfont.woff2" />
     <Content Include="BloodBank\assets\fonts\FontAwesome.otf" />
+    <Content Include="Admin\assets\fonts\fa-brands-400.eot" />
+    <Content Include="Admin\assets\fonts\fa-brands-400.ttf" />
+    <Content Include="Admin\assets\fonts\fa-brands-400.woff" />
+    <Content Include="Admin\assets\fonts\fa-brands-400.woff2" />
+    <Content Include="Admin\assets\fonts\fa-regular-400.eot" />
+    <Content Include="Admin\assets\fonts\fa-regular-400.ttf" />
+    <Content Include="Admin\assets\fonts\fa-regular-400.woff" />
+    <Content Include="Admin\assets\fonts\fa-regular-400.woff2" />
+    <Content Include="Admin\assets\fonts\fa-solid-900.eot" />
+    <Content Include="Admin\assets\fonts\fa-solid-900.ttf" />
+    <Content Include="Admin\assets\fonts\fa-solid-900.woff" />
+    <Content Include="Admin\assets\fonts\fa-solid-900.woff2" />
+    <Content Include="Admin\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Admin\assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Admin\assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="Admin\assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Admin\assets\fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\userlifepoints-001-site1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\userlifepoints-001-site1 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -334,6 +399,64 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Admin_BlogPost.aspx.cs">
+      <DependentUpon>Admin_BlogPost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Admin_BlogPost.aspx.designer.cs">
+      <DependentUpon>Admin_BlogPost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Admin_Reports.aspx.cs">
+      <DependentUpon>Admin_Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Admin_Reports.aspx.designer.cs">
+      <DependentUpon>Admin_Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\BB_ActionLogs.aspx.cs">
+      <DependentUpon>BB_ActionLogs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\BB_ActionLogs.aspx.designer.cs">
+      <DependentUpon>BB_ActionLogs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\BB_BloodTransaction.aspx.cs">
+      <DependentUpon>BB_BloodTransaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\BB_BloodTransaction.aspx.designer.cs">
+      <DependentUpon>BB_BloodTransaction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\BB_Dashboard.aspx.cs">
+      <DependentUpon>BB_Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\BB_Dashboard.aspx.designer.cs">
+      <DependentUpon>BB_Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\BB_Profile.aspx.cs">
+      <DependentUpon>BB_Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\BB_Profile.aspx.designer.cs">
+      <DependentUpon>BB_Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\BB_Request_Survey.aspx.cs">
+      <DependentUpon>BB_Request_Survey.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\BB_Request_Survey.aspx.designer.cs">
+      <DependentUpon>BB_Request_Survey.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Database\Database_Connections.cs" />
+    <Compile Include="Admin\Database\Data_Model.cs" />
+    <Compile Include="Admin\Donor_Survey_ViewOnly.aspx.cs">
+      <DependentUpon>Donor_Survey_ViewOnly.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Donor_Survey_ViewOnly.aspx.designer.cs">
+      <DependentUpon>Donor_Survey_ViewOnly.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BloodBank\BB_ActionLogs.aspx.cs">
