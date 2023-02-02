@@ -386,6 +386,7 @@
     <Content Include="Uploads\2023003_Request_29-01-23.jpg" />
     <Content Include="USER_BECOMEADONOR.aspx" />
     <Content Include="USER_BLOGPOST.aspx" />
+    <Content Include="USER_CHAT.aspx" />
     <Content Include="USER_DONOR_SURVEY_FORM.aspx" />
     <Content Include="USER_DONOR_SURVEY_FORM_VIEW.aspx" />
     <Content Include="USER_NOTIFICATION.aspx" />
@@ -550,6 +551,13 @@
     </Compile>
     <Compile Include="USER_BLOGPOST.aspx.designer.cs">
       <DependentUpon>USER_BLOGPOST.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="USER_CHAT.aspx.cs">
+      <DependentUpon>USER_CHAT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="USER_CHAT.aspx.designer.cs">
+      <DependentUpon>USER_CHAT.aspx</DependentUpon>
     </Compile>
     <Compile Include="USER_DONOR_SURVEY_FORM.aspx.cs">
       <DependentUpon>USER_DONOR_SURVEY_FORM.aspx</DependentUpon>
