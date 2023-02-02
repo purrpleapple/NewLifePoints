@@ -211,6 +211,8 @@ namespace LifePoints.Admin.Database
                     br.BREQ_SURVEY_STATUS = Convert.ToBoolean(rdr["BREQ_SURVEY_STATUS"]);
                     br.BREQ_BLOOD_STATUS = Convert.ToBoolean(rdr["BREQ_BLOOD_STATUS"]);
                     br.BREQ_REQ_STATUS = Convert.ToBoolean(rdr["BREQ_REQ_STATUS"]);
+                    br.BREQ_CONSENT = rdr["BREQ_CONSENT"].ToString();
+                    br.BREQ_VISIT_DATE = rdr["BREQ_VISIT_DATE"].ToString();
                     br.BREQ_DATE = rdr["BREQ_DATE"].ToString();
                 }
                 con.Close();

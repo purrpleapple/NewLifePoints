@@ -29,24 +29,25 @@ namespace LifePoints
                 Username.InnerText = ua.UI_FNAME + " " + ua.UI_LNAME;
                 PopulateDropDown();
                 GetUnreadNotif();
+                UserRd.Items.Insert(0, new ListItem("Yes", "1"));
+                UserRd.Items.Insert(1, new ListItem("No", "0"));
+                UserRd.SelectedValue = "1";
                 if (!Convert.ToBoolean(Session["Input"]))
                 {
                     PopulateFormInputs();
 
-                    Option.Style.Add("display", "");
+                    Option.Style.Add("display", "none");
                     Survey.Style.Add("display", "");
+                    Upload.Style.Add("display", "none");
                     DConsent.Style.Add("display", "");
-                    Upload.Style.Add("display", "");
                 }
                 else
                 {
-                    UserRd.Items.Insert(0, new ListItem("Yes", "1"));
-                    UserRd.Items.Insert(1, new ListItem("No", "0"));
-                    UserRd.SelectedValue = "1";
+                    
                     PopulateFormInputsUserYes();
                     Option.Style.Add("display", "");
-                    Survey.Style.Add("display", "");
-                    DConsent.Style.Add("display", "");
+                    Survey.Style.Add("display", "none");
+                    DConsent.Style.Add("display", "none");
                     Upload.Style.Add("display", "");
                 }
             }

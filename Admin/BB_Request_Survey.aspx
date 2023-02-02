@@ -83,7 +83,7 @@
                         <div class="card-body">
                             <div style="max-height: 900px; overflow: auto;">
                                
-                                <table style="text-align: left; width: 60%; margin: auto" runat="server" id="Survey">
+                                <table style="text-align: left; width: 77%; margin: auto" runat="server" id="Survey">
                                     <tr>
                                         <td colspan="2"><strong>Personal Information</strong></td>
                                     </tr>
@@ -125,9 +125,10 @@
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Required" Style="color: red; display: flex; justify-content: end;" ControlToValidate="DOB" Font-Italic="True" ValidationGroup="Register"></asp:RequiredFieldValidator>
                                             <asp:TextBox runat="server" ID="DOB" CssClass="form-control" required="" type="date" ClientIDMode="Static" onchange="CheckDOB()" /></td>
                                     </tr>
-                                   <br />
-                                     <tr>
-                                         
+
+                                    <br />
+                                    <tr>
+
                                         <td colspan="2"><strong>Blood Request</strong></td>
                                     </tr>
                                     <tr>
@@ -139,16 +140,7 @@
                                         </td>
 
                                     </tr>
-                                    <tr>
-                                        <td>No of blood bags:</td>
-                                        <td> <asp:TextBox runat="server" ID="No_blood" CssClass="form-control" required="" type="number" ClientIDMode="Static"></asp:TextBox>
-                                            </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Request Date:</td>
-                                       <td>  <asp:TextBox runat="server" ID="Demand_date" CssClass="form-control" required="" type="date" ClientIDMode="Static"  /></td>
-                                   
-                                    </tr>
+                                    
                                     <tr>
                                         <td colspan="2">
                                             <br />
@@ -213,6 +205,25 @@
                                     </tr>
                                 </table>
                                 <br />
+                                <table style="text-align: left; width: 77%; margin: auto" runat="server" id="Table1">
+                                    <tr>
+                                        <td>
+                                            <strong>Blood details</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>No of blood bags:</td>
+                                        <td>
+                                            <asp:TextBox runat="server" ID="No_blood" CssClass="form-control" required="" type="number" ClientIDMode="Static"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Request Date:</td>
+                                        <td>
+                                            <asp:TextBox runat="server" ID="Demand_date" CssClass="form-control" required="" type="date" ClientIDMode="Static" /></td>
+
+                                    </tr>
+                                </table>
                                 <br />
                                 <table style="text-align: left; width: 77%; margin: auto" runat="server" id="DConsent">
                                     <tr>

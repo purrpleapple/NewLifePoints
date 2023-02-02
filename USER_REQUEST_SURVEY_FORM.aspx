@@ -471,20 +471,20 @@
                     <div class="card text-center" style="max-height: 100%; height: 100%; width: 70%;">
                         <div class="card-header">
                             <h3>BLOOD REQUEST FORM</h3>
-                            
+
                         </div>
                         <div class="card-body">
                             <div style="max-height: 850px; overflow: auto;">
                                 <p style="font-size: 25px; font-style: bold; margin-left: -30%">
                                     Please complete this form
                                 </p>
-                                <table style="text-align: left; width: 60%; margin: auto" runat="server" id="Option">
+                                <table style="text-align: left; width: 77%; margin: auto" runat="server" id="Option">
                                     <tr>
                                         <td style="width: 40%;">
                                             <strong>Will you be the one to use the blood?</strong>
                                         </td>
-                                        <td style="display: flex; justify-content: left; align-items: center; text-align:center;">
-                                            <asp:RadioButtonList runat="server" ID="UserRd" AutoPostBack="true" OnSelectedIndexChanged="UserRd_CheckedChanged" RepeatDirection="Horizontal" style="display: flex; flex-direction: row; justify-content: left; align-items: center; text-align:center;" RepeatLayout="Flow"  TextAlign="Right" RepeatColumns="0"></asp:RadioButtonList>
+                                        <td style="display: flex; justify-content: left; align-items: center; text-align: center;">
+                                            <asp:RadioButtonList runat="server" ID="UserRd" AutoPostBack="true" OnSelectedIndexChanged="UserRd_CheckedChanged" RepeatDirection="Horizontal" Style="display: flex; flex-direction: row; justify-content: left; align-items: center; text-align: center;" RepeatLayout="Flow" TextAlign="Right" RepeatColumns="0"></asp:RadioButtonList>
                                         </td>
                                     </tr>
                                 </table>
@@ -531,10 +531,10 @@
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Required" Style="color: red; display: flex; justify-content: end;" ControlToValidate="DOB" Font-Italic="True" ValidationGroup="Register"></asp:RequiredFieldValidator>
                                             <asp:TextBox runat="server" ID="DOB" CssClass="form-control" required="" type="date" ClientIDMode="Static" onchange="CheckDOB()" /></td>
                                     </tr>
-                                    
+
                                     <br />
-                                     <tr>
-                                         
+                                    <tr>
+
                                         <td colspan="2"><strong>Blood Request</strong></td>
                                     </tr>
                                     <tr>
@@ -546,17 +546,7 @@
                                         </td>
 
                                     </tr>
-                                    <tr>
-                                        <td>No of blood bags:</td>
-                                        <td> <asp:TextBox runat="server" ID="No_blood" CssClass="form-control" required="" type="number" ClientIDMode="Static"></asp:TextBox>
-                                            </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Request Date:</td>
-                                       <td>  <asp:TextBox runat="server" ID="Demand_date" CssClass="form-control" required="" type="date" ClientIDMode="Static"  /></td>
-                                   
-                                    </tr>
-
+                                    
                                     <tr>
                                         <td colspan="2">
                                             <br />
@@ -621,22 +611,41 @@
                                     </tr>
                                 </table>
                                 <br />
+                                <table style="text-align: left; width: 77%; margin: auto" runat="server" id="Table1">
+                                    <tr>
+                                        <td>
+                                            <strong>Blood details</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>No of blood bags:</td>
+                                        <td>
+                                            <asp:TextBox runat="server" ID="No_blood" CssClass="form-control" required="" type="number" ClientIDMode="Static"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Request Date:</td>
+                                        <td>
+                                            <asp:TextBox runat="server" ID="Demand_date" CssClass="form-control" required="" type="date" ClientIDMode="Static" /></td>
+
+                                    </tr>
+                                </table>
                                 <br />
                                 <table style="text-align: left; width: 77%; margin: auto" runat="server" id="Upload">
                                     <tr>
                                         <td>
-                                            <strong>Upload Doctors Note</strong>
+                                            <strong>Upload Doctors Consent</strong>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <br />
-                                            <asp:RequiredFieldValidator runat="server" ID="RequiredUpload" ControlToValidate="Consent" ErrorMessage="Required" Style="color: red; display: flex; justify-content: start;"  />
-                                            <asp:FileUpload ID="Consent" runat="server" ToolTip="Only Images (jpg, png, jpeg, gif)"  CssClass="form-control" />
+                                            <asp:RequiredFieldValidator runat="server" ID="RequiredUpload" ControlToValidate="Consent" ErrorMessage="Required" Style="color: red; display: flex; justify-content: start;" Display="Dynamic" />
+                                            <asp:FileUpload ID="Consent" runat="server" ToolTip="Only Images (jpg, png, jpeg, gif)" CssClass="form-control" />
                                         </td>
                                     </tr>
                                 </table>
-                                <table style="text-align: left; width: 77%; margin: auto" runat="server" id="DConsent" >
+                                
+                                <table style="text-align: left; width: 77%; margin: auto" runat="server" id="DConsent">
                                     <tr>
                                         <td>
                                             <strong>Doctor's Consent</strong>
