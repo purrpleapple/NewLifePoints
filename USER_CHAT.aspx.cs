@@ -207,5 +207,11 @@ namespace LifePoints
                 PopulateMessageInbox();
             }
         }
+
+
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
+            PopulateMessageInbox();
+        }
     }
 }

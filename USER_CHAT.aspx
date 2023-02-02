@@ -171,7 +171,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col" style=" display: none;"  runat="server" id="MessageInbox" >
+                        <div class="col" style="display: none;" runat="server" id="MessageInbox">
                             <div class="row">
                                 <div class="col d-flex align-items-lg-center align-items-xl-center border-start border-muted" style="background: rgba(52,58,64,0.2); height: 4rem;">
                                     <button class="btn d-block d-sm-block d-md-block d-lg-none d-xl-none border-0 my-auto" type="button" style="width: 2.5rem; height: 2.5rem;"><i class="far fa-arrow-alt-circle-left"></i></button>
@@ -180,20 +180,30 @@
                                 </div>
                             </div>
                             <div class="row px-3 py-2 border-start border-muted">
-                                <div class="col" style="overflow-x: hidden; overflow-y: auto; max-height: 55vh; height: 55vh;">
+                                <div class="col" style="overflow-x: hidden; overflow-y: auto; max-height: 55vh; height: 55vh; display: flex; flex-direction: column-reverse;" runat="server" id="MessageScroll">
                                     <ul class="list-unstyled">
-                                        <asp:Repeater runat="server" ID="UserMessage">
-                                            <ItemTemplate>
-                                                <li class="my-2 <%# Eval("CM_TYPE") %>">
-                                                    <div class="card border border-muted <%# Eval("CM_DESIGN") %>">
-                                                        <div class="card-body text-center p-2">
-                                                            <p class="text-start card-text" style="font-size: 1rem;"><%# Eval("CM_MESSAGE") %></p>
-                                                            <h6 class="text-muted card-subtitle text-end" style="font-size: .75rem;"><%# Eval("CM_DATE") %></h6>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
+                                        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                                        <asp:UpdatePanel runat="server" ID="UpdateMessages" UpdateMode="Conditional">
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="Timer1"  EventName="Tick"/>
+                                            </Triggers>
+                                            <ContentTemplate>
+                                                <asp:Repeater runat="server" ID="UserMessage">
+                                                    <ItemTemplate>
+                                                        <li class="my-2 <%# Eval("CM_TYPE") %>">
+                                                            <div class="card border border-muted <%# Eval("CM_DESIGN") %>">
+                                                                <div class="card-body text-center p-2">
+                                                                    <p class="text-start card-text" style="font-size: 1rem;"><%# Eval("CM_MESSAGE") %></p>
+                                                                    <h6 class="text-muted card-subtitle text-end" style="font-size: .75rem;"><%# Eval("CM_DATE") %></h6>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                        <asp:Timer ID="Timer1" runat="server" Interval="1000" OnTick="Timer1_Tick">
+                                        </asp:Timer>
                                     </ul>
                                 </div>
                             </div>
@@ -203,8 +213,8 @@
                                     <asp:TextBox runat="server" ID="Message" CssClass="flex-fill" Style="padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;" TextMode="MultiLine"></asp:TextBox>
                                 </div>
                                 <div class="col-1 d-flex justify-content-xxl-center align-items-xxl-center">
-                                    <asp:LinkButton runat="server" ID="SendBtn" CssClass="btn btn-light w-auto flex-fill d-flex justify-content-center align-items-center" style="border-radius: 10px; height: 35px;"
-                                         UseSubmitBehavior="true" ValidationGroup="InsertMessage" OnClick="SendBtn_Click" >
+                                    <asp:LinkButton runat="server" ID="SendBtn" CssClass="btn btn-light w-auto flex-fill d-flex justify-content-center align-items-center" Style="border-radius: 10px; height: 35px;"
+                                        UseSubmitBehavior="true" ValidationGroup="InsertMessage" OnClick="SendBtn_Click">
                                         <i class="fab fa-telegram-plane" style="font-size: 20px;"></i>
                                     </asp:LinkButton>
                                 </div>
