@@ -30,7 +30,7 @@ namespace LifePoints
                 GetUnreadNotif();
             }
         }
-
+        //notifications
         protected void NotificationNavList_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             if (e.CommandName == "ViewNotif")
