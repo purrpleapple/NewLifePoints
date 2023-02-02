@@ -331,9 +331,14 @@
         </div>
         <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </form>
-    <script src="assets/js/jquery.min.js"></script>
+    <%--<script src="assets/js/jquery.min.js"></script>--%>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/chart.min.js"></script>
+    <%--<script src="assets/js/chart.min.js"></script>--%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/login-full-page-bs4.js"></script>
     <script src="assets/js/login-full-page-bs4-1.js"></script>
@@ -353,6 +358,20 @@
                 }]
             },
             options: {
+                plugins: {
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            let sum = 0;
+                            let dataArr = ctx.chart.data.datasets[0].data;
+                            dataArr.map(data => {
+                                sum += data;
+                            });
+                            let percentage = (value * 100 / sum).toFixed(2) + "%";
+                            return (percentage === "0.00%") ? "" : percentage;
+                        },
+                        color: '#fff',
+                    }
+                },
                 maintainAspectRatio: false,
                 // options object
             }

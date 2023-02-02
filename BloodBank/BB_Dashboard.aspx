@@ -44,12 +44,12 @@
             </div>
         </nav>
         <div class="d-flex flex-column" id="content-wrapper">
-            <div id="content" style="background: linear-gradient(rgb(249,243,243) 28%, white), #ffffff;">
+            <div id="content2" style="background: linear-gradient(rgb(249,243,243) 28%, white), #ffffff;">
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
                     <div class="container-fluid">
                         <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <div class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <input class="form-control-plaintext" type="text" value="Dashboard" readonly="" style="font-size: 40px;">
+                            <input class="form-control-plaintext" type="text" value="Dashboard" readonly="" style="font-size: 40px;" />
                         </div>
                         <ul class="navbar-nav flex-nowrap ml-auto">
                             <li class="nav-item dropdown no-arrow mx-1">
@@ -98,36 +98,36 @@
                     <div class="d-sm-flex justify-content-between align-items-center mb-4">
                         <div id="content">
 
-                            
 
-                        <div class="row" style="margin-bottom:20px">
-                            <div class="col-5">
-                              <div class="card shadow">
 
-                                <div class="card-header py-3">
-                                    <p class="text-primary m-0 fw-bold">Blood Inventory</p>
-                                </div>
+                            <div class="row" style="margin-bottom: 20px">
+                                <div class="col-5">
+                                    <div class="card shadow">
 
-                                <div class="card-body">
-                                    <h3 runat="server" id="NoDataMsg" style="display: none;">No Data</h3>
-                                     <div class="table-responsive" > 
-                                         <asp:GridView runat="server" ID="GridInventory" AutoGenerateColumns="False" Width="100%"
-                                             BorderColor="Transparent" AutoPostBack="true">
-                                                <RowStyle CssClass="grid-item-style  grid-font-style" />
-                                                <Columns>
-                                                            <asp:BoundField HeaderText="Blood Type" DataField="inv_blood_type" />
-                                                            <asp:BoundField HeaderText="Amount" DataField="inv_numbers" />
-                                        
-                                               </Columns>
-                                            </asp:GridView>
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 fw-bold">Blood Inventory</p>
                                         </div>
+
+                                        <div class="card-body">
+                                            <h3 runat="server" id="NoDataMsg" style="display: none;">No Data</h3>
+                                            <div class="table-responsive">
+                                                <asp:GridView runat="server" ID="GridInventory" AutoGenerateColumns="False" Width="100%"
+                                                    BorderColor="Transparent" AutoPostBack="true">
+                                                    <RowStyle CssClass="grid-item-style  grid-font-style" />
+                                                    <Columns>
+                                                        <asp:BoundField HeaderText="Blood Type" DataField="inv_blood_type" />
+                                                        <asp:BoundField HeaderText="Amount" DataField="inv_numbers" />
+
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </div>
+                                        </div>
+
+
                                     </div>
-
-
                                 </div>
-                            </div>
 
-                                       <div class="col-7">
+                                <div class="col-7">
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="row d-flex flex-column">
@@ -250,17 +250,17 @@
                                     </div>
                                 </div>
 
-                       </div>
-                            
+                            </div>
+
 
                             <div class="row">
-                             
+
                                 <div class="col-5">
                                     <div class="card d-flex">
                                         <div class="card-header" style="background: var(--blue); padding: 0px; padding-top: 9px;">
                                             <div class="row">
                                                 <div class="col">
-                                                    <h3 style="font-weight: bold; color: var(--white);">Blood <span runat="server" id="PieTitle"></span> Transactions</h3>
+                                                    <h3 style="font-weight: bold; color: var(--white);">Blood <span runat="server" id="PieTitle"></span>Transactions</h3>
                                                 </div>
                                                 <div class="col-3">
                                                     <asp:DropDownList runat="server" ID="PieOption" AutoPostBack="true" OnSelectedIndexChanged="PieOption_SelectedIndexChanged">
@@ -279,56 +279,55 @@
                                 </div>
                                 <div class="col-7">
                                     <div class="col-6">
-                                            <div class="row d-flex flex-column">
-                                                <div class="col d-flex" style="margin-bottom: 10px;">
-                                                    <div class="card" style="width: 100%;">
-                                                        <div class="card-header" style="padding: 0px; padding-top: 9px; background: #25476a;">
-                                                            <h3 class="text-center" style="font-weight: bold; color: var(--white);">APPROVED REQUEST</h3>
-                                                        </div>
-                                                        <div class="card-body" style="width: 100%;">
-                                                            <div class="row">
-                                                                <div class="col d-flex justify-content-xl-center align-items-xl-center">
-                                                                    <h1 runat="server" id="TotalApproved"></h1>
-                                                                </div>
-                                                                <div class="col-2 d-flex justify-content-xl-center align-items-xl-center">
-                                                                    <img src="assets/img/bill.png" width="30">
-                                                                </div>
+                                        <div class="row d-flex flex-column">
+                                            <div class="col d-flex" style="margin-bottom: 10px;">
+                                                <div class="card" style="width: 100%;">
+                                                    <div class="card-header" style="padding: 0px; padding-top: 9px; background: #25476a;">
+                                                        <h3 class="text-center" style="font-weight: bold; color: var(--white);">APPROVED REQUEST</h3>
+                                                    </div>
+                                                    <div class="card-body" style="width: 100%;">
+                                                        <div class="row">
+                                                            <div class="col d-flex justify-content-xl-center align-items-xl-center">
+                                                                <h1 runat="server" id="TotalApproved"></h1>
+                                                            </div>
+                                                            <div class="col-2 d-flex justify-content-xl-center align-items-xl-center">
+                                                                <img src="assets/img/bill.png" width="30">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <div class="card" style="width: 100%;">
-                                                                <div class="card-header" style="padding: 0px; padding-top: 9px; background: #25476a;">
-                                                                    <h5 class="text-center" style="font-weight: bold; color: var(--white);">REQUESTS(BLOOD)</h5>
-                                                                </div>
-                                                                <div class="card-body" style="width: 100%;">
-                                                                    <div class="row">
-                                                                        <div class="col d-flex justify-content-xl-center align-items-xl-center">
-                                                                            <h1 runat="server" id="BR_Approved"></h1>
-                                                                        </div>
-                                                                        <div class="col-3 d-flex justify-content-xl-center align-items-xl-center">
-                                                                            <img src="assets/img/blood-drop.png" width="30">
-                                                                        </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="card" style="width: 100%;">
+                                                            <div class="card-header" style="padding: 0px; padding-top: 9px; background: #25476a;">
+                                                                <h5 class="text-center" style="font-weight: bold; color: var(--white);">REQUESTS(BLOOD)</h5>
+                                                            </div>
+                                                            <div class="card-body" style="width: 100%;">
+                                                                <div class="row">
+                                                                    <div class="col d-flex justify-content-xl-center align-items-xl-center">
+                                                                        <h1 runat="server" id="BR_Approved"></h1>
+                                                                    </div>
+                                                                    <div class="col-3 d-flex justify-content-xl-center align-items-xl-center">
+                                                                        <img src="assets/img/blood-drop.png" width="30">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col">
-                                                            <div class="card" style="width: 100%;">
-                                                                <div class="card-header" style="padding: 0px; padding-top: 9px; background: #25476a;">
-                                                                    <h5 class="text-center" style="font-weight: bold; color: var(--white);">REQUESTS(DONOR)</h5>
-                                                                </div>
-                                                                <div class="card-body" style="width: 100%;">
-                                                                    <div class="row">
-                                                                        <div class="col d-flex justify-content-xl-center align-items-xl-center">
-                                                                            <h1 runat="server" id="BD_Approved"></h1>
-                                                                        </div>
-                                                                        <div class="col-3 d-flex justify-content-xl-center align-items-xl-center">
-                                                                            <img src="assets/img/blood-donation.png" width="30">
-                                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="card" style="width: 100%;">
+                                                            <div class="card-header" style="padding: 0px; padding-top: 9px; background: #25476a;">
+                                                                <h5 class="text-center" style="font-weight: bold; color: var(--white);">REQUESTS(DONOR)</h5>
+                                                            </div>
+                                                            <div class="card-body" style="width: 100%;">
+                                                                <div class="row">
+                                                                    <div class="col d-flex justify-content-xl-center align-items-xl-center">
+                                                                        <h1 runat="server" id="BD_Approved"></h1>
+                                                                    </div>
+                                                                    <div class="col-3 d-flex justify-content-xl-center align-items-xl-center">
+                                                                        <img src="assets/img/blood-donation.png" width="30">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -337,6 +336,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
 
 
@@ -354,9 +354,14 @@
         </div>
         <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </form>
-    <script src="assets/js/jquery.min.js"></script>
+    <%--<script src="assets/js/jquery.min.js"></script>--%>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/chart.min.js"></script>
+    <%--<script src="assets/js/chart.min.js"></script>--%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/login-full-page-bs4.js"></script>
     <script src="assets/js/login-full-page-bs4-1.js"></script>
@@ -376,6 +381,20 @@
                 }]
             },
             options: {
+                plugins: {
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            let sum = 0;
+                            let dataArr = ctx.chart.data.datasets[0].data;
+                            dataArr.map(data => {
+                                sum += data;
+                            });
+                            let percentage = (value * 100 / sum).toFixed(2) + "%";
+                            return (percentage === "0.00%") ? "" : percentage;
+                        },
+                        color: '#fff',
+                    }
+                },
                 maintainAspectRatio: false,
                 // options object
             }
