@@ -796,5 +796,135 @@ values({0}, '{1}', '{2}', '{3}', {4}, '{5}', '{6}', '{7}', '{8}', '{9}');", ui.U
             return dt;
 
         }
+
+
+        public int[] InsertUserConvo(string email, string id)
+        {
+            int[] res = new int[2];
+
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = string.Format(@"select ACC_ID from account where ACC_EMAIL='{0}' and ACC_STATUS=true;", email);
+                int check = Convert.ToInt32(cmd.ExecuteScalar());
+                if (check > 0)
+                {
+                    Debug.Print("Check : " + check);
+
+                    cmd.CommandText = string.Format(@"select CV_ID from user_convo where 
+(CV_ACC1_ID={0} and CV_ACC2_ID={1}) or (CV_ACC1_ID={2} and CV_ACC2_ID={3});", id, check, check, id);
+
+                    int checkPrev = Convert.ToInt32(cmd.ExecuteScalar());
+                    if(checkPrev > 0)
+                    {
+                        Debug.Print("Exists");
+                        //Convo Already Exists
+                        res[0] = -3;
+                        res[1] = checkPrev;
+                    }
+                    else
+                    {
+                        Debug.Print("Does not Exists");
+                        cmd.CommandText = string.Format(@"insert into user_convo(CV_ACC1_ID, CV_ACC2_ID) values({0}, {1});", id, check);
+
+                        int i = cmd.ExecuteNonQuery();
+
+                        if (i > 0)
+                        {
+                            cmd.CommandText = string.Format(@"select CV_ID from user_convo where (CV_ACC1_ID={0} and CV_ACC2_ID={1}) or (CV_ACC1_ID={2} and CV_ACC2_ID={3});", id, check, check, id);
+                            int cv_id = Convert.ToInt32(cmd.ExecuteScalar());
+                            Debug.Print("Inserted ID : " + cv_id);
+                            if (cv_id > 0)
+                            {
+                                res[0] = 1;
+                                res[1] = cv_id;
+                            }
+                        }
+                    }
+
+                }
+                else
+                {
+                    res[0] = -2;
+                }
+                con.Close();
+            }
+            catch(Exception ex)
+            {
+                Debug.Print("Insert User Convo Error : " + ex.Message);
+                res[0] = -1;
+            }
+            return res;
+        }
+
+
+        public DataTable GetUserConvo(string id)
+        {
+            DataTable res = new DataTable();
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = string.Format(@"select CV_ID, if(CV_ACC1_ID={0}, CV_ACC2_ID, CV_ACC1_ID) as CV_ACC_ID, concat(UI_FNAME, ' ', UI_LNAME) as CV_NAME, ACC_EMAIL as CV_EMAIL from user_convo 
+join account on ACC_ID=if(CV_ACC1_ID={1}, CV_ACC2_ID, CV_ACC1_ID) 
+join user_info on UI_ID=if(CV_ACC1_ID={2}, CV_ACC2_ID, CV_ACC1_ID) 
+where CV_ACC1_ID={3} or CV_ACC2_ID={4};", id, id, id, id, id);
+                da = new MySqlDataAdapter(cmd);
+                da.Fill(res);
+                con.Close();
+            }
+            catch(Exception ex)
+            {
+                Debug.Print("Get User Convo Error : " + ex.Message);
+            }
+            return res;
+        }
+
+
+        public DataTable GetUserMessage(string id, string cv_id)
+        {
+            DataTable res = new DataTable();
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = string.Format(@"select CM_ID, CM_SENDER, CM_MESSAGE, CM_DATE, if(CM_SENDER={0}, 'Outgoing-Main', 'Incoming-Main') as CM_TYPE, 
+if(CM_SENDER={1}, 'Outgoing-Design', 'Incoming-Design') as CM_DESIGN from convo_message where CM_CV_ID={2};", id, id, cv_id);
+                da = new MySqlDataAdapter(cmd);
+                da.Fill(res);
+                con.Close();
+            }
+            catch(Exception ex)
+            {
+                Debug.Print("Get User Message Error : " + ex.Message);
+            }
+            return res;
+        }
+
+        public bool InsertUserMessage(string cv_id, string msg, string id)
+        {
+            bool res = false;
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = string.Format(@"insert into convo_message(CM_MESSAGE, CM_SENDER, CM_CV_ID) values('{0}', {1}, {2});", MySqlHelper.EscapeString(msg), id, cv_id);
+                if(cmd.ExecuteNonQuery() > 0)
+                {
+                    res = true;
+                }
+                con.Close();
+            }
+            catch(Exception ex)
+            {
+                Debug.Print("Insert User Message Error : " + ex.Message);
+            }
+            return res;
+        }
     }
 }

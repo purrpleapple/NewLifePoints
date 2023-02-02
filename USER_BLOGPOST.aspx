@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="assets/css/Blog---Recent-Posts.css" />
     <link rel="stylesheet" href="assets/css/Bootstrap-Chat.css" />
     <link rel="stylesheet" href="assets/css/Button-Outlines---Pretty.css" />
-    <link rel="stylesheet" href="assets/css/Chat.css" />
+    <link rel="stylesheet" href="assets/css/CustomChat.css" />
     <link rel="stylesheet" href="assets/css/custom-buttons.css" />
     <link rel="stylesheet" href="assets/css/Floating-Button.css" />
     <link rel="stylesheet" href="assets/css/Ludens-basic-login.css" />
@@ -39,6 +39,7 @@
                    
                     <li class="nav-item"><a class="nav-link" href="USER_REQUEST_A_BLOOD.aspx"><i class="fa fa-tint"></i><span>Request a Blood</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="USER_BECOMEADONOR.aspx"><i class="fa fa-heart"></i><span>Become a Blood Donor</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="USER_CHAT.aspx"><i class="fa fa-heart"></i><span>Chat</span></a></li>
 
                 </ul>
                 <div class="text-center d-none d-md-inline"></div>
@@ -52,14 +53,14 @@
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
                                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
-                                    <form class="me-auto navbar-search w-100">
+                                    <div class="me-auto navbar-search w-100">
                                         <div class="input-group">
-                                            <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
+                                            <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..." />
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </li>
                             <li class="nav-item dropdown no-arrow mx-1">

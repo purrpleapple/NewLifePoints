@@ -38,6 +38,7 @@
                     
                     <li class="nav-item"><a class="nav-link" href="USER_REQUEST_A_BLOOD.aspx"><i class="fa fa-tint"></i><span>Request a Blood</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="USER_BECOMEADONOR.aspx"><i class="fa fa-heart"></i><span>Become a Blood Donor</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="USER_CHAT.aspx"><i class="fa fa-heart"></i><span>Chat</span></a></li>
 
                 </ul>
                 <div class="text-center d-none d-md-inline"></div>

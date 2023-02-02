@@ -1,0 +1,28 @@
+﻿body {
+}
+
+.Outgoing-Main {
+    display: flex;
+    justify-content: end !important;
+}
+
+.Outgoing-Design {
+    width: 65% !important;
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    background: rgba(52,58,64,0.05);
+}
+
+.Incoming-Main {
+}
+
+.Incoming-Design {
+    width: 65% !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    background: rgba(52,58,64,0.05);
+}

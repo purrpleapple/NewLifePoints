@@ -199,6 +199,7 @@
     <Content Include="assets\css\Button-Outlines---Pretty.css" />
     <Content Include="assets\css\Chat.css" />
     <Content Include="assets\css\custom-buttons.css" />
+    <Content Include="assets\css\CustomChat.css" />
     <Content Include="assets\css\CustomStyles.css" />
     <Content Include="assets\css\Floating-Button.css" />
     <Content Include="assets\css\Ludens-basic-login.css" />

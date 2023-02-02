@@ -6,7 +6,7 @@
 <head runat="server">
     <link rel="icon" runat="server" href="~/assets/img/321479999_548324667206662_5830804446592810955_n.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>Blog Posts | LifePoints</title>
+    <title>Chat | LifePoints</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Almarai&amp;display=swap" />
@@ -17,12 +17,34 @@
     <link rel="stylesheet" href="assets/css/Blog---Recent-Posts.css" />
     <link rel="stylesheet" href="assets/css/Bootstrap-Chat.css" />
     <link rel="stylesheet" href="assets/css/Button-Outlines---Pretty.css" />
-    <link rel="stylesheet" href="assets/css/Chat.css" />
+    <link rel="stylesheet" href="assets/css/CustomChat.css" />
     <link rel="stylesheet" href="assets/css/custom-buttons.css" />
     <link rel="stylesheet" href="assets/css/Floating-Button.css" />
     <link rel="stylesheet" href="assets/css/Ludens-basic-login.css" />
     <link rel="stylesheet" href="assets/css/Ludens-Users---1-Login.css" />
     <link rel="stylesheet" href="assets/css/Simple-Bootstrap-Chat.css" />
+    <script type="text/javascript">
+
+        function CheckEmail() {
+            var email = document.getElementById("<%= UserEmail.ClientID %>");
+
+            var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            if (email.value.length == 0) {
+                email.classList.remove("is-invalid");
+                email.classList.remove("is-valid");
+            }
+            else if (new RegExp(reg).test(email.value)) {
+                email.classList.remove("is-invalid");
+                email.classList.add('is-valid');
+            }
+            else {
+                email.classList.add('is-invalid');
+                email.classList.remove("is-valid");
+            }
+        }
+
+    </script>
 </head>
 
 <body id="page-top">
@@ -35,10 +57,11 @@
                 </a>
                 <hr class="sidebar-divider my-0" />
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link active" href="USER_BLOGPOST.aspx"><i class="fas fa-tachometer-alt"></i><span>Blog Post</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="USER_BLOGPOST.aspx"><i class="fas fa-tachometer-alt"></i><span>Blog Post</span></a></li>
 
                     <li class="nav-item"><a class="nav-link" href="USER_REQUEST_A_BLOOD.aspx"><i class="fa fa-tint"></i><span>Request a Blood</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="USER_BECOMEADONOR.aspx"><i class="fa fa-heart"></i><span>Become a Blood Donor</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="USER_CHAT.aspx"><i class="fa fa-heart"></i><span>Chat</span></a></li>
 
                 </ul>
                 <div class="text-center d-none d-md-inline"></div>
@@ -52,14 +75,14 @@
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
                                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
-                                    <form class="me-auto navbar-search w-100">
+                                    <div class="me-auto navbar-search w-100">
                                         <div class="input-group">
-                                            <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
+                                            <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..." />
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </li>
                             <li class="nav-item dropdown no-arrow mx-1">
@@ -112,66 +135,78 @@
                             </div>
                             <div class="row px-3 py-2">
                                 <div class="col" style="border-radius: 25px; box-shadow: 0px 0px 5px var(--gray-dark);">
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator8" runat="server" Style="color: red; display: flex; justify-content: start;" ValidationExpression='^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$' ControlToValidate="UserEmail" ErrorMessage="Email Address is Invalid" Font-Italic="True" ValidationGroup="StartConvo" Display="Dynamic"></asp:RegularExpressionValidator>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator23" runat="server" ErrorMessage="Required" Style="color: red; display: flex; justify-content: start;" ControlToValidate="UserEmail" Font-Italic="True" ValidationGroup="StartConvo" Display="Dynamic"></asp:RequiredFieldValidator>
                                     <div class="row">
                                         <div class="col d-flex justify-content-xxl-start align-items-xxl-center">
-                                            <input class="flex-fill" type="text" placeholder="Email Address" inputmode="email" style="height: 100%; padding-left: 10px; padding-right: 10px;" /></div>
-                                        <div class="col-5 d-flex align-items-xxl-center">
-                                            <button class="btn btn-primary flex-fill" type="button" style="background: rgb(119,40,32); font-weight: bold;">Start Conversation</button></div>
+                                            <asp:TextBox runat="server" ID="UserEmail" oninput="CheckEmail()" CssClass="flex-fill is-valid" class="is-invalid" TextMode="Email" placeholder="Email Address" Style="height: 100%; flex-grow: inherit; padding-left: 10px; padding-right: 10px;" ClientIDMode="Static" />
+                                        </div>
+                                        <div class="col-4 d-flex align-items-xxl-center">
+                                            <asp:Button runat="server" ID="StartConvoBtn" CssClass="btn btn-primary flex-fill" type="button" Style="background: rgb(119,40,32); font-weight: bold;"
+                                                Text="Start Conversation" ValidationGroup="StartConvo" UseSubmitBehavior="true" OnClick="StartConvoBtn_Click" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col" style="overflow-x: none; overflow-y: auto; max-height: 60vh; height: auto;">
+                                <div class="col" style="overflow-x: hidden; overflow-y: auto; max-height: 60vh; height: auto;">
                                     <ul class="list-unstyled">
-                                        <li style="cursor: pointer;">
-                                            <div class="card border-0">
-                                                <div class="card-body">
-                                                    <span class="text-nowrap text-truncate text-uppercase text-white float-end p-1 text-center" style="width: 2rem; height: 2rem; border-radius: 15px; background: #00db5f;">1</span>
-                                                    <h4 class="text-nowrap text-truncate card-title">Ximena Samano</h4>
-                                                    <h6 class="text-nowrap text-truncate text-muted card-subtitle mb-2" style="font-size: .7rem;">19 de Julio de 2021, 11:53 AM</h6>
-                                                    <h6 class="text-nowrap text-truncate text-muted card-subtitle mb-2">I can donate</h6>
-                                                </div>
-                                            </div>
-                                        </li>
+                                        <asp:Repeater runat="server" ID="UserConvo" OnItemCommand="UserConvo_ItemCommand">
+                                            <ItemTemplate>
+                                                <li style="cursor: pointer;">
+                                                    <asp:LinkButton runat="server" ID="LinkBtn" Style="text-decoration: none;" CommandName="ViewMessages" CommandArgument='<%# Eval("CV_ID") + "," + Eval("CV_NAME") %>'>
+                                                        <div class="card border-0">
+                                                            <div class="card-body">
+                                                                <%--<span class="text-nowrap text-truncate text-uppercase text-white float-end p-1 text-center" style="width: 2rem; height: 2rem; border-radius: 15px; background: #00db5f;">1</span>--%>
+                                                                <h4 class="text-nowrap text-truncate card-title"><%# Eval("CV_NAME") %></h4>
+                                                                <h6 class="text-nowrap text-truncate text-muted card-subtitle mb-2" style="font-size: .7rem;"><%# Eval("CV_EMAIL") %></h6>
+                                                                <h6 class="text-nowrap text-truncate text-muted card-subtitle mb-2"><%# Eval("CV_ACC_ID") %></h6>
+                                                            </div>
+                                                        </div>
+                                                    </asp:LinkButton>
+                                                </li>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="col d-none d-sm-none d-md-none d-lg-block d-xl-block">
+                        <div class="col" style=" display: none;"  runat="server" id="MessageInbox" >
                             <div class="row">
                                 <div class="col d-flex align-items-lg-center align-items-xl-center border-start border-muted" style="background: rgba(52,58,64,0.2); height: 4rem;">
                                     <button class="btn d-block d-sm-block d-md-block d-lg-none d-xl-none border-0 my-auto" type="button" style="width: 2.5rem; height: 2.5rem;"><i class="far fa-arrow-alt-circle-left"></i></button>
-                                    <h5 class="mr-auto my-auto">Ximena Samano</h5>
+                                    <h5 class="mr-auto my-auto" runat="server" id="ConvoReceiver"></h5>
                                     <span class="my-auto"></span>
                                 </div>
                             </div>
                             <div class="row px-3 py-2 border-start border-muted">
-                                <div class="col" style="overflow-x: none; overflow-y: auto; max-height: 55vh; height: 55vh;">
+                                <div class="col" style="overflow-x: hidden; overflow-y: auto; max-height: 55vh; height: 55vh;">
                                     <ul class="list-unstyled">
-                                        <li class="my-2">
-                                            <div class="card border border-muted" style="width: 65%; border-top-left-radius: 0px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; background: rgba(52,58,64,0.05);">
-                                                <div class="card-body text-center p-2">
-                                                    <p class="text-start card-text" style="font-size: 1rem;">I can donate</p>
-                                                    <h6 class="text-muted card-subtitle text-end" style="font-size: .75rem;">Julio 22, 2021. 12:33 P.M.</h6>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="d-flex justify-content-end my-2">
-                                            <div class="card border border-muted" style="width: 65%; border-top-left-radius: 20px; border-top-right-radius: 0px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; background: rgba(52,58,64,0.05);">
-                                                <div class="card-body text-center p-2">
-                                                    <p class="text-start card-text" style="font-size: 1rem;">weh</p>
-                                                    <h6 class="text-muted card-subtitle text-end" style="font-size: .75rem;">Julio 22, 2021. 12:33 P.M.</h6>
-                                                </div>
-                                            </div>
-                                        </li>
+                                        <asp:Repeater runat="server" ID="UserMessage">
+                                            <ItemTemplate>
+                                                <li class="my-2 <%# Eval("CM_TYPE") %>">
+                                                    <div class="card border border-muted <%# Eval("CM_DESIGN") %>">
+                                                        <div class="card-body text-center p-2">
+                                                            <p class="text-start card-text" style="font-size: 1rem;"><%# Eval("CM_MESSAGE") %></p>
+                                                            <h6 class="text-muted card-subtitle text-end" style="font-size: .75rem;"><%# Eval("CM_DATE") %></h6>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
                                     </ul>
                                 </div>
                             </div>
                             <div class="row px-3 py-2" style="background: rgba(52,58,64,0.2);">
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Required" Style="color: red; display: flex; justify-content: start;" ControlToValidate="Message" Font-Italic="True" ValidationGroup="InsertMessage" Display="Dynamic"></asp:RequiredFieldValidator>
                                 <div class="col d-flex justify-content-xxl-center align-items-xxl-center">
-                                    <textarea class="flex-fill" style="padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;"></textarea></div>
+                                    <asp:TextBox runat="server" ID="Message" CssClass="flex-fill" Style="padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;" TextMode="MultiLine"></asp:TextBox>
+                                </div>
                                 <div class="col-1 d-flex justify-content-xxl-center align-items-xxl-center">
-                                    <button class="btn btn-light flex-fill h-100 w-auto" type="button" style="border-radius: 10px;"><i class="fab fa-telegram-plane"></i></button>
+                                    <asp:LinkButton runat="server" ID="SendBtn" CssClass="btn btn-light w-auto flex-fill d-flex justify-content-center align-items-center" style="border-radius: 10px; height: 35px;"
+                                         UseSubmitBehavior="true" ValidationGroup="InsertMessage" OnClick="SendBtn_Click" >
+                                        <i class="fab fa-telegram-plane" style="font-size: 20px;"></i>
+                                    </asp:LinkButton>
                                 </div>
                             </div>
                         </div>
