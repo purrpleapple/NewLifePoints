@@ -76,6 +76,16 @@ namespace LifePoints.BloodBank.Database
     }
 
     [Serializable]
+    public class transaction_logs
+    {
+        public string TL_TRANSACTION_ID { get; set; }
+        public string TL_ACC_ID { get; set; }
+        public bool TL_TRANSACTION { get; set; }
+        public string TL_BLOOD_TYPE { get; set; }
+        public string TL_TRANSACTION_AMOUNT { get; set; }
+    }
+
+    [Serializable]
     public class request_survey_form
     {
         public string lname { get; set; }

@@ -33,10 +33,10 @@ namespace LifePoints
                 {
                     PopulateFormInputs();
 
-                    Option.Style.Add("display", "none");
+                    Option.Style.Add("display", "");
                     Survey.Style.Add("display", "");
                     DConsent.Style.Add("display", "");
-                    Upload.Style.Add("display", "none");
+                    Upload.Style.Add("display", "");
                 }
                 else
                 {
@@ -45,8 +45,8 @@ namespace LifePoints
                     UserRd.SelectedValue = "1";
                     PopulateFormInputsUserYes();
                     Option.Style.Add("display", "");
-                    Survey.Style.Add("display", "none");
-                    DConsent.Style.Add("display", "none");
+                    Survey.Style.Add("display", "");
+                    DConsent.Style.Add("display", "");
                     Upload.Style.Add("display", "");
                 }
             }
@@ -185,7 +185,7 @@ namespace LifePoints
             blood_request br = Session["BloodRequest"] as blood_request;
             request_survey_form rq = JsonConvert.DeserializeObject<request_survey_form>(br.BREQ_JSON_SURVEY_FORM);
 
-            Option.Style.Add("display", "none");
+            Option.Style.Add("display", "");
             Survey.Style.Add("display", "");
 
             LName.Text = rq.lname;
@@ -311,7 +311,7 @@ namespace LifePoints
             if(UserRd.SelectedValue == "1")
             {
                 Option.Style.Add("display", "");
-                Survey.Style.Add("display", "none");
+                Survey.Style.Add("display", "");
                 PopulateFormInputsUserYes();
             }
             else
@@ -329,7 +329,7 @@ namespace LifePoints
             user_info_address ua = JsonConvert.DeserializeObject<user_info_address>(ui.UI_ADDRESS);
 
 
-            Option.Style.Add("display", "none");
+            Option.Style.Add("display", "");
             Survey.Style.Add("display", "");
 
             LName.Text = ui.UI_LNAME;

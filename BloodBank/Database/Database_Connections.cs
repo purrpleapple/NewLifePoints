@@ -87,6 +87,34 @@ namespace LifePoints.BloodBank.Database
             return res;
         }
 
+
+        public DataTable GetTransactionLogsTableData()
+        {
+
+            DataTable dt = new DataTable();
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = string.Format(@"select TL_ID,TL_TRANSACTION_ID,TL_ACC_ID, TL_BLOOD_TYPE, TL_TRANSACTION_AMOUNT,TLTRANSACTION_DATE,    
+if(TL_TRANSACTION = false, 'Blood Request',  if(TL_TRANSACTION = true, 'Blood Donation', 'Blood Donation')) as TL_TRANSACTION
+from transaction_logs;");
+                da = new MySqlDataAdapter(cmd);
+                da.Fill(dt);
+                con.Close();
+
+
+               
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("Get Transactions Logs Error : " + ex.Message);
+            }
+            return dt;
+        }
+
+
         //If pang populate sa GridView DataTable jud ang datatype nga gamiton
         public DataTable GetBloodBankLogsTableData()
         {
@@ -248,6 +276,29 @@ namespace LifePoints.BloodBank.Database
 
 
 
+            return res;
+        }
+
+        public bool TransactionLogs(string query)
+        {
+            bool res = false;
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = query;
+                int x = cmd.ExecuteNonQuery();
+                if (x > 0)
+                {
+                    res = true;
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("Transactions Logs  Error : " + ex.Message);
+            }
             return res;
         }
 

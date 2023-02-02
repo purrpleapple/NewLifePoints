@@ -434,10 +434,19 @@
 </head>
 
 <body style="background: rgb(119,40,32);">
-    <form runat="server" class="container" id="container" style="position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%);">
-        <div class="row d-flex d-xl-flex justify-content-center justify-content-xl-center">
-            <div class="col-sm-12 col-lg-10 col-xl-9 col-xxl-7 bg-white shadow-lg" style="border-radius: 5px;">
-                <div class="p-5" style="height: 80vh; max-height: 80vh; overflow: auto;">
+    <form runat="server" class="container" id="container" >
+         <div class="container-fluid d-flex flex-column" style="justify-content: center; align-items: center; height: 100%;margin-top:30px">
+                    <div class="card text-center" style="width: 70%; max-height: 100%; height: 100%; overflow: auto;">
+                        <div class="card-header">
+                                <div class="d-flex justify-content-xxl-center align-items-xxl-center">
+                                    <img class="img-fluid" src="assets/img/324620533_2986377338333052_6109802263453641588_n.png" width="300">
+                                </div>
+                                <div class="text-center">
+                                    <h4 class="text-dark mb-4" style="font-weight: bold;">Create Account!</h4>
+                                </div>
+                        </div>
+                    <div class="card-body">
+                    <div style="max-height: 800px; overflow: auto;">
                     <table style="text-align: left; width: 80%; margin: auto">
                         <tr>
                             <td colspan="2"><strong>Personal Information</strong></td>
@@ -449,9 +458,7 @@
                                 <asp:TextBox runat="server" oninput="CheckLName()" ClientIDMode="Static" Class="form-control" type="text" ID="LName" name="familyname" required="" />
                             </td>
                         </tr>
-                        <tr>
-                            <td></td>
-                        </tr>
+                       
                         <tr>
                             <td>First name: </td>
                             <td class="d-flex flex-column">
@@ -460,8 +467,11 @@
                         </tr>
                         <tr>
                             <td>Middle name: </td>
-                            <td>
+                            <td class="d-flex flex-column">
                                 <asp:TextBox runat="server" oninput="CheckMName()" ClientIDMode="Static" Class="form-control" type="text" ID="MName" name="midname" /></td>
+                        </tr>
+                         <tr>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>Gender:</td>
@@ -488,6 +498,9 @@
                                 </asp:DropDownList>
                             </td>
 
+                        </tr>
+                         <tr>
+                            <td></td>
                         </tr>
                         <tr>
                             <td colspan="2">
@@ -527,6 +540,9 @@
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Required" Style="color: red; display: flex; justify-content: end;" ControlToValidate="Zip" ValidationGroup="Register"></asp:RequiredFieldValidator>
                                 <asp:TextBox runat="server" Class="form-control" oninput="CheckZip()" TextMode="Number" type="number" ID="Zip" ClientIDMode="Static" name="posaddress" required=""></asp:TextBox></td>
                         </tr>
+                         <tr>
+                            <td></td>
+                        </tr>
                         <tr>
                             <td colspan="2">
                                 <br />
@@ -551,6 +567,9 @@
                                 <strong>Account Information</strong>
                             </td>
                         </tr>
+                         <tr>
+                            <td></td>
+                        </tr>
                         <tr>
                             <td>Email Address:</td>
                             <td class="d-flex flex-column">
@@ -570,12 +589,18 @@
                                 <asp:TextBox runat="server" Class="form-control form-control-user" type="password" oninput="CheckRPassword()" data-bs-toggle="tooltip" data-bss-tooltip="" ID="RepeatPassword" ClientIDMode="Static" required="" Style="width: 434.609px;" title="Repeat Password" /></td>
                         </tr>
                     </table>
-                    <hr />
-                    <div class=" d-flex w-100 justify-content-center align-items-center">
-                        <asp:Button runat="server" ID="RegisterBtn" OnClick="RegisterBtn_Click" CssClass="btn btn-primary btn-user" ClientIDMode="Static" Text="Register Account" AutoPostBack="false" Style="background: rgb(119,40,32); width: 40%;" />
+                  </div>
+                </div>
+
+                    <div class="card-footer text-muted" >
+                    <div class=" d-flex w-100 justify-content-center align-items-center" style ="margin-top:20px;margin-bottom:20px">
+                        <asp:Button runat="server" ID="RegisterBtn" OnClick="RegisterBtn_Click" CssClass="btn-lg btn-primary btn-user" ClientIDMode="Static" Text="Register Account" AutoPostBack="false" Style="background: rgb(119,40,32); width: 40%;" />
                     </div>
-                    <hr />
+                   
                     <div class="text-center"><a class="small" href="Default.aspx">Already have an account? Login!</a></div>
+                    </div>
+                    
+                    
                 </div>
             </div>
         </div>

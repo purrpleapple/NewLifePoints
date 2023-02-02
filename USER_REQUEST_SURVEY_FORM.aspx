@@ -466,14 +466,14 @@
                         </ul>
                     </div>
                 </nav>
-                <div class="container-fluid d-flex flex-column" style="justify-content: center; align-items: center; height: 100%;">
-                    <div class="card text-center" style="width: 70%; max-height: 100%; height: 100%; overflow: auto;">
+                <div class="container-fluid d-flex" style="justify-content: center; align-items: center;">
+                    <div class="card text-center" style="max-height: 100%; height: 100%; width: 70%;">
                         <div class="card-header">
-                            <h2>BLOOD REQUEST FORM</h2>
-
+                            <h3>BLOOD REQUEST FORM</h3>
+                            
                         </div>
                         <div class="card-body">
-                            <div style="max-height: 900px; overflow: auto;">
+                            <div style="max-height: 850px; overflow: auto;">
                                 <p style="font-size: 25px; font-style: bold; margin-left: -30%">
                                     Please complete this form
                                 </p>
@@ -483,7 +483,7 @@
                                             <strong>Will you be the one to use the blood?</strong>
                                         </td>
                                         <td style="display: flex; justify-content: left; align-items: center; text-align:center;">
-                                            <asp:RadioButtonList runat="server" ID="UserRd" AutoPostBack="true" OnSelectedIndexChanged="UserRd_CheckedChanged" RepeatDirection="Horizontal" style="display: flex; flex-direction: row; justify-content: left; align-items: center; text-align:center;" RepeatLayout="Flow" m TextAlign="Right" RepeatColumns="0"></asp:RadioButtonList>
+                                            <asp:RadioButtonList runat="server" ID="UserRd" AutoPostBack="true" OnSelectedIndexChanged="UserRd_CheckedChanged" RepeatDirection="Horizontal" style="display: flex; flex-direction: row; justify-content: left; align-items: center; text-align:center;" RepeatLayout="Flow"  TextAlign="Right" RepeatColumns="0"></asp:RadioButtonList>
                                         </td>
                                     </tr>
                                 </table>
