@@ -2,6 +2,7 @@
 using LifePoints.Database;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -27,6 +28,19 @@ namespace LifePoints.Admin
                 //Set Username
                 username.InnerText = bb.ACC_EMAIL;
                 PopulateDashboardObjects();
+                GetInventoryGrid();
+            }
+        }
+
+        public void GetInventoryGrid()
+        {
+            DataTable dt = db.GetInventoryTableData();
+
+            if (dt != null)
+            {
+                GridInventory.DataSource = null;
+                GridInventory.DataSource = dt;
+                GridInventory.DataBind();
             }
         }
 

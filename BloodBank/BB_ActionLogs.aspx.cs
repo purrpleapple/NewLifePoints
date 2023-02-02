@@ -26,9 +26,18 @@ namespace LifePoints
                 //Set Username
                 username.InnerText = bb.ACC_EMAIL;
 
-                PopulateActionLogsGridView();
+                PopulateDropDown();
+                PopulateTransactionLogsGridView();
                 GetUnreadNotif();
             }
+        }
+
+        public void PopulateDropDown()
+        {
+            
+
+            TableView.Items.Insert(0, new ListItem("Transaction Logs", "0"));
+            TableView.Items.Insert(1, new ListItem("Action Logs", "1"));
         }
 
         //Displays data to GridView named ActionLogs
@@ -47,6 +56,45 @@ namespace LifePoints
             {
                 NoDataMsg.Attributes.Add("display", "");
                 TableContainer.Attributes.Add("display", "none");
+            }
+        }
+
+
+        public void PopulateTransactionLogsGridView()
+        {
+            DataTable data = db.GetTransactionLogsTableData();
+            if (data != null)
+            {
+                NoDataMsg.Attributes.Add("display", "none");
+                TableContainer.Attributes.Add("display", "");
+                TransactionLogs.DataSource = null;
+                TransactionLogs.DataSource = data;
+                TransactionLogs.DataBind();
+            }
+            else
+            {
+                NoDataMsg.Attributes.Add("display", "");
+                TransactionLogs.Attributes.Add("display", "none");
+            }
+        }
+
+        protected void TableView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int table = TableView.SelectedIndex;
+            switch (table)
+            {
+                case 0:
+                    TransactionLogs.Style.Add("display", "");
+                    ActionLogs.Style.Add("display", "none");
+                    HeadingText.InnerText = "Transactions Logs";
+                    PopulateTransactionLogsGridView();
+                    break;
+                case 1:
+                    TransactionLogs.Style.Add("display", "none");
+                    ActionLogs.Style.Add("display", "");
+                    HeadingText.InnerText = "Action Logs";
+                    PopulateActionLogsGridView();
+                    break;
             }
         }
 

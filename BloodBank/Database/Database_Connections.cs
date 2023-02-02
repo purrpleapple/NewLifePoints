@@ -87,6 +87,34 @@ namespace LifePoints.BloodBank.Database
             return res;
         }
 
+
+        public DataTable GetTransactionLogsTableData()
+        {
+
+            DataTable dt = new DataTable();
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = string.Format(@"select TL_ID,TL_TRANSACTION_ID,TL_ACC_ID, TL_BLOOD_TYPE, TL_TRANSACTION_AMOUNT,TLTRANSACTION_DATE,    
+if(TL_TRANSACTION = false, 'Blood Request',  if(TL_TRANSACTION = true, 'Blood Donation', 'Blood Donation')) as TL_TRANSACTION
+from transaction_logs;");
+                da = new MySqlDataAdapter(cmd);
+                da.Fill(dt);
+                con.Close();
+
+
+               
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("Get Transactions Logs Error : " + ex.Message);
+            }
+            return dt;
+        }
+
+
         //If pang populate sa GridView DataTable jud ang datatype nga gamiton
         public DataTable GetBloodBankLogsTableData()
         {
@@ -105,6 +133,27 @@ namespace LifePoints.BloodBank.Database
             catch(Exception ex)
             {
                 Debug.Print("Get Action Logs Error : " + ex.Message);
+            }
+            return dt;
+        }
+
+        public DataTable GetInventoryTableData()
+        {
+
+            DataTable dt = new DataTable();
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = "select * from inventory;";
+                da = new MySqlDataAdapter(cmd);
+                da.Fill(dt);
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("Get Inventory Logs Error : " + ex.Message);
             }
             return dt;
         }
@@ -202,6 +251,121 @@ namespace LifePoints.BloodBank.Database
                 Debug.Print("Search Blood request Error : " + ex.Message);
             }
             return br;
+        }
+
+
+        //Update Blood Inventory - Donor
+
+        public bool BD_UpdateInventory(int number, string type)
+        {
+            bool res = false;
+            int n = 0;
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = string.Format("select * from inventory where inv_blood_type='{0}';", type);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read() && !rdr.IsDBNull(0))
+                {
+                    string str = rdr["inv_numbers"].ToString();
+                    n = int.Parse(str);
+
+                }
+
+                con.Close();
+
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = string.Format(@"update inventory set inv_numbers={0} where inv_blood_type='{1}';", n + number, type);
+                int x = cmd.ExecuteNonQuery();
+                if (x > 0)
+                {
+                    res = true;
+                }
+                con.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("Error: " + ex.Message);
+            }
+
+
+
+
+            return res;
+        }
+
+        public bool TransactionLogs(string query)
+        {
+            bool res = false;
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = query;
+                int x = cmd.ExecuteNonQuery();
+                if (x > 0)
+                {
+                    res = true;
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("Transactions Logs  Error : " + ex.Message);
+            }
+            return res;
+        }
+
+        //Update Blood Inventory - Request
+        public bool BR_UpdateInventory(int number, string type)
+        {
+            bool res = false;
+            int n = 0;
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = string.Format("select * from inventory where inv_blood_type='{0}';", type);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read() && !rdr.IsDBNull(0))
+                {
+                    string str = rdr["inv_numbers"].ToString();
+                    n = int.Parse(str);
+
+                }
+
+                con.Close();
+
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = string.Format(@"update inventory set inv_numbers={0} where inv_blood_type='{1}';", n - number, type);
+                int x = cmd.ExecuteNonQuery();
+                if (x > 0)
+                {
+                    res = true;
+                }
+                con.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("Error: " + ex.Message);
+            }
+
+
+
+
+            return res;
         }
 
         //Update Blood Request Status

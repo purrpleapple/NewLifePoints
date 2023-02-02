@@ -48,6 +48,9 @@ namespace LifePoints.BloodBank.Database
         public string BREQ_CONSENT { get; set; }
         public string BREQ_VISIT_DATE { get; set; }
         public string BREQ_DATE { get; set; }
+        public string BREQ_DEMAND_DATE { get; set; }
+        public string BREQ_BLOOD_TYPE { get; set; }
+        public string BREQ_NO_BLOOD { get; set; }
     }
 
     [Serializable]
@@ -73,20 +76,35 @@ namespace LifePoints.BloodBank.Database
     }
 
     [Serializable]
+    public class transaction_logs
+    {
+        public string TL_TRANSACTION_ID { get; set; }
+        public string TL_ACC_ID { get; set; }
+        public bool TL_TRANSACTION { get; set; }
+        public string TL_BLOOD_TYPE { get; set; }
+        public string TL_TRANSACTION_AMOUNT { get; set; }
+    }
+
+    [Serializable]
     public class request_survey_form
     {
         public string lname { get; set; }
         public string fname { get; set; }
         public string mname { get; set; }
-        public string gender { get; set; }
         public string dob { get; set; }
-        public string age { get; set; }
-        public string brequest { get; set; }
-        public string raddress { get; set; }
-        public string paddress { get; set; }
-        public string home { get; set; }
-        public string mobile { get; set; }
+        public string gender { get; set; }
+
+        public string barangay { get; set; }
+        public string city { get; set; }
+        public string province { get; set; }
+        public string zip { get; set; }
+        public string homenum { get; set; }
+        public string mobilenum { get; set; }
         public string email { get; set; }
+        public string street { get; set; }
+        public string demand_date { get; set; }
+        public string bloodtype { get; set; }
+        public string no_blood { get; set; }
     }
 
     [Serializable]

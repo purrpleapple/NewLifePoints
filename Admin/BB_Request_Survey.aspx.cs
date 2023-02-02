@@ -55,7 +55,7 @@ namespace LifePoints.Admin
             MName.Text = rq.mname;
             Gender.SelectedValue = rq.gender;
             DOB.Text = rq.dob;
-            Bloodtype.SelectedValue = rq.bloodtype;
+          
             City.Text = rq.city;
             Street.Text = rq.street;
             Province.Text = rq.province;
@@ -64,6 +64,12 @@ namespace LifePoints.Admin
             Home.Text = rq.homenum;
             Mobile.Text = rq.mobilenum;
             Email.Text = rq.email;
+
+
+            Bloodtype.SelectedValue = rq.bloodtype;
+            No_blood.Text = rq.no_blood;
+            Demand_date.Text = rq.demand_date;
+
             Debug.Print("~/Uploads/" + br.BREQ_CONSENT);
             DoctorsConsent.ImageUrl = "~/Uploads/" + br.BREQ_CONSENT;
 
@@ -95,12 +101,15 @@ namespace LifePoints.Admin
             Bloodtype.Enabled = false;
             Gender.Enabled = false;
             Street.Enabled = false;
+            City.Enabled = false;
             Province.Enabled = false;
             Baranggay.Enabled = false;
             Zip.Enabled = false;
             Home.Enabled = false;
             Mobile.Enabled = false;
             Email.Enabled = false;
+             No_blood.Enabled = false;
+            Demand_date.Enabled = false;
         }
 
         protected void BackButton_Click(object sender, EventArgs e)
@@ -108,88 +117,7 @@ namespace LifePoints.Admin
             Response.Redirect("~/Admin/BB_BloodTransaction.aspx");
         }
 
-        protected void ApproveSurveyBtn_Click(object sender, EventArgs e)
-        {
-            UserRequestSurveyResponse(true);
-        }
-
-        protected void RejectSurveyBtn_Click(object sender, EventArgs e)
-        {
-            UserRequestSurveyResponse(false);
-        }
-
-        private void UserRequestSurveyResponse(bool res)
-        {
-            blood_request br = Session["BloodRequest"] as blood_request;
-            string query = "";
-
-            if (res)
-            {
-                query = string.Format(@"update blood_request set BREQ_SURVEY_STATUS={0} where BREQ_ID={1}", res, br.BREQ_ID);
-                if(db.UpdateBloodRequestStatus(query))
-                {
-                    //Success
-                    Response.Write(string.Format("<script>alert('User {0} blood request survey was successfully approved.')</script>", br.BREQ_UACC_ID));
-
-                    SurveyGroup.Style.Add("display", "none");
-                    BloodGroup.Style.Add("display", "");
-                }
-            }
-            else
-            {
-                query = string.Format(@"update blood_request set BREQ_SURVEY_STATUS=false, BREQ_BLOOD_STATUS=false, BREQ_REQ_STATUS={0} where BREQ_ID={1}", res, br.BREQ_ID);
-                if (db.UpdateBloodRequestStatus(query))
-                {
-                    //Success
-                    Response.Write(string.Format("<script>alert('User {0} blood request survey was successfully rejected.')</script>", br.BREQ_UACC_ID));
-
-                    SurveyGroup.Style.Add("display", "none");
-                    BloodGroup.Style.Add("display", "none");
-                }
-            }
-        }
-
-        protected void ApproveBloodBtn_Click(object sender, EventArgs e)
-        {
-            UserRequestBloodResponse(true);
-        }
-
-        protected void RejectBloodBtn_Click(object sender, EventArgs e)
-        {
-            UserRequestBloodResponse(false);
-        }
-
-        private void UserRequestBloodResponse(bool res)
-        {
-            blood_request br = Session["BloodRequest"] as blood_request;
-            string query = "";
-
-            if (res)
-            {
-                query = string.Format(@"update blood_request set BREQ_BLOOD_STATUS={0} where BREQ_ID={1}", res, br.BREQ_ID);
-                if (db.UpdateBloodRequestStatus(query))
-                {
-                    //Success
-                    Response.Write(string.Format("<script>alert('User {0} blood request was successfully approved.')</script>", br.BREQ_UACC_ID));
-
-                    SurveyGroup.Style.Add("display", "none");
-                    BloodGroup.Style.Add("display", "none");
-                }
-            }
-            else
-            {
-                query = string.Format(@"update blood_request set BREQ_BLOOD_STATUS=false, BREQ_REQ_STATUS={0} where BREQ_ID={1}", res, br.BREQ_ID);
-                if (db.UpdateBloodRequestStatus(query))
-                {
-                    //Success
-                    Response.Write(string.Format("<script>alert('User {0} blood request was successfully rejected.')</script>", br.BREQ_UACC_ID));
-
-                    SurveyGroup.Style.Add("display", "none");
-                    BloodGroup.Style.Add("display", "none");
-                }
-            }
-        }
-
+       
         protected void BtnLogout_ServerClick(object sender, EventArgs e)
         {
 

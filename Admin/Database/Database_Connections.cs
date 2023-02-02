@@ -33,6 +33,27 @@ namespace LifePoints.Admin.Database
             }
         }
 
+        public DataTable GetInventoryTableData()
+        {
+
+            DataTable dt = new DataTable();
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = "select * from inventory;";
+                da = new MySqlDataAdapter(cmd);
+                da.Fill(dt);
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("Get Inventory Logs Error : " + ex.Message);
+            }
+            return dt;
+        }
+
         //For bloodbank Login
         public bloodbank BloodbankLogin(string query)
         {

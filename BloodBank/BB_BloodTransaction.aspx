@@ -39,7 +39,7 @@
                     <li class="nav-item"><a class="nav-link" href="BB_Dashboard.aspx"><i class="fas fa-tachometer-alt" style="font-size: 20px;"></i><span style="font-size: 15px;">Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="BB_BloodTransaction.aspx"><i class="fa fa-tint" style="font-size: 20px;"></i><span style="font-size: 15px;">Blood Transaction</span></a></li>
 
-                    <li class="nav-item"><a class="nav-link" href="BB_ActionLogs.aspx"><i class="fa fa-list-ul" style="font-size: 20px;"></i><span style="font-size: 15px;">Action Logs</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="BB_ActionLogs.aspx"><i class="fa fa-list-ul" style="font-size: 20px;"></i><span style="font-size: 15px;">Logs</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"></div>
             </div>
@@ -117,13 +117,15 @@
                                     BorderColor="Transparent" OnSelectedIndexChanged="GridUserBloodRequest_SelectedIndexChanged"
                                     AutoPostBack="false" 
                                     AllowSorting="true">
-                                    <Columns>
-                                        <asp:BoundField HeaderText="ID" DataField="BREQ_ID" />
+                                     <Columns>
+                                        <asp:BoundField HeaderText="REQUEST ID" DataField="BREQ_ID" />
                                         <asp:BoundField HeaderText="REQUESTER" DataField="BREQ_UACC_ID" />
-                                        <asp:BoundField HeaderText="INITIAL STATUS" DataField="BREQ_SURVEY_STATUS" />
-                                        <asp:BoundField HeaderText="REQUEST DATE" DataField="BREQ_DATE" />
-                                        <asp:BoundField HeaderText="VISITATION DATE" DataField="BREQ_VISIT_DATE" />
-                                        <asp:BoundField HeaderText="FINAL STATUS" DataField="BREQ_BLOOD_STATUS" />
+                                        <asp:BoundField HeaderText="BLOOD TYPE" DataField="BREQ_BLOOD_TYPE" />
+                                        <asp:BoundField HeaderText="BLOOD BAGS" DataField="BREQ_NO_BLOOD" />
+                                         <asp:BoundField HeaderText="REQUEST DATE" DataField="BREQ_DEMAND_DATE" />
+                                        <asp:BoundField HeaderText="REQUEST STATUS" DataField="BREQ_SURVEY_STATUS" />
+                                        <asp:BoundField HeaderText="CLAIMED" DataField="BREQ_BLOOD_STATUS" />
+                                        <asp:BoundField HeaderText="EXPECTED DATE CLAIM" DataField="BREQ_VISIT_DATE" />
                                         <asp:CommandField ButtonType="Button" ShowSelectButton="true" SelectText="View" ControlStyle-CssClass="btn-danger" />
                                     </Columns>
                                 </asp:GridView>

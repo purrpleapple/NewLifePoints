@@ -1,4 +1,5 @@
 ﻿using LifePoints.BloodBank.Database;
+using Microsoft.Ajax.Utilities;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using System;
@@ -71,7 +72,12 @@ namespace LifePoints
             MName.Text = rq.mname;
             Gender.SelectedValue = rq.gender;
             DOB.Text = rq.dob;
+
+
             Bloodtype.SelectedValue = rq.bloodtype;
+            No_blood.Text = rq.no_blood;
+            Demand_date.Text = rq.demand_date;
+
             City.Text = rq.city;
             Street.Text = rq.street;
             Province.Text = rq.province;
@@ -111,12 +117,15 @@ namespace LifePoints
             Bloodtype.Enabled = false;
             Gender.Enabled = false;
             Street.Enabled = false;
+            City.Enabled = false;
             Province.Enabled = false;
             Baranggay.Enabled = false;
             Zip.Enabled = false;
             Home.Enabled = false;
             Mobile.Enabled = false;
             Email.Enabled = false;
+            No_blood.Enabled = false;
+            Demand_date.Enabled = false;
         }
 
         protected void BackButton_Click(object sender, EventArgs e)
@@ -134,34 +143,70 @@ namespace LifePoints
             UserRequestSurveyResponse(false);
         }
 
+        public void transactionLogs()
+        {
+           LifePoints.Database.blood_request br = Session["BloodRequest"] as LifePoints.Database.blood_request;
+           LifePoints.BloodBank.Database.transaction_logs tl = new LifePoints.BloodBank.Database.transaction_logs();
+
+            tl.TL_TRANSACTION_ID = br.BREQ_ID;
+            tl.TL_ACC_ID = br.BREQ_UACC_ID;
+            tl.TL_TRANSACTION = false;
+            tl.TL_BLOOD_TYPE = Bloodtype.Text;
+            tl.TL_TRANSACTION_AMOUNT = No_blood.Text;
+
+            string query = "";
+            query = string.Format("insert into transaction_logs(TL_TRANSACTION_ID, TL_ACC_ID, TL_TRANSACTION, TL_BLLOD_TYPE, TL_TRANSACTION_AMOUNT) values({0}, {1}, {2}, '{3}',{4});", tl.TL_TRANSACTION_ID, tl.TL_ACC_ID, tl.TL_TRANSACTION, tl.TL_BLOOD_TYPE, tl.TL_TRANSACTION_AMOUNT);
+
+            if(db.TransactionLogs(query))
+            {
+               Response.Write(string.Format("<script>alert('Transaction Logs Successfully ')</script>"));
+            }
+            else
+            {
+                Response.Write(string.Format("<script>alert('Transaction Logs Error ')</script>"));
+            }
+
+        }
+
         private void UserRequestSurveyResponse(bool res)
         {
             LifePoints.Database.blood_request br = Session["BloodRequest"] as LifePoints.Database.blood_request;
             LifePoints.Database.account bb = Session["ACCOUNT"] as LifePoints.Database.account;
             string query = "";
             DateTime vDate = DateTime.Now.AddDays(2);
-            if (res)
+
+
+            int number = int.Parse(No_blood.Text);
+            string type = Bloodtype.Text;
+            if (db.BR_UpdateInventory(number, type))
             {
-                query = string.Format(@"update blood_request set BREQ_SURVEY_STATUS={0}, BREQ_VISIT_DATE='{1}' where BREQ_ID={2}", res, vDate, br.BREQ_ID);
-                Debug.Print(query);
-                if (db.UpdateBloodRequestStatus(query))
+                Response.Write(string.Format("<script>alert('Updated inventory succesfully " + number + "')</script>"));
+                transactionLogs();
+
+
+                if (res)
                 {
-                    //Create Logs
-                    string description = string.Format("{0} Accepted User {1} ( ",bb.ACC_EMAIL, br.BREQ_UACC_ID);
-                    query = string.Format(@"insert into activity_logs(ACT_DESCRIPTION, ACT_UACC_ID, ACT_UNAME)
+                    query = string.Format(@"update blood_request set BREQ_SURVEY_STATUS={0}, BREQ_VISIT_DATE='{1}' where BREQ_ID={2}", res, vDate, br.BREQ_ID);
+                    Debug.Print(query);
+                    if (db.UpdateBloodRequestStatus(query))
+                    {
+
+                        //Create Logs
+                        string description = string.Format("{0} Accepted User {1} ( ", bb.ACC_EMAIL, br.BREQ_UACC_ID);
+                        query = string.Format(@"insert into activity_logs(ACT_DESCRIPTION, ACT_UACC_ID, ACT_UNAME)
                                             select concat('{0}', UI_FNAME, ' ', UI_LNAME, ') Initial Blood Request Form'), {1}, '{2}' from user_info
                                             where UI_ID={3};", description, bb.ACC_ID, "BloodBank", br.BREQ_UACC_ID);
-                    Debug.Print(query);
-                    bool x = db.InsertBloodBankLogs(query);
-                    //If Not Successfully Inserted Logs
-                    if (!x)
-                    {
-                        Debug.Print("BloodBank Logs Not Inserted");
-                    }
+                        Debug.Print(query);
+                        bool x = db.InsertBloodBankLogs(query);
+                        //If Not Successfully Inserted Logs
+                        if (!x)
+                        {
+                            Debug.Print("BloodBank Logs Not Inserted");
+                        }
 
-                    //Send Notification
-                    string sbj = "Blood Request Form Accepted";
-                    string msg = MySqlHelper.EscapeString(string.Format(@"Your Request ID {0}
+                        //Send Notification
+                        string sbj = "Blood Request Form Accepted";
+                        string msg = MySqlHelper.EscapeString(string.Format(@"Your Request ID {0}
 Your request has been approved you may now proceed to claim your request.
                                                     
 Please bring the following with you:
@@ -172,56 +217,65 @@ Processing fee: P1,500.00
                                                     
 *Please keep in mind that you can only claim your request until the following date: {1}
 *Note: Show your Request ID to the bloodbank.", br.BREQ_ID, vDate));
-                    query = string.Format(@"insert into notifications(NTF_SUBJECT, NTF_MESSAGE, NTF_RECEIVER_ID, NTF_SENDER_ID) 
+                        query = string.Format(@"insert into notifications(NTF_SUBJECT, NTF_MESSAGE, NTF_RECEIVER_ID, NTF_SENDER_ID) 
                                                 values('{0}', '{1}', {2}, {3})", sbj, msg, br.BREQ_UACC_ID, bb.ACC_ID);
-                    if(!db.InsertToNotification(query))
-                    {
-                        Debug.Print("Notification was not sent.");
+                        if (!db.InsertToNotification(query))
+                        {
+                            Debug.Print("Notification was not sent.");
+                        }
+
+                        //Success
+                        Response.Write(string.Format("<script>alert('User {0} blood request survey was successfully approved.')</script>", br.BREQ_UACC_ID));
+
+                        SurveyGroup.Style.Add("display", "none");
+                        BloodGroup.Style.Add("display", "");
+
+                        Response.Redirect("~/BloodBank/BB_BloodTransaction.aspx");
                     }
+                }
+                else
+                {
+                    query = string.Format(@"update blood_request set BREQ_SURVEY_STATUS=false, BREQ_BLOOD_STATUS=false, BREQ_REQ_STATUS={0} where BREQ_ID={1}", res, br.BREQ_ID);
+                    if (db.UpdateBloodRequestStatus(query))
+                    {
+                        //Create Login Logs
+                        string description = string.Format("{0} Rejected User {1} ( ", bb.ACC_EMAIL, br.BREQ_UACC_ID);
+                        query = string.Format(@"insert into activity_logs(ACT_DESCRIPTION, ACT_UACC_ID, ACT_UNAME)
+                                            select concat('{0}', UI_FNAME, ' ', UI_LNAME, ') Initial Blood Request Form'), {1}, '{2}' from user_info
+                                            where UI_ID={3};", description, bb.ACC_ID, "BloodBank", br.BREQ_UACC_ID);
 
-                    //Success
-                    Response.Write(string.Format("<script>alert('User {0} blood request survey was successfully approved.')</script>", br.BREQ_UACC_ID));
+                        Debug.Print(query);
+                        bool x = db.InsertBloodBankLogs(query);
+                        //If Not Successfully Inserted Logs
+                        if (!x)
+                        {
+                            Debug.Print("BloodBank Logs Not Inserted");
+                        }
 
-                    SurveyGroup.Style.Add("display", "none");
-                    BloodGroup.Style.Add("display", "");
+                        //Send Notification
+                        string sbj = "Blood Request Form Rejected";
+                        string msg = string.Format(@"Your Request ID {0}
+Your request has been rejected.", br.BREQ_ID);
+                        query = string.Format(@"insert into notifications(NTF_SUBJECT, NTF_MESSAGE, NTF_RECEIVER_ID, NTF_SENDER_ID) 
+                                                values('{0}', '{1}', {2}, {3})", sbj, msg, br.BREQ_UACC_ID, bb.ACC_ID);
+                        if (!db.InsertToNotification(query))
+                        {
+                            Debug.Print("Notification was not sent.");
+                        }
+
+                        //Success
+                        Response.Write(string.Format("<script>alert('User {0} blood request survey was successfully rejected.')</script>", br.BREQ_UACC_ID));
+
+                        SurveyGroup.Style.Add("display", "none");
+                        BloodGroup.Style.Add("display", "none");
+
+                        Response.Redirect("~/BloodBank/BB_BloodTransaction.aspx");
+                    }
                 }
             }
             else
             {
-                query = string.Format(@"update blood_request set BREQ_SURVEY_STATUS=false, BREQ_BLOOD_STATUS=false, BREQ_REQ_STATUS={0} where BREQ_ID={1}", res, br.BREQ_ID);
-                if (db.UpdateBloodRequestStatus(query))
-                {
-                    //Create Login Logs
-                    string description = string.Format("{0} Rejected User {1} ( ", bb.ACC_EMAIL, br.BREQ_UACC_ID);
-                    query = string.Format(@"insert into activity_logs(ACT_DESCRIPTION, ACT_UACC_ID, ACT_UNAME)
-                                            select concat('{0}', UI_FNAME, ' ', UI_LNAME, ') Initial Blood Request Form'), {1}, '{2}' from user_info
-                                            where UI_ID={3};", description, bb.ACC_ID, "BloodBank", br.BREQ_UACC_ID);
-
-                    Debug.Print(query);
-                    bool x = db.InsertBloodBankLogs(query);
-                    //If Not Successfully Inserted Logs
-                    if (!x)
-                    {
-                        Debug.Print("BloodBank Logs Not Inserted");
-                    }
-
-                    //Send Notification
-                    string sbj = "Blood Request Form Rejected";
-                    string msg = string.Format(@"Your Request ID {0}
-Your request has been rejected.", br.BREQ_ID);
-                    query = string.Format(@"insert into notifications(NTF_SUBJECT, NTF_MESSAGE, NTF_RECEIVER_ID, NTF_SENDER_ID) 
-                                                values('{0}', '{1}', {2}, {3})", sbj, msg, br.BREQ_UACC_ID, bb.ACC_ID);
-                    if (!db.InsertToNotification(query))
-                    {
-                        Debug.Print("Notification was not sent.");
-                    }
-
-                    //Success
-                    Response.Write(string.Format("<script>alert('User {0} blood request survey was successfully rejected.')</script>", br.BREQ_UACC_ID));
-
-                    SurveyGroup.Style.Add("display", "none");
-                    BloodGroup.Style.Add("display", "none");
-                }
+                Response.Write(string.Format("<script>alert('Error in updating inventory succesfully " + number + " ')</script>"));
             }
 
         }
@@ -272,8 +326,17 @@ Your request has been rejected.", br.BREQ_ID);
                 query = string.Format(@"update blood_request set BREQ_BLOOD_STATUS=false, BREQ_REQ_STATUS={0} where BREQ_ID={1}", res, br.BREQ_ID);
                 if (db.UpdateBloodRequestStatus(query))
                 {
-                    //Create Login Logs
-                    string description = string.Format("{0} Rejected User {1} ( ", bb.ACC_EMAIL, br.BREQ_UACC_ID);
+
+                    int number = int.Parse(No_blood.Text);
+                    string type = Bloodtype.Text;
+                    if (db.BD_UpdateInventory(number, type))
+                    {
+                        Response.Write(string.Format("<script>alert('Added back to the inventory.')</script>", br.BREQ_UACC_ID));
+                    }
+
+
+                        //Create Login Logs
+                        string description = string.Format("{0} Rejected User {1} ( ", bb.ACC_EMAIL, br.BREQ_UACC_ID);
                     query = string.Format(@"insert into activity_logs(ACT_DESCRIPTION, ACT_UACC_ID, ACT_UNAME)
                                             select concat('{0}', UI_FNAME, ' ', UI_LNAME, ' ) Final Blood Request Form'), {1}, '{2}' from user_info
                                             where UI_ID={3};", description, bb.ACC_ID, "BloodBank", br.BREQ_UACC_ID);

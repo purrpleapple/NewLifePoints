@@ -38,7 +38,7 @@
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link active" href="BB_Dashboard.aspx"><i class="fas fa-tachometer-alt" style="font-size: 20px;"></i><span style="font-size: 15px;">Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="BB_BloodTransaction.aspx"><i class="fa fa-tint" style="font-size: 20px;"></i><span style="font-size: 15px;">Blood Transaction</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="BB_ActionLogs.aspx"><i class="fa fa-list-ul" style="font-size: 20px;"></i><span style="font-size: 15px;">Action Logs</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="BB_ActionLogs.aspx"><i class="fa fa-list-ul" style="font-size: 20px;"></i><span style="font-size: 15px;">Logs</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"></div>
             </div>
@@ -97,8 +97,37 @@
                 <div class="container-fluid">
                     <div class="d-sm-flex justify-content-between align-items-center mb-4">
                         <div id="content">
-                            <div class="row">
-                                <div class="col-7">
+
+                            
+
+                        <div class="row" style="margin-bottom:20px">
+                            <div class="col-5">
+                              <div class="card shadow">
+
+                                <div class="card-header py-3">
+                                    <p class="text-primary m-0 fw-bold">Blood Inventory</p>
+                                </div>
+
+                                <div class="card-body">
+                                    <h3 runat="server" id="NoDataMsg" style="display: none;">No Data</h3>
+                                     <div class="table-responsive" > 
+                                         <asp:GridView runat="server" ID="GridInventory" AutoGenerateColumns="False" Width="100%"
+                                             BorderColor="Transparent" AutoPostBack="true">
+                                                <RowStyle CssClass="grid-item-style  grid-font-style" />
+                                                <Columns>
+                                                            <asp:BoundField HeaderText="Blood Type" DataField="inv_blood_type" />
+                                                            <asp:BoundField HeaderText="Amount" DataField="inv_numbers" />
+                                        
+                                               </Columns>
+                                            </asp:GridView>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                                       <div class="col-7">
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="row d-flex flex-column">
@@ -220,9 +249,15 @@
                                         </div>
                                     </div>
                                 </div>
+
+                       </div>
+                            
+
+                            <div class="row">
+                             
                                 <div class="col-5">
                                     <div class="card d-flex">
-                                        <div class="card-header" style="background: var(--red); padding: 0px; padding-top: 9px;">
+                                        <div class="card-header" style="background: var(--blue); padding: 0px; padding-top: 9px;">
                                             <div class="row">
                                                 <div class="col">
                                                     <h3 style="font-weight: bold; color: var(--white);">Blood <span runat="server" id="PieTitle"></span> Transactions</h3>
@@ -242,6 +277,70 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-7">
+                                    <div class="col-6">
+                                            <div class="row d-flex flex-column">
+                                                <div class="col d-flex" style="margin-bottom: 10px;">
+                                                    <div class="card" style="width: 100%;">
+                                                        <div class="card-header" style="padding: 0px; padding-top: 9px; background: #25476a;">
+                                                            <h3 class="text-center" style="font-weight: bold; color: var(--white);">APPROVED REQUEST</h3>
+                                                        </div>
+                                                        <div class="card-body" style="width: 100%;">
+                                                            <div class="row">
+                                                                <div class="col d-flex justify-content-xl-center align-items-xl-center">
+                                                                    <h1 runat="server" id="TotalApproved"></h1>
+                                                                </div>
+                                                                <div class="col-2 d-flex justify-content-xl-center align-items-xl-center">
+                                                                    <img src="assets/img/bill.png" width="30">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="card" style="width: 100%;">
+                                                                <div class="card-header" style="padding: 0px; padding-top: 9px; background: #25476a;">
+                                                                    <h5 class="text-center" style="font-weight: bold; color: var(--white);">REQUESTS(BLOOD)</h5>
+                                                                </div>
+                                                                <div class="card-body" style="width: 100%;">
+                                                                    <div class="row">
+                                                                        <div class="col d-flex justify-content-xl-center align-items-xl-center">
+                                                                            <h1 runat="server" id="BR_Approved"></h1>
+                                                                        </div>
+                                                                        <div class="col-3 d-flex justify-content-xl-center align-items-xl-center">
+                                                                            <img src="assets/img/blood-drop.png" width="30">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="card" style="width: 100%;">
+                                                                <div class="card-header" style="padding: 0px; padding-top: 9px; background: #25476a;">
+                                                                    <h5 class="text-center" style="font-weight: bold; color: var(--white);">REQUESTS(DONOR)</h5>
+                                                                </div>
+                                                                <div class="card-body" style="width: 100%;">
+                                                                    <div class="row">
+                                                                        <div class="col d-flex justify-content-xl-center align-items-xl-center">
+                                                                            <h1 runat="server" id="BD_Approved"></h1>
+                                                                        </div>
+                                                                        <div class="col-3 d-flex justify-content-xl-center align-items-xl-center">
+                                                                            <img src="assets/img/blood-donation.png" width="30">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+
+
+
                             </div>
                         </div>
                     </div>

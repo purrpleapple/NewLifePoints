@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using LifePoints.Database;
+using Newtonsoft.Json;
 
 namespace LifePoints
 {
@@ -24,6 +25,7 @@ namespace LifePoints
                 user_info ua = Session["USER_INFO"] as user_info;
                 Username.InnerText = ua.UI_FNAME + " " + ua.UI_LNAME;
                 Display();
+                PopulatreDropDown();
                 GetUnreadNotif();
             }
 
@@ -40,19 +42,67 @@ namespace LifePoints
                 Response.Redirect("~/USER_NOTIFICATION.aspx");
             }
         }
+        public void PopulatreDropDown()
+        {
+            string[] bloodType = new string[] { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" };
+
+            Bloodtype.Items.Insert(0, new ListItem("Select Blood Type", ""));
+            int i = 1;
+            foreach (string type in bloodType)
+            {
+                Bloodtype.Items.Insert(i++, new ListItem(type, type));
+            }
+
+            Gender.Items.Insert(0, new ListItem("Male", "1"));
+            Gender.Items.Insert(1, new ListItem("Female", "0"));
+        }
+        private bool CheckInput()
+        {
+            bool res = false;
+
+            res = (DOB.CssClass.Contains("is-invalid"));
+            res = (Bloodtype.CssClass.Contains("is-invalid"));
+            res = (Street.CssClass.Contains("is-invalid"));
+            res = (Baranggay.CssClass.Contains("is-invalid"));
+            res = (City.CssClass.Contains("is-invalid"));
+            res = (Province.CssClass.Contains("is-invalid"));
+            res = (Zip.CssClass.Contains("is-invalid"));
+            res = (Home.CssClass.Contains("is-invalid"));
+            res = (Mobile.CssClass.Contains("is-invalid"));
+            res = (Email.CssClass.Contains("is-invalid"));
+            res = (Password.CssClass.Contains("is-invalid"));
+            res = (RepeatPassword.CssClass.Contains("is-invalid"));
+
+            return res;
+        }
         public void Display()
         {
             Session["Input"] = true;
             user_info ua = Session["USER_INFO"] as user_info;
             account acc = Session["ACCOUNT"] as account;
 
+            user_info_address uia = JsonConvert.DeserializeObject<user_info_address>(ua.UI_ADDRESS);
 
-            UPD_F.Text = ua.UI_FNAME;
-            UPD_M.Text = ua.UI_MNAME;
-            UPD_L.Text = ua.UI_LNAME;
-            UPD_EMAIL.Text = acc.ACC_EMAIL;
-            UPD_PASS.Text = acc.ACC_PASSWORD;
-            UPD_RPASS.Text = acc.ACC_PASSWORD;
+            Email.Text = acc.ACC_EMAIL;
+            Password.Text = acc.ACC_PASSWORD;
+
+            FName.Text = ua.UI_FNAME;
+            MName.Text = ua.UI_MNAME;
+            LName.Text = ua.UI_LNAME;
+            Bloodtype.SelectedValue = ua.UI_BTYPE;
+            
+
+            DOB.Text = ua.UI_DOB;
+            Home.Text = ua.UI_HOME;
+            Mobile.Text = ua.UI_MOBILE;
+
+            Street.Text = uia.street;
+            Baranggay.Text = uia.baranggay;
+            City.Text = uia.city;
+            Province.Text = uia.province;
+            Zip.Text = uia.zip;
+
+
         }
 
         protected void UpdateBtn_Click(object sender, EventArgs e)

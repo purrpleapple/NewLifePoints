@@ -105,7 +105,7 @@
                 <h1 style="padding-left: 50px;">Posts</h1>
                 <div class="container-fluid">
                     <div class="row" style="height: 100%;">
-                        <div class="col-7" style="padding-left: 40px; padding-right: 40px; overflow: auto; max-height: 650px;">
+                        <div class="col-7" style="padding-left: 40px; padding-right: 40px; overflow: auto; max-height: 900px">
                             <asp:Repeater runat="server" ID="BlogPosts" OnItemCommand="BlogPosts_ItemCommand">
                                 <ItemTemplate>
                                     <div style="margin-bottom: 20px;">

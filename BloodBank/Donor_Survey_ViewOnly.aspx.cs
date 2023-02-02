@@ -27,11 +27,23 @@ namespace LifePoints
                 LifePoints.Database.account bb = Session["ACCOUNT"] as LifePoints.Database.account;
                 //Set Username
                 username.InnerText = bb.ACC_EMAIL;
+                PopulateDropDown();
                 PopulateSurveyForm();
                 GetUnreadNotif();
             }
         }
 
+        public void PopulateDropDown()
+        {
+            string[] bloodType = new string[] { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" };
+
+            blood_type.Items.Insert(0, new ListItem("Select Blood Type", ""));
+            int i = 1;
+            foreach (string type in bloodType)
+            {
+                blood_type.Items.Insert(i++, new ListItem(type, type));
+            }
+        }
         protected void NotificationNavList_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             if (e.CommandName == "ViewNotif")
@@ -211,6 +223,7 @@ namespace LifePoints
             Response.Redirect("BB_BloodTransaction.aspx");
         }
 
+
         private void UserRequestSurveyResponse(bool res)
         {
             blood_donation bd = Session["BloodDonation"] as blood_donation;
@@ -258,6 +271,7 @@ Any valid ID
 
                     SurveyGroup.Style.Add("display", "none");
                     BloodGroup.Style.Add("display", "");
+                    Response.Redirect("~/BloodBank/BB_BloodTransaction.aspx");
                 }
             }
             else
@@ -294,9 +308,12 @@ Your request has been rejected", bd.BD_ID));
 
                     SurveyGroup.Style.Add("display", "none");
                     BloodGroup.Style.Add("display", "none");
+                    Response.Redirect("~/BloodBank/BB_BloodTransaction.aspx");
                 }
             }
         }
+
+
 
 
         private void UserRequestBloodResponse(bool res)
@@ -307,6 +324,8 @@ Your request has been rejected", bd.BD_ID));
 
             if (res)
             {
+               
+
                 query = string.Format(@"update blood_donation set BD_BLOOD_STATUS={0} where BD_ID={1}", res, bd.BD_ID);
                 if (db.UpdateBloodRequestStatus(query))
                 {//Create Login Logs
@@ -327,6 +346,8 @@ Your request has been rejected", bd.BD_ID));
 
                     SurveyGroup.Style.Add("display", "none");
                     BloodGroup.Style.Add("display", "none");
+                    Panel2.Visible = true;
+                    Panel1.Visible = false;
                 }
             }
             else
@@ -428,6 +449,64 @@ Your request has been rejected", bd.BD_ID));
                     NotificationNavList.DataSource = newUnread;
                     NotificationNavList.DataBind();
                 }
+            }
+        }
+
+        public void transactionLogs()
+        {
+            LifePoints.Database.blood_donation bd = Session["BloodDonation"] as LifePoints.Database.blood_donation;
+            LifePoints.BloodBank.Database.transaction_logs tl = new LifePoints.BloodBank.Database.transaction_logs();
+
+            tl.TL_TRANSACTION_ID = bd.BD_ID;
+            tl.TL_ACC_ID = bd.BD_UACC_ID;
+            tl.TL_TRANSACTION = true;
+            tl.TL_BLOOD_TYPE = blood_type.Text;
+            tl.TL_TRANSACTION_AMOUNT = numberBL.Text;
+
+            string query = "";
+            query = string.Format("insert into transaction_logs(TL_TRANSACTION_ID, TL_ACC_ID, TL_TRANSACTION, TL_BLLOD_TYPE, TL_TRANSACTION_AMOUNT) values({0}, {1}, {2}, '{3}',{4});", tl.TL_TRANSACTION_ID, tl.TL_ACC_ID, tl.TL_TRANSACTION, tl.TL_BLOOD_TYPE, tl.TL_TRANSACTION_AMOUNT);
+
+            if (db.TransactionLogs(query))
+            {
+                Response.Write(string.Format("<script>alert('Transaction Logs Successfully ')</script>"));
+            }
+            else
+            {
+                Response.Write(string.Format("<script>alert('Transaction Logs Error ')</script>"));
+            }
+
+        }
+
+        protected void SubmitBtn_Click(object sender, EventArgs e)
+        {
+            blood_donation bd = Session["BloodDonation"] as blood_donation;
+            LifePoints.Database.account bb = Session["ACCOUNT"] as LifePoints.Database.account;
+            string query = "";
+            int number = int.Parse(numberBL.Text);
+            string type = blood_type.SelectedValue;
+
+            query = string.Format(@"update blood_donation set BD_BLOOD_TYPE='{0}', BD_NO_BLOOD={1} where BD_ID={2}", type, number, bd.BD_ID);
+            if (db.UpdateBloodRequestStatus(query))
+            {
+                Response.Write(string.Format("<script>alert('Updated Blood donation status succesfully " + number + "')</script>"));
+
+                if (db.BD_UpdateInventory(number, type))
+                {
+                    transactionLogs();
+
+                    Response.Write(string.Format("<script>alert('Updated inventory succesfully " + number + "')</script>"));
+                    Response.Redirect("~/BloodBank/BB_BloodTransaction.aspx");
+
+                }
+                else
+                {
+                    Response.Write(string.Format("<script>alert('Error in updating inventory succesfully " + number + " ')</script>"));
+                }
+
+            }
+            else
+            {
+                Response.Write(string.Format("<script>alert('Error in updating blood donation status succesfully " + number + " ')</script>"));
             }
         }
 

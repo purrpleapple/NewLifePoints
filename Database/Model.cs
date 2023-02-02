@@ -100,6 +100,10 @@ namespace LifePoints.Database
         public string BREQ_CONSENT { get; set; }
         public string BREQ_VISIT_DATE { get; set; }
         public string BREQ_DATE { get; set; }
+        public string BREQ_DEMAND_DATE { get; set; }
+        public string BREQ_BLOOD_TYPE { get; set; }
+        public string BREQ_NO_BLOOD { get; set; }
+
     }
 
     [Serializable]
@@ -122,7 +126,7 @@ namespace LifePoints.Database
         public string mname { get; set; }
         public string dob { get; set; }
         public string gender { get; set; }
-        public string bloodtype { get; set; }
+
         public string barangay { get; set; }
         public string city { get; set; }
         public string province { get; set; }
@@ -131,6 +135,9 @@ namespace LifePoints.Database
         public string mobilenum { get; set; }
         public string email { get; set; }
         public string street { get; set; }
+        public string demand_date { get; set; }
+        public string bloodtype { get; set; }
+        public string no_blood { get; set; }
 
     }
 

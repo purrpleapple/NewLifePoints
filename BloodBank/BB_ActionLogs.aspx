@@ -7,7 +7,7 @@
     <link rel="icon" runat="server" href="~/assets/img/321479999_548324667206662_5830804446592810955_n.png" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>BloodBank Activity Logs</title>
+    <title>BloodBank Logs</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans" />
@@ -38,7 +38,7 @@
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link" href="BB_Dashboard.aspx"><i class="fas fa-tachometer-alt" style="font-size: 20px;"></i><span style="font-size: 15px;">Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="BB_BloodTransaction.aspx"><i class="fa fa-tint" style="font-size: 20px;"></i><span style="font-size: 15px;">Blood Transaction</span></a></li>
-                    <li class="nav-item"><a class="nav-link active" href="BB_ActionLogs.aspx"><i class="fa fa-list-ul" style="font-size: 20px;"></i><span style="font-size: 15px;">Action Logs</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="BB_ActionLogs.aspx"><i class="fa fa-list-ul" style="font-size: 20px;"></i><span style="font-size: 15px;">Logs</span></a></li>
 
                 </ul>
                 <div class="text-center d-none d-md-inline"></div>
@@ -50,7 +50,7 @@
                     <div class="container-fluid">
                         <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <div class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <input class="form-control-plaintext" type="text" value="Action Logs" readonly="" style="font-size: 40px;">
+                            <input class="form-control-plaintext" type="text" value="Logs" readonly="" style="font-size: 40px;">
                         </div>
                          <ul class="navbar-nav flex-nowrap ml-auto">
                             <li class="nav-item dropdown no-arrow mx-1">
@@ -98,9 +98,17 @@
                         <div class="col">
                             <div class="card shadow">
                                 <div class="card-header py-3">
-                                    
+                            <h3 class="text-dark mb-4" style="height: 31.5938px; margin: 32px;" runat="server" id="HeadingText">Transaction Logs</h3>
                                 </div>
                                 <div class="card-body">
+                                    <div class="card-header d-flex" style="flex-direction: row; justify-content: start; align-items: center;">
+
+                                    <div class="d-flex" style="flex-direction: row; justify-content: center; align-items: start;margin-right: 20px;">
+                                        <h5 style="margin-right: 10px;">Table</h5>
+                                        <asp:DropDownList runat="server" ID="TableView" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="TableView_SelectedIndexChanged" />
+                                    </div>
+                                    </div>
+
                                     <h3 runat="server" id="NoDataMsg" style="display: none;">No Data</h3>
                                     <div runat="server" id="TableContainer" style="max-height: 600px">
                                         <div id="VerticalScroll" style="overflow: auto; max-height: inherit;">
@@ -115,6 +123,20 @@
                                                     <asp:BoundField HeaderText="DATE" DataField="ACT_DATE" />
                                                 </Columns>
                                             </asp:GridView>
+                                             <asp:GridView runat="server" ID="TransactionLogs" Visible="true" AutoGenerateColumns="false" Width="100%"
+                                                BorderColor="Transparent" AutoPostBack="false">
+                                                <RowStyle CssClass="grid-item-style  grid-font-style" />
+                                                <Columns>
+                                                    <asp:BoundField HeaderText="ID" DataField="TL_ID" />
+                                                    <asp:BoundField HeaderText="TRANSACTION ID" DataField="TL_TRANSACTION_ID" />
+                                                    <asp:BoundField HeaderText="USER ID" DataField="TL_ACC_ID" />
+                                                    <asp:BoundField HeaderText="TYPE" DataField="TL_TRANSACTION" />
+                                                    <asp:BoundField HeaderText="BLOOD TYPE" DataField="TL_BLOOD_TYPE" />
+                                                    <asp:BoundField HeaderText="BLOOD BAGS" DataField="TL_TRANSACTION_AMOUNT" />
+                                                    <asp:BoundField HeaderText="DATE" DataField="TLTRANSACTION_DATE" />
+                                                </Columns>
+                                            </asp:GridView>
+
                                         </div>
                                     </div>
                                 </div>

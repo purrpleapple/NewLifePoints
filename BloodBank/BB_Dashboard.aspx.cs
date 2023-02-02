@@ -1,6 +1,7 @@
 ﻿using LifePoints.BloodBank.Database;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
@@ -31,6 +32,7 @@ namespace LifePoints
                 username.InnerText = bb.ACC_EMAIL;
                 PopulateDashboardObjects();
                 GetUnreadNotif();
+                GetInventoryGrid();
             }
         }
 
@@ -44,7 +46,18 @@ namespace LifePoints
                 Response.Redirect("~/BloodBank/BB_Notification.aspx");
             }
         }
+         
+        public void GetInventoryGrid()
+        {
+            DataTable dt = db.GetInventoryTableData();
 
+            if (dt != null)
+            {
+                GridInventory.DataSource = null;
+                GridInventory.DataSource = dt;
+                GridInventory.DataBind();
+            }
+        }
         public void PopulateDashboardObjects()
         {
             //Populate Number of Users
@@ -58,16 +71,29 @@ namespace LifePoints
             NumberDonor.InnerText = db.GetCount(query).ToString();
 
 
-            //Populate Transaction NUmbers
-            query = @"select ((select count(*) from blood_donation where (BD_SURVEY_STATUS = false or BD_BLOOD_STATUS = false) and BD_REQ_STATUS=true)
-                        + (select count(*) from blood_request where (BREQ_SURVEY_STATUS = false or BREQ_BLOOD_STATUS = false) and BREQ_REQ_STATUS=true)) as Total;";
+            //Populate Pending Initial Transaction NUmbers
+            query = @"select ((select count(*) from blood_donation where BD_SURVEY_STATUS=false and BD_BLOOD_STATUS=false and BD_REQ_STATUS=true)
+                        + (select count(*) from blood_request where BREQ_SURVEY_STATUS=false and BREQ_BLOOD_STATUS=false and BREQ_REQ_STATUS=true)) as Total;";
             TotalNumberTransaction.InnerText = db.GetCount(query).ToString();
 
-            query = @"select count(*) from blood_request where (BREQ_SURVEY_STATUS = false or BREQ_BLOOD_STATUS = false) and BREQ_REQ_STATUS=true;";
+            query = @"select count(*) from blood_request where BREQ_SURVEY_STATUS = false and BREQ_BLOOD_STATUS=false and BREQ_REQ_STATUS=true;";
             NumberRequestTransaction.InnerText = db.GetCount(query).ToString();
 
-            query = @"select count(*) from blood_donation where (BD_SURVEY_STATUS = false or BD_BLOOD_STATUS = false) and BD_REQ_STATUS=true;";
+            query = @"select count(*) from blood_donation where BD_SURVEY_STATUS = false and BD_BLOOD_STATUS=false and BD_REQ_STATUS=true;";
             NumberDonationTransaction.InnerText = db.GetCount(query).ToString();
+
+
+
+            //Populate Approved Initial Transaction NUmbers
+            query = @"select ((select count(*) from blood_donation where BD_SURVEY_STATUS = true and (BD_BLOOD_STATUS=false or BD_BLOOD_STATUS=true) and BD_REQ_STATUS=true)
+                        + (select count(*) from blood_request where BREQ_SURVEY_STATUS = true and (BREQ_BLOOD_STATUS=false or BREQ_BLOOD_STATUS=true) and BREQ_REQ_STATUS=true)) as Total;";
+            TotalApproved.InnerText = db.GetCount(query).ToString();
+
+            query = @"select count(*) from blood_request where BREQ_SURVEY_STATUS = true and (BREQ_BLOOD_STATUS=false or BREQ_BLOOD_STATUS=true) and BREQ_REQ_STATUS=true;";
+            BR_Approved.InnerText = db.GetCount(query).ToString();
+
+            query = @"select count(*) from blood_donation where BD_SURVEY_STATUS = true and (BD_BLOOD_STATUS=false or BD_BLOOD_STATUS=true) and BD_REQ_STATUS=true;";
+            BD_Approved.InnerText = db.GetCount(query).ToString();
 
             object sender = new object();
             EventArgs e = new EventArgs();

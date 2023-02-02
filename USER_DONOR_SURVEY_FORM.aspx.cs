@@ -27,24 +27,11 @@ namespace LifePoints
                 user_info ua = Session["USER_INFO"] as user_info;
                 Username.InnerText = ua.UI_FNAME + " " + ua.UI_LNAME;
                 GetUnreadNotif();
-                PopulateDropDown();
+               
             }
         }
 
-        public void PopulateDropDown()
-        {
-            string[] bloodType = new string[] { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" };
-
-            Bloodtype.Items.Insert(0, new ListItem("Select Blood Type", ""));
-            int i = 1;
-            foreach (string type in bloodType)
-            {
-                Bloodtype.Items.Insert(i++, new ListItem(type, type));
-            }
-
-            Gender.Items.Insert(0, new ListItem("Male", "1"));
-            Gender.Items.Insert(1, new ListItem("Female", "0"));
-        }
+       
 
         protected void NotificationNavList_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
