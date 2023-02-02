@@ -137,6 +137,27 @@ from transaction_logs;");
             return dt;
         }
 
+        public DataTable GetInventoryTableData()
+        {
+
+            DataTable dt = new DataTable();
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = "select * from inventory;";
+                da = new MySqlDataAdapter(cmd);
+                da.Fill(dt);
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("Get Inventory Logs Error : " + ex.Message);
+            }
+            return dt;
+        }
+
         //Update BloodBank Password
         public int UpdateProfileInfo(string uname, string npword, string opword)
         {

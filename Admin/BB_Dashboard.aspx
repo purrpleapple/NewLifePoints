@@ -70,11 +70,40 @@
                         </ul>
                     </div>
                 </nav>
-               <div class="container-fluid">
+                <div class="container-fluid">
                     <div class="d-sm-flex justify-content-between align-items-center mb-4">
                         <div id="content">
-                            <div class="row">
-                                <div class="col-7">
+
+                            
+
+                        <div class="row" style="margin-bottom:20px">
+                            <div class="col-5">
+                              <div class="card shadow">
+
+                                <div class="card-header py-3">
+                                    <p class="text-primary m-0 fw-bold">Blood Inventory</p>
+                                </div>
+
+                                <div class="card-body">
+                                    <h3 runat="server" id="NoDataMsg" style="display: none;">No Data</h3>
+                                     <div class="table-responsive" > 
+                                         <asp:GridView runat="server" ID="GridInventory" AutoGenerateColumns="False" Width="100%"
+                                             BorderColor="Transparent" AutoPostBack="true">
+                                                <RowStyle CssClass="grid-item-style  grid-font-style" />
+                                                <Columns>
+                                                            <asp:BoundField HeaderText="Blood Type" DataField="inv_blood_type" />
+                                                            <asp:BoundField HeaderText="Amount" DataField="inv_numbers" />
+                                        
+                                               </Columns>
+                                            </asp:GridView>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                                       <div class="col-7">
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="row d-flex flex-column">
@@ -140,7 +169,7 @@
                                                 <div class="col d-flex" style="margin-bottom: 10px;">
                                                     <div class="card" style="width: 100%;">
                                                         <div class="card-header" style="padding: 0px; padding-top: 9px; background: #25476a;">
-                                                            <h3 class="text-center" style="font-weight: bold; color: var(--white);">PENDING REQUEST</h3>
+                                                            <h3 class="text-center" style="font-weight: bold; color: var(--white);">PENDING TRANSACTIONS</h3>
                                                         </div>
                                                         <div class="card-body" style="width: 100%;">
                                                             <div class="row">
@@ -196,9 +225,15 @@
                                         </div>
                                     </div>
                                 </div>
+
+                       </div>
+                            
+
+                            <div class="row">
+                             
                                 <div class="col-5">
                                     <div class="card d-flex">
-                                        <div class="card-header" style="background: var(--red); padding: 0px; padding-top: 9px;">
+                                        <div class="card-header" style="background: var(--blue); padding: 0px; padding-top: 9px;">
                                             <div class="row">
                                                 <div class="col">
                                                     <h3 style="font-weight: bold; color: var(--white);">Blood <span runat="server" id="PieTitle"></span> Transactions</h3>
@@ -218,9 +253,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-7">
                                     <div class="col-6">
                                             <div class="row d-flex flex-column">
@@ -282,12 +314,10 @@
                                             </div>
                                         </div>
                                 </div>
+
+
+
                             </div>
-
-
-
-
-
                         </div>
                     </div>
                 </div>
