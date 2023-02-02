@@ -534,20 +534,6 @@
 
                                     <br />
                                     <tr>
-
-                                        <td colspan="2"><strong>Blood Request</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Blood Type:</td>
-                                        <td class="d-flex flex-column">
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Required" Style="color: red; display: flex; justify-content: end;" ControlToValidate="Bloodtype" Font-Italic="True" ValidationGroup="Register"></asp:RequiredFieldValidator>
-                                            <asp:DropDownList ID="Bloodtype" runat="server" CssClass="form-control" onchange="CheckBType()" required="">
-                                            </asp:DropDownList>
-                                        </td>
-
-                                    </tr>
-                                    
-                                    <tr>
                                         <td colspan="2">
                                             <br />
                                             <strong>Address</strong></td>
@@ -617,6 +603,16 @@
                                             <strong>Blood details</strong>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td>Blood Type:</td>
+                                        <td class="d-flex flex-column">
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Required" Style="color: red; display: flex; justify-content: end;" ControlToValidate="Bloodtype" Font-Italic="True" ValidationGroup="Register"></asp:RequiredFieldValidator>
+                                            <asp:DropDownList ID="Bloodtype" runat="server" CssClass="form-control" onchange="CheckBType()" required="">
+                                            </asp:DropDownList>
+                                        </td>
+
+                                    </tr>
+                                    
                                     <tr>
                                         <td>No of blood bags:</td>
                                         <td>
