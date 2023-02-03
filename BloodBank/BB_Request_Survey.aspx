@@ -30,11 +30,11 @@
     <form runat="server" id="wrapper">
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background: rgb(119,40,32);">
             <div class="container-fluid d-flex flex-column p-0">
-                <img style="font-size: 12px; line-height: 23px; border-width: -14px; height: 97px; margin-top:35px;" src="assets/img/vsmmclogo1.png"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                <img style="font-size: 12px; line-height: 23px; border-width: -14px; height: 97px; margin-top:35px;" src="assets/img/vsmmclogo1.png"/><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                     <div class="sidebar-brand-icon rotate-n-15"></div>
                     <div class="sidebar-brand-text mx-3"><span style="font-size: 30px;">VSMMC</span></div>
                 </a>
-                <hr class="sidebar-divider my-0">
+                <hr class="sidebar-divider my-0"/>
                 <ul class="navbar-nav text-light" id="accordionSidebar">
 
 
@@ -52,7 +52,7 @@
                     <div class="container-fluid">
                         <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <div class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <input class="form-control-plaintext" type="text" value="" readonly="" style="font-size: 40px;">
+                            <input class="form-control-plaintext" type="text" value="" readonly="" style="font-size: 40px;"/>
                         </div>
                         <ul class="navbar-nav flex-nowrap ml-auto">
                             <li class="nav-item dropdown no-arrow mx-1">

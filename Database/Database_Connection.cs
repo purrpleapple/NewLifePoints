@@ -67,6 +67,9 @@ namespace LifePoints.Database
             return acc;
         }
 
+       
+
+
         public int RegisterAccount(account acc)
         {
             int res = -1;
@@ -96,6 +99,70 @@ namespace LifePoints.Database
             catch(Exception ex)
             {
                 Debug.Print("Register Account Error : " + ex.Message);
+            }
+            return res;
+        }
+
+        public int UpdateUserAccount(user_info ui, string emailNew, string emailOld, string pass)
+        {
+
+
+            int res = -1;
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                if (emailOld == emailNew)
+                {
+                    cmd.CommandText = string.Format(@"UPDATE user_info SET UI_LNAME ='{0}', UI_FNAME= '{1}', UI_MNAME='{2}', UI_GENDER={3}, UI_DOB='{4}', UI_ADDRESS='{5}', UI_BTYPE= '{6}', UI_HOME='{7}', UI_MOBILE='{8}' WHERE UI_ID = {9};", ui.UI_LNAME, ui.UI_FNAME, ui.UI_MNAME, ui.UI_GENDER, ui.UI_DOB, ui.UI_ADDRESS, ui.UI_BTYPE, ui.UI_HOME, ui.UI_MOBILE,ui.UI_ID); ;
+
+                    int x = cmd.ExecuteNonQuery();
+                    if (x > 0)
+                    {
+                        //Successful Update
+                        res = 1;
+                    }
+
+
+                }
+                else
+                {
+                    cmd.CommandText = "select count(*) as duplicate from account where ACC_EMAIL='" + emailNew + "';";
+                    int x = Convert.ToInt32(cmd.ExecuteScalar());
+                    if (x <= 0)
+                    {
+                        cmd.CommandText = string.Format(@"UPDATE user_info SET UI_LNAME ='{0}', UI_FNAME= '{1}', UI_MNAME='{2}', UI_GENDER={3}, UI_DOB='{4}', UI_ADDRESS='{5}', UI_BTYPE= '{6}', UI_HOME='{7}', UI_MOBILE='{8}' WHERE UI_ID = {9};", ui.UI_LNAME, ui.UI_FNAME, ui.UI_MNAME, ui.UI_GENDER, ui.UI_DOB, ui.UI_ADDRESS, ui.UI_BTYPE, ui.UI_HOME, ui.UI_MOBILE, ui.UI_ID); ;
+                        
+
+
+                        int y = cmd.ExecuteNonQuery();
+                        if (y > 0)
+                        {
+                            //Successful Update
+                            cmd.CommandText = string.Format(@"UPDATE account SET ACC_EMAIL='{0}', ACC_PASSWORD='{1}' WHERE ACC_ID={2};", emailNew, pass, ui.UI_ID);
+                            int z = cmd.ExecuteNonQuery();
+                            if (z > 0)
+                            {
+                                res = 1;
+                            
+                            }
+                               
+                        }
+                    }
+                    else
+                    {
+                        res = -2;
+                    }
+                }
+
+                con.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("Update User Account Error : " + ex.Message);
             }
             return res;
         }
