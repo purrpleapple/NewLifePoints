@@ -368,5 +368,10 @@ namespace LifePoints
             Demand_date.Text = "";
             No_blood.Text = "";
         }
+
+        protected void UpdateSurvey_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
