@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using LifePoints.Database;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 
 namespace LifePoints
@@ -90,7 +91,7 @@ namespace LifePoints
             MName.Text = ua.UI_MNAME;
             LName.Text = ua.UI_LNAME;
             Bloodtype.SelectedValue = ua.UI_BTYPE;
-            
+           
 
             DOB.Text = ua.UI_DOB;
             Home.Text = ua.UI_HOME;
@@ -107,54 +108,73 @@ namespace LifePoints
 
         protected void UpdateBtn_Click(object sender, EventArgs e)
         {
-            //    Session["Input"] = true;
-            //    user_info ua= Session["USER_INFO"] as user_info;
-            //    user_info ub = new user_info();
-            //    account acc = Session["ACCOUNT"] as account;
+            account acc = Session["ACCOUNT"] as account;
+            string emailOld = acc.ACC_EMAIL;
+            string emailNew = Email.Text;
 
-            //    string npword = UPD_PASS.Text;
-            //    string rpword = UPD_RPASS.Text;
-            //    string email = acc.ACC_EMAIL;
+            string pass = Password.Text;
+            string rpass = RepeatPassword.Text;
 
-            //    bool isSuccess = false;
-            //    if (npword == "" || rpword == "")
-            //    {
-            //        //Missing Fields
-            //        Response.Write("<script>alert('Missing Fields.')</script>");
-            //    }
-            //    else if(npword!=rpword){
-            //        Response.Write("<script>alert('Password Does Not Match.')</script>");
-            //    }
-            //    else {
+            //Insert User Info
+            user_info ui = new user_info();
+            ui.UI_ID = acc.ACC_ID;
+            ui.UI_LNAME = LName.Text;
+            ui.UI_FNAME = FName.Text;
+            ui.UI_MNAME = MName.Text;
+            ui.UI_GENDER = Gender.SelectedValue == "1";
+            ui.UI_BTYPE = Bloodtype.SelectedValue;
 
-            //    ub.UI_ID = ua.UI_ID;
-            //    ub.UI_FNAME = UPD_F.Text;
-            //    ub.UI_MNAME = UPD_M.Text;
-            //    ub.UI_LNAME = UPD_L.Text;
-            //    ub.UACC_EMAIL = UPD_EMAIL.Text;
-            //    ub.UACC_PASSWORD = UPD_PASS.Text;
+            ui.UI_DOB = DOB.Text;
+            ui.UI_HOME = Home.Text;
+            ui.UI_MOBILE = Mobile.Text;
+
+            //Convert Address to Json
+            user_info_address ad = new user_info_address();
+            ad.street = Street.Text;
+            ad.baranggay = Baranggay.Text;
+            ad.city = City.Text;
+            ad.province = Province.Text;
+            ad.zip = Zip.Text;
+
+            ui.UI_ADDRESS = MySqlHelper.EscapeString(JsonConvert.SerializeObject(ad));
 
 
-            //        int res = db.UpdateUserAccount(ub,email);
-            //        //1 if Success
+           
 
-            //        //-1 if Database
-            //        switch (res)
-            //        {
-            //            case 1:
-            //                Response.Write("<script>alert('Profile Updated Successfully.')</script>");
-            //                isSuccess = true;
-            //                break;
-            //            case -2:
-            //                Response.Write("<script>alert('Email already exist')</script>");
-            //                break;
+              bool isSuccess = false;
+              if (pass == "" || rpass == "")
+               {
+                   //Missing Fields
+                    Response.Write("<script>alert('Missing Fields.')</script>");
+               }
+             else if(pass!=rpass)
+               {
+                   Response.Write("<script>alert('Password Does Not Match.')</script>");
+               }
+             else 
+               {
+                   int res = db.UpdateUserAccount( ui,emailNew,emailOld,pass);
+                     switch (res)
+                    {
+                         case 1:
+                            Response.Write("<script>alert('Profile Updated Successfully."+Bloodtype.SelectedValue+"')</script>");
+                            isSuccess = true;
+                            break;
+                        case -2:
+                            Response.Write("<script>alert('Email already exist')</script>");
+                            break;
 
-            //            case -1:
-            //                Response.Write("<script>alert('Database Error.')</script>");
-            //                break;
-            //        }
+                        case -1:
+                             Response.Write("<script>alert('Database Error.')</script>");
+                            break;
+                    }
 
-            //    }
+            }
+
+              if(isSuccess)
+            {
+                Response.Redirect("~/Default.aspx");
+            }
         }
 
         private void GetUnreadNotif()
