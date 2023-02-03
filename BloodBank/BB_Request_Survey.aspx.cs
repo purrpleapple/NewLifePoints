@@ -91,6 +91,7 @@ namespace LifePoints
 
             DisableInputs();
 
+
             if(!br.BREQ_REQ_STATUS)
             {
                 SurveyGroup.Style.Add("display", "none");

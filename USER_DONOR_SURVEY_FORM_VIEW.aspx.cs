@@ -251,7 +251,5 @@ namespace LifePoints
             Session.RemoveAll();
             Server.Transfer("~/Default.aspx");
         }
-
-
     }
 }

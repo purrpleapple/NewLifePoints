@@ -208,6 +208,11 @@ namespace LifePoints
             Debug.Print("~/Uploads/" + br.BREQ_CONSENT);
             DoctorsConsent.ImageUrl = "~/Uploads/" + br.BREQ_CONSENT;
 
+            Session["BREQ_ID"] = br.BREQ_ID;
+            Session["Upload"] = br.BREQ_CONSENT;
+
+            UpdateSurvey.Visible = (!br.BREQ_SURVEY_STATUS && br.BREQ_REQ_STATUS) ? true : false;
+
             DisableInputs();
         }
 
@@ -331,7 +336,7 @@ namespace LifePoints
 
 
             Option.Style.Add("display", "");
-            Survey.Style.Add("display", "");
+            Survey.Style.Add("display", "none");
 
             LName.Text = ui.UI_LNAME;
             FName.Text = ui.UI_FNAME;
@@ -371,7 +376,158 @@ namespace LifePoints
 
         protected void UpdateSurvey_Click(object sender, EventArgs e)
         {
+            EnableInputs();
 
+            Option.Style.Add("display", "none");
+            Survey.Style.Add("display", "");
+            DConsent.Style.Add("display", "none");
+            Upload.Style.Add("display", "");
+
+
+            UpdateSurvey.Visible = false;
+            UpdateBtn.Visible = true;
+            Cancel.Visible = true;
+        }
+
+        private void EnableInputs()
+        {
+            LName.Enabled = true;
+            FName.Enabled = true;
+            MName.Enabled = true;
+            DOB.Enabled = true;
+            Bloodtype.Enabled = true;
+            Gender.Enabled = true;
+            Street.Enabled = true;
+            Province.Enabled = true;
+            Baranggay.Enabled = true;
+            Zip.Enabled = true;
+            Home.Enabled = true;
+            Mobile.Enabled = true;
+            Email.Enabled = true;
+            No_blood.Enabled = true;
+            Demand_date.Enabled = true;
+        }
+
+        protected void UpdateBtn_Click(object sender, EventArgs e)
+        {
+
+            bool allowed = true;
+            bool isNew = false;
+            string filename = Session["Upload"] as string;
+            if (Consent.HasFile)
+            {
+                string fileExtension = Path.GetExtension(Consent.FileName).ToLower();
+                string[] allowedExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
+                bool isAllowed = false;
+                for (int i = 0; i < allowedExtensions.Length; i++)
+                {
+                    if (fileExtension == allowedExtensions[i])
+                    {
+                        isAllowed = true;
+                    }
+                }
+
+                if (isAllowed)
+                {
+                    try
+                    {
+                        account acc = Session["ACCOUNT"] as account;
+                        string currentFileName = Path.GetFileNameWithoutExtension(Consent.FileName);
+                        string currentFileExtension = Path.GetExtension(Consent.FileName);
+
+                        filename = "";
+                        filename = string.Format("{0}_Request_{1}{2}", acc.ACC_ID, DateTime.Now.ToString("dd-MM-yy"), currentFileExtension);
+                        Consent.SaveAs(Server.MapPath("~/Uploads/") + filename);
+                        isNew = true;
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.Print("Upload status: The file could not be uploaded. The following error occured: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    allowed = false;
+                    Response.Write("<script>alert('Uploaded File is Invalid. Should be image type (jpg, jpeg, png, gif).')</script>");
+                }
+            }
+                
+
+            if(allowed)
+            {
+                request_survey_form rq = new request_survey_form();
+                rq.lname = LName.Text;
+                rq.fname = FName.Text;
+                rq.mname = MName.Text;
+                rq.gender = Gender.SelectedValue;
+                rq.dob = DOB.Text;
+                rq.bloodtype = Bloodtype.SelectedValue;
+                rq.city = City.Text;
+                rq.street = Street.Text;
+                rq.province = Province.Text;
+                rq.barangay = Baranggay.Text;
+                rq.zip = Zip.Text;
+                rq.homenum = Home.Text;
+                rq.mobilenum = Mobile.Text;
+                rq.email = Email.Text;
+
+                rq.demand_date = Demand_date.Text;
+                rq.no_blood = No_blood.Text;
+
+                user_info ua = Session["USER_INFO"] as user_info;
+
+                blood_request br = new blood_request();
+                br.BREQ_JSON_SURVEY_FORM = JsonConvert.SerializeObject(rq);
+                FileInfo f = new FileInfo("~/Uploads/" + Session["Upload"].ToString());
+                if(f.Exists)
+                {
+                    f.Delete();
+                }
+                br.BREQ_ID = Session["BREQ_ID"] as string;
+                br.BREQ_CONSENT = filename;
+                br.BREQ_UACC_ID = ua.UI_ID;
+
+                br.BREQ_DEMAND_DATE = Demand_date.Text;
+                br.BREQ_BLOOD_TYPE = Bloodtype.Text;
+                br.BREQ_NO_BLOOD = No_blood.Text;
+
+                if (db.UpdateBloodRequest(br))
+                {
+                    string query = string.Format(@"insert into activity_logs(ACT_DESCRIPTION, ACT_UACC_ID, ACT_UNAME)
+                                            select concat('User ', UI_FNAME, ' ', UI_LNAME, ' Updated Blood Request ( {0} )'), {1}, '{2}' from user_info
+                                            where UI_ID={3};", br.BREQ_ID, ua.UI_ID, "User", ua.UI_ID);
+                    db.InsertToUserLogs(query);
+
+                    
+
+                    //Successfullu Inserted
+                    Response.Write("<script>alert('Successfully Updated Blood Request Form and is Pending for approval.')</script>");
+                    Server.Transfer("~/USER_REQUEST_A_BLOOD.aspx");
+                }
+                else
+                {
+                    Response.Write("<script>alert('You have already made a request. Wait till the process is completed.')</script>");
+
+                }
+            }
+
+
+
+        }
+
+        protected void Cancel_Click(object sender, EventArgs e)
+        {
+            PopulateFormInputs();
+
+
+            Option.Style.Add("display", "none");
+            Survey.Style.Add("display", "");
+            Upload.Style.Add("display", "none");
+            DConsent.Style.Add("display", "");
+
+            UpdateBtn.Visible = false;
+            Cancel.Visible = false;
         }
     }
 }
