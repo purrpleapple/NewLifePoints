@@ -90,6 +90,7 @@ namespace LifePoints
             FName.Text = ua.UI_FNAME;
             MName.Text = ua.UI_MNAME;
             LName.Text = ua.UI_LNAME;
+            Gender.SelectedValue = ua.UI_GENDER ? "1" : "0";
             Bloodtype.SelectedValue = ua.UI_BTYPE;
            
 

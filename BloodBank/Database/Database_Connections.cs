@@ -172,13 +172,13 @@ from transaction_logs;");
                 con.Open();
                 cmd = con.CreateCommand();
                 //Check Old Password 
-                cmd.CommandText = string.Format("select count(*) from bloodbank where binary BB_USERNAME='{0}' and binary BB_PASSWORD='{1}';", uname, opword);
+                cmd.CommandText = string.Format("select count(*) from account where binary ACC_EMAIL='{0}' and binary ACC_PASSWORD='{1}';", uname, opword);
                 int check = Convert.ToInt32(cmd.ExecuteScalar());
                 if(check >= 1)
                 {
                     //Meaning the Old Password is right
                     //Try to Update
-                    cmd.CommandText = string.Format("update bloodbank set BB_PASSWORD='{0}' where binary BB_USERNAME='{1}' and binary BB_PASSWORD='{2}';", npword, uname, opword);
+                    cmd.CommandText = string.Format("update account set ACC_PASSWORD='{0}' where binary ACC_EMAIL='{1}' and binary ACC_PASSWORD='{2}';", npword, uname, opword);
                     int x = cmd.ExecuteNonQuery();
                     if(x > 0)
                     {

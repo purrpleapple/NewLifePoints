@@ -222,6 +222,7 @@ namespace LifePoints
             Street.Enabled = false;
             Province.Enabled = false;
             Baranggay.Enabled = false;
+            City.Enabled = false;
             Zip.Enabled = false;
             Home.Enabled = false;
             Mobile.Enabled = false;
