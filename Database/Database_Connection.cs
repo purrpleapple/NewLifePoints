@@ -378,6 +378,31 @@ values({0}, '{1}', '{2}', '{3}', {4}, '{5}', '{6}', '{7}', '{8}', '{9}');", ui.U
             return res;
         }
 
+        //Update Blood Request
+        public bool UpdateBloodRequest(blood_request br)
+        {
+            bool res = false;
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = string.Format(@"update blood_request set BREQ_JSON_SURVEY_FORM='{0}', BREQ_CONSENT='{1}', BREQ_DEMAND_DATE='{2}', BREQ_BLOOD_TYPE='{3}', BREQ_NO_BLOOD='{4}' where BREQ_ID={5};",
+                                                    br.BREQ_JSON_SURVEY_FORM, br.BREQ_CONSENT, br.BREQ_DEMAND_DATE, br.BREQ_BLOOD_TYPE, br.BREQ_NO_BLOOD, br.BREQ_ID);
+                int x = cmd.ExecuteNonQuery();
+                if(x > 0)
+                {
+                    res = true;
+                }
+                con.Close();
+            }
+            catch(Exception ex)
+            {
+                Debug.Print("Update Blood Request Error : " + ex.Message);
+            }
+            return res;
+        }
+
         public DataTable GetUserLogsTableData()
         {
 
