@@ -591,7 +591,7 @@
                                         <td class="d-flex flex-column">
                                             <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Invalid Contact No. (e.g. 09xxx...)" Style="color: red; display: flex; justify-content: end;" ValidationGroup="UpdateSurveyForm" ControlToValidate="Home" Type="String" MaximumValue="099999999999" MinimumValue="090000000000" Display="Dynamic"></asp:RangeValidator>
                                             <asp:RangeValidator ID="RangeValidator13" runat="server" ErrorMessage="Invalid Contact No. (e.g. 09xxx...)" Style="color: red; display: flex; justify-content: end;" ValidationGroup="SurveyForm" ControlToValidate="Home" Type="String" MaximumValue="099999999999" MinimumValue="090000000000" Display="Dynamic"></asp:RangeValidator>
-                                            <asp:TextBox runat="server" CssClass="form-control" type="number" ID="Home" ClientIDMode="Static" oninput="CheckHome()" name="home" required=""></asp:TextBox></td>
+                                            <asp:TextBox runat="server" CssClass="form-control" type="number" ID="Home" ClientIDMode="Static" oninput="CheckHome()" name="home" ></asp:TextBox></td>
                                     </tr>
                                     <tr>
                                         <td>Mobile:</td>

@@ -158,14 +158,14 @@ namespace LifePoints
                         BlogPostMessage.Text = "";
 
                         //Insert Logs
-                        string query = string.Format(@"insert into user_logs(ULOG_EVENT, ULOG_UACC_ID) values('User {0} Posted Post {1}', {2});", ua.UI_FNAME, res, ua.UI_ID);
-                        bool logs = db.InsertToUserLogs(query);
+                        //string query = string.Format(@"insert into user_logs(ULOG_EVENT, ULOG_UACC_ID) values('User {0} Posted Post {1}', {2});", ua.UI_FNAME, res, ua.UI_ID);
+                       // bool logs = db.InsertToUserLogs(query);
 
-                        if (logs)
-                        {
+                        //if (logs)
+                       // {
                             //Response.Write("<script>alert('Success Logs.')</script>");
-                            PopulatePosts();
-                        }
+                            Response.Redirect("~/USER_BLOGPOST.aspx");
+                       // }
 
                     }
                     else
@@ -182,7 +182,7 @@ namespace LifePoints
 
             Session.Clear();
             Session.RemoveAll();
-            Server.TransferRequest("~/Default.aspx");
+            Response.Redirect("~/Default.aspx");
         }
 
         private void GetUnreadNotif()

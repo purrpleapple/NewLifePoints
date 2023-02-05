@@ -29,6 +29,7 @@ namespace LifePoints.Admin
         //Update Info (this is from the button)
         protected void UpdateInfo_Click(object sender, EventArgs e)
         {
+            string uname = username.InnerText;
             string npword = Profile_NPassword.Value;
             string opword = Profile_OPassword.Value;
 
@@ -40,23 +41,23 @@ namespace LifePoints.Admin
             }
             else
             {
-                //int res = db.UpdateProfileInfo(uname, npword, opword);
-                ////1 if Success
-                ////-2 if Old Password is not the one on record
-                ////-1 if Database
-                //switch (res)
-                //{
-                //    case 1:
-                //        Response.Write("<script>alert('Profile Password Updated Successfully.')</script>");
-                //        isSuccess = true;
-                //        break;
-                //    case -2:
-                //        Response.Write("<script>alert('Old Profile Password does not match the one on record.')</script>");
-                //        break;
-                //    case -1:
-                //        Response.Write("<script>alert('Database Error.')</script>");
-                //        break;
-                //}
+                int res = db.UpdateProfileInfo(uname, npword, opword);
+                //1 if Success
+                //-2 if Old Password is not the one on record
+                //-1 if Database
+                switch (res)
+                {
+                    case 1:
+                        Response.Write("<script>alert('Profile Password Updated Successfully.')</script>");
+                        isSuccess = true;
+                        break;
+                    case -2:
+                        Response.Write("<script>alert('Old Profile Password does not match the one on record.')</script>");
+                        break;
+                    case -1:
+                        Response.Write("<script>alert('Database Error.')</script>");
+                        break;
+                }
 
             }
 

@@ -401,7 +401,7 @@ Your request has been rejected", bd.BD_ID));
 
             Session.Clear();
             Session.RemoveAll();
-            Server.Transfer("~/Default.aspx");
+            Response.Redirect("~/Default.aspx");
         }
 
 

@@ -154,7 +154,7 @@ namespace LifePoints
 
                             //Successfullu Inserted
                             Response.Write("<script>alert('Successfully Submitted Blood Request Form and is Pending for approval.')</script>");
-                            Server.Transfer("~/USER_REQUEST_A_BLOOD.aspx");
+                            Response.Redirect("~/USER_REQUEST_A_BLOOD.aspx");
                         }
                         else
                         {
@@ -310,7 +310,7 @@ namespace LifePoints
 
             Session.Clear();
             Session.RemoveAll();
-            Server.Transfer("~/Default.aspx");
+            Response.Redirect("~/Default.aspx");
         }
 
         protected void UserRd_CheckedChanged(object sender, EventArgs e)
@@ -401,6 +401,7 @@ namespace LifePoints
             Street.Enabled = true;
             Province.Enabled = true;
             Baranggay.Enabled = true;
+            City.Enabled = true;
             Zip.Enabled = true;
             Home.Enabled = true;
             Mobile.Enabled = true;
@@ -504,7 +505,7 @@ namespace LifePoints
 
                     //Successfullu Inserted
                     Response.Write("<script>alert('Successfully Updated Blood Request Form and is Pending for approval.')</script>");
-                    Server.Transfer("~/USER_REQUEST_A_BLOOD.aspx");
+                   Response.Redirect("~/USER_REQUEST_A_BLOOD.aspx");
                 }
                 else
                 {

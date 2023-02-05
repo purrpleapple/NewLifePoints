@@ -35,7 +35,7 @@ namespace LifePoints
 
             Session.Clear();
             Session.RemoveAll();
-            Server.TransferRequest("~/Default.aspx");
+            Response.Redirect("~/Default.aspx");
         }
 
         private void GetUnreadNotif()

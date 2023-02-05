@@ -364,7 +364,7 @@ Your request has been rejected.", br.BREQ_ID);
 
             Session.Clear();
             Session.RemoveAll();
-            Server.Transfer("~/Default.aspx");
+            Response.Redirect("~/Default.aspx");
         }
 
 

@@ -123,7 +123,7 @@ namespace LifePoints.Admin
 
             Session.Clear();
             Session.RemoveAll();
-            Server.Transfer("~/Default.aspx");
+            Response.Redirect("~/Default.aspx");
         }
     }
 }

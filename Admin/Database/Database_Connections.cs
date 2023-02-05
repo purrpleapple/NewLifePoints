@@ -54,6 +54,7 @@ namespace LifePoints.Admin.Database
             return dt;
         }
 
+
         //For bloodbank Login
         public bloodbank BloodbankLogin(string query)
         {
@@ -129,47 +130,46 @@ namespace LifePoints.Admin.Database
             return dt;
         }
 
-        //Update BloodBank Password
-                //public int UpdateProfileInfo(string uname, string npword, string opword)
-                //{
-                //    //1 if Success
-                //    //-2 if Old Password is not the one on record
-                //    //-1 if Database
+        public int UpdateProfileInfo(string uname, string npword, string opword)
+        {
+            //1 if Success
+            //-2 if Old Password is not the one on record
+            //-1 if Database
 
-                //    int res = -1;
-                //    try
-                //    {
-                //        DB_Connect();
-                //        con.Open();
-                //        cmd = con.CreateCommand();
-                //        //Check Old Password 
-                //        cmd.CommandText = string.Format("select count(*) as CountRow from admin where binary ADMIN_EMAIL='{0}' and binary ADMIN_PASSWORD='{1}';", uname, opword);
-                //        int check = Convert.ToInt32(cmd.ExecuteScalar());
-                //        if(check >= 1)
-                //        {
-                //            //Meaning the Old Password is right
-                //            //Try to Update
-                //            cmd.CommandText = string.Format("update admin set ADMIN_PASSWORD='{0}' where binary ADMIN_EMAIL='{1}' and binary ADMIN_PASSWORD='{2}';", npword, uname, opword);
-                //            int x = cmd.ExecuteNonQuery();
-                //            if(x > 0)
-                //            {
-                //                //Successful Update
-                //                res = 1;
-                //            }
-                //        }
-                //        else
-                //        {
-                //            //Old Password does not match
-                //            res = -2;
-                //        }
-                //        con.Close();
-                //    }
-                //    catch(Exception ex)
-                //    {
-                //        Debug.Print("Information Update Error : " + ex.Message);
-                //    }
-                //    return res;
-                //}
+            int res = -1;
+            try
+            {
+                DB_Connect();
+                con.Open();
+                cmd = con.CreateCommand();
+                //Check Old Password 
+                cmd.CommandText = string.Format("select count(*) from account where binary ACC_EMAIL='{0}' and binary ACC_PASSWORD='{1}';", uname, opword);
+                int check = Convert.ToInt32(cmd.ExecuteScalar());
+                if (check >= 1)
+                {
+                    //Meaning the Old Password is right
+                    //Try to Update
+                    cmd.CommandText = string.Format("update account set ACC_PASSWORD='{0}' where binary ACC_EMAIL='{1}' and binary ACC_PASSWORD='{2}';", npword, uname, opword);
+                    int x = cmd.ExecuteNonQuery();
+                    if (x > 0)
+                    {
+                        //Successful Update
+                        res = 1;
+                    }
+                }
+                else
+                {
+                    //Old Password does not match
+                    res = -2;
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("Information Update Error : " + ex.Message);
+            }
+            return res;
+        }
 
         //Get Blood Request 
         public DataTable GetBloodTransactionTableData(string query)

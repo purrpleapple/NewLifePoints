@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using LifePoints.Database;
+using Google.Protobuf.WellKnownTypes;
 
 namespace LifePoints
 {
@@ -27,7 +28,9 @@ namespace LifePoints
                 user_info ua = Session["USER_INFO"] as user_info;
                 Username.InnerText = ua.UI_FNAME + " " + ua.UI_LNAME;
                 GetUnreadNotif();
-               
+                PopulateFormInputsUserYes();
+
+
             }
         }
 
@@ -42,6 +45,32 @@ namespace LifePoints
                 Session["NTF_ID"] = id;
                 Response.Redirect("~/USER_NOTIFICATION.aspx");
             }
+        }
+
+        private void PopulateFormInputsUserYes()
+        {
+            account acc = Session["ACCOUNT"] as account;
+            user_info ui = Session["USER_INFO"] as user_info;
+            user_info_address ua = JsonConvert.DeserializeObject<user_info_address>(ui.UI_ADDRESS);
+
+
+           
+
+            LName.Text = ui.UI_LNAME;
+            FName.Text = ui.UI_FNAME;
+            MName.Text = ui.UI_MNAME;
+            Gender.SelectedValue = ui.UI_GENDER ? "1" : "0";
+            DOB.Text = ui.UI_DOB;
+            
+            City.Text = ua.city;
+            Street.Text = ua.street;
+            Province.Text = ua.province;
+            Baranggay.Text = ua.baranggay;
+            Zip.Text = ua.zip;
+            Home.Text = ui.UI_HOME;
+            Mobile.Text = ui.UI_MOBILE;
+            Email.Text = acc.ACC_EMAIL;
+
         }
 
         private void GetSurveyInputs()
@@ -214,7 +243,7 @@ namespace LifePoints
 
             Session.Clear();
             Session.RemoveAll();
-            Server.Transfer("~/Default.aspx");
+            Response.Redirect("~/Default.aspx");
         }
 
         protected void rd11n_CheckedChanged(object sender, EventArgs e)
